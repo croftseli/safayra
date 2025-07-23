@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotateY(var(--rotation, 0deg));
+  }
+  to {
+    transform: rotateY(calc(var(--rotation, 0deg) + 360deg));
+  }
+}
