@@ -173,23 +173,23 @@ function App() {
                   >
                     {galleryItems.map((item, index) => {
                       const rotation = (360 / galleryItems.length) * index;
-                      const translateZ = 280; // Increased distance from center for more circular appearance
+                      const translateZ = window.innerWidth < 640 ? 120 : window.innerWidth < 768 ? 160 : 280; // Even smaller radius on mobile
                       
                       return (
                         <div
                           key={index}
-                          className="absolute w-64 h-80 md:w-72 md:h-96 bg-gradient-to-br from-[#4A1F1A] to-[#6B2C20] rounded-xl p-6 text-white shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-300"
+                          className="absolute w-36 h-48 sm:w-48 sm:h-64 md:w-72 md:h-96 bg-gradient-to-br from-[#4A1F1A] to-[#6B2C20] rounded-xl p-3 sm:p-4 md:p-6 text-white shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-300"
                           onClick={() => setActiveDetailPage(item.id)}
                           style={{
                             transform: `rotateY(${rotation}deg) translateZ(${translateZ}px)`,
                             left: '50%',
                             top: '50%',
-                            marginLeft: '-8rem', // Half of w-64
-                            marginTop: '-10rem', // Half of h-80
+                            marginLeft: window.innerWidth < 640 ? '-4.5rem' : window.innerWidth < 768 ? '-6rem' : '-9rem',
+                            marginTop: window.innerWidth < 640 ? '-6rem' : window.innerWidth < 768 ? '-8rem' : '-12rem',
                           }}
                         >
                           <div className="relative z-10 h-full flex flex-col">
-                            <h3 className="text-lg md:text-xl font-bold mb-4 leading-tight">
+                            <h3 className="text-xs sm:text-sm md:text-xl font-bold mb-1 sm:mb-2 md:mb-4 leading-tight">
                               {item.title.split('\n').map((line, lineIndex) => (
                                 <span key={lineIndex}>
                                   {line}
@@ -197,15 +197,18 @@ function App() {
                                 </span>
                               ))}
                             </h3>
-                            <div className="w-full h-32 md:h-40 bg-gradient-to-br from-[#5A2E26] to-[#7A3E32] rounded-lg mb-4 overflow-hidden">
+                            <div className="w-full h-16 sm:h-24 md:h-40 bg-gradient-to-br from-[#5A2E26] to-[#7A3E32] rounded-lg mb-1 sm:mb-2 md:mb-4 overflow-hidden">
                               <img 
                                 src={item.image}
                                 alt={item.alt}
                                 className="w-full h-full object-cover"
                               />
                             </div>
-                            <p className="text-amber-100 leading-relaxed text-xs md:text-sm flex-1 overflow-hidden">
-                              {item.text.length > 150 ? `${item.text.substring(0, 147)}...` : item.text}
+                            <p className="text-amber-100 leading-relaxed text-xs sm:text-xs flex-1 overflow-hidden">
+                              {window.innerWidth < 640 
+                                ? (item.text.length > 60 ? `${item.text.substring(0, 57)}...` : item.text)
+                                : (item.text.length > 150 ? `${item.text.substring(0, 147)}...` : item.text)
+                              }
                             </p>
                           </div>
                         </div>
