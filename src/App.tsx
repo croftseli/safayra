@@ -153,7 +153,7 @@ function App() {
             {/* Rotating Gallery Section */}
             <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 md:p-12">
               <div className="max-w-4xl mx-auto">
-                <div className="text-center mb-8">
+                <div className="text-center mb-12">
                   <p className="text-lg md:text-xl text-amber-900 leading-relaxed font-medium">
                     {language === 'en'
                       ? "Sourced directly from Iran, grown with care and respect for tradition. Ethically harvested and lab-tested, our saffron reflects purity, culture, and quality."
@@ -161,7 +161,7 @@ function App() {
                     }
                   </p>
                 </div>
-                <div className="relative h-[60vh] perspective-1000 flex items-center justify-center -mt-4">
+                <div className="relative h-[60vh] perspective-1000 flex items-center justify-center">
                   {/* 3D Spinning Carousel Container */}
                   <div 
                     className="relative preserve-3d animate-spin-slow"
