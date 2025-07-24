@@ -207,7 +207,9 @@ function App() {
                             <p className="text-amber-100 leading-relaxed text-xs sm:text-sm flex-1 overflow-hidden">
                               {window.innerWidth < 640 
                                 ? (item.text.length > 50 ? `${item.text.substring(0, 47)}...` : item.text)
-                                : (item.text.length > 150 ? `${item.text.substring(0, 147)}...` : item.text)
+                                : window.innerWidth < 768
+                                  ? (item.text.length > 120 ? `${item.text.substring(0, 117)}...` : item.text)
+                                  : (item.text.length > 100 ? `${item.text.substring(0, 97)}...` : item.text)
                               }
                             </p>
                           </div>
