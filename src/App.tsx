@@ -41,8 +41,6 @@ function App() {
         return <GalleryPage language={language} />;
       case 'contact':
         return <ContactPage language={language} />;
-      case 'languages':
-        return <LanguagePage language={language} setLanguage={setLanguage} />;
       default:
         return <HomePage language={language} setActiveDetailPage={setActiveDetailPage} />;
     }
@@ -56,6 +54,7 @@ function App() {
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
         language={language}
+        setLanguage={setLanguage}
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

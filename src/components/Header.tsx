@@ -7,6 +7,7 @@ interface HeaderProps {
   mobileMenuOpen: boolean;
   setMobileMenuOpen: (open: boolean) => void;
   language: 'en' | 'fr' | 'de';
+  setLanguage: (lang: 'en' | 'fr' | 'de') => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -14,14 +15,14 @@ const Header: React.FC<HeaderProps> = ({
   setActiveTab,
   mobileMenuOpen,
   setMobileMenuOpen,
-  language
+  language,
+  setLanguage
 }) => {
   const tabs = [
     { id: 'home', label: language === 'en' ? 'Home Page' : language === 'fr' ? 'Accueil' : 'Startseite' },
     { id: 'about', label: language === 'en' ? 'About us' : language === 'fr' ? 'À propos' : 'Über uns' },
     { id: 'gallery', label: language === 'en' ? 'Gallery' : language === 'fr' ? 'Galerie' : 'Galerie' },
-    { id: 'contact', label: language === 'en' ? 'Contact us' : language === 'fr' ? 'Contactez-nous' : 'Kontakt' },
-    { id: 'languages', label: language === 'en' ? 'Languages' : language === 'fr' ? 'Langues' : 'Sprachen' }
+    { id: 'contact', label: language === 'en' ? 'Contact us' : language === 'fr' ? 'Contactez-nous' : 'Kontakt' }
   ];
 
   return (
@@ -79,15 +80,37 @@ const Header: React.FC<HeaderProps> = ({
             >
               {language === 'en' ? 'Contact us' : 'Contactez-nous'}
             </button>
-            <button
-              onClick={() => setActiveTab('languages')}
-              className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${activeTab === 'languages'
-                ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-md'
-                : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
+            
+            {/* Language Flags */}
+            <div className="flex items-center space-x-2 ml-4">
+              <button
+                onClick={() => setLanguage('en')}
+                className={`p-2 rounded-lg transition-all duration-300 hover:bg-amber-50 ${
+                  language === 'en' ? 'bg-amber-100 ring-2 ring-amber-400' : ''
                 }`}
-            >
-              {language === 'en' ? 'Languages' : 'Langues'}
-            </button>
+                title="English"
+              >
+                <span className="text-2xl">🇺🇸</span>
+              </button>
+              <button
+                onClick={() => setLanguage('fr')}
+                className={`p-2 rounded-lg transition-all duration-300 hover:bg-amber-50 ${
+                  language === 'fr' ? 'bg-amber-100 ring-2 ring-amber-400' : ''
+                }`}
+                title="Français"
+              >
+                <span className="text-2xl">🇫🇷</span>
+              </button>
+              <button
+                onClick={() => setLanguage('de')}
+                className={`p-2 rounded-lg transition-all duration-300 hover:bg-amber-50 ${
+                  language === 'de' ? 'bg-amber-100 ring-2 ring-amber-400' : ''
+                }`}
+                title="Deutsch"
+              >
+                <span className="text-2xl">🇩🇪</span>
+              </button>
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -102,21 +125,68 @@ const Header: React.FC<HeaderProps> = ({
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-gray-200 py-4 space-y-2">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => {
-                  setActiveTab(tab.id);
-                  setMobileMenuOpen(false);
-                }}
-                className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-300 ${activeTab === tab.id
-                  ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white'
-                  : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
+            <div className="space-y-2">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    setActiveTab(tab.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-300 ${activeTab === tab.id
+                    ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white'
+                    : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
+                    }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            
+            {/* Mobile Language Flags */}
+            <div className="border-t border-gray-200 pt-4 mt-4">
+              <p className="px-4 text-sm font-medium text-gray-500 mb-3">
+                {language === 'en' ? 'Language' : language === 'fr' ? 'Langue' : 'Sprache'}
+              </p>
+              <div className="flex justify-center space-x-4">
+                <button
+                  onClick={() => {
+                    setLanguage('en');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`p-3 rounded-lg transition-all duration-300 hover:bg-amber-50 ${
+                    language === 'en' ? 'bg-amber-100 ring-2 ring-amber-400' : ''
                   }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+                  title="English"
+                >
+                  <span className="text-3xl">🇺🇸</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setLanguage('fr');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`p-3 rounded-lg transition-all duration-300 hover:bg-amber-50 ${
+                    language === 'fr' ? 'bg-amber-100 ring-2 ring-amber-400' : ''
+                  }`}
+                  title="Français"
+                >
+                  <span className="text-3xl">🇫🇷</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setLanguage('de');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`p-3 rounded-lg transition-all duration-300 hover:bg-amber-50 ${
+                    language === 'de' ? 'bg-amber-100 ring-2 ring-amber-400' : ''
+                  }`}
+                  title="Deutsch"
+                >
+                  <span className="text-3xl">🇩🇪</span>
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </div>
