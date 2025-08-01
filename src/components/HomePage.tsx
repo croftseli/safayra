@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 
 interface HomePageProps {
   language: 'en' | 'fr' | 'de';
@@ -6,185 +7,231 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({ language, setActiveDetailPage }) => {
-  const galleryItems = language === 'en' ? [
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Carousel images
+  const carouselImages = [
     {
-      id: 'culinary',
-      title: "Enhancing the\nculinary experience",
-      image: "/saf 1.JPG",
-      alt: "Saffron dessert",
-      text: "With its deep aroma, vibrant color, and unparalleled purity, Safayra meets the expectations of the world's most refined palates, from..."
+      src: "/saf 1.JPG",
+      alt: language === 'en' ? "Premium Saffron Culinary" : language === 'fr' ? "Safran Premium Culinaire" : "Premium Safran Kulinarisch"
     },
     {
-      id: 'skincare',
-      title: "Red gold for the skin",
-      image: "/saf 2.JPG",
-      alt: "Saffron skincare",
-      text: "We offer saffron in its purest and most potent form, naturally rich in crocin, safranal, and other powerful antioxidants. Revered for centuries in traditional Persian and Ayurvedic beauty rituals, saffron is now celebrated in modern skincare for its remarkable anti-aging, brightening, and anti-inflammatory benefits."
+      src: "/saf 2.JPG", 
+      alt: language === 'en' ? "Saffron Skincare Beauty" : language === 'fr' ? "Beauté Safran Soins" : "Safran Hautpflege Schönheit"
     },
     {
-      id: 'wellness',
-      title: "Wellness",
-      image: "/saf 4.jpg",
-      alt: "Saffron wellness",
-      text: "Known for its soothing and revitalizing properties, this precious plant has its roots in an ancient tradition. Rich in active compounds such as crocin, crocetin, and safranal, it is now fully integrated into modern wellness approaches."
+      src: "/saf 4.jpg",
+      alt: language === 'en' ? "Saffron Wellness" : language === 'fr' ? "Bien-être Safran" : "Safran Wellness"
     },
     {
-      id: 'about',
-      title: "Who we are",
-      image: "/Who are we.JPG",
-      alt: "Who we are",
-      text: "Ethically sourced saffron from Iran, Safayra is a journey from the sun-drenched fields of Iran to the heart of Europe. We bring you premium-quality saffron, carefully handpicked from its land of origin, where centuries of tradition meet ethical and modern practices."
+      src: "/Who are we.JPG",
+      alt: language === 'en' ? "Who We Are" : language === 'fr' ? "Qui Nous Sommes" : "Wer Wir Sind"
     },
     {
-      id: 'ethical',
-      title: "A transparent, ethical source",
-      image: "/a transparent ethical.jpg",
-      alt: "Transparent ethical source",
-      text: "We are committed to sharing the rich culture of Iran and honoring the heritage and communities behind every thread."
+      src: "/a transparent ethical.jpg",
+      alt: language === 'en' ? "Ethical Source" : language === 'fr' ? "Source Éthique" : "Ethische Quelle"
     }
-  ] : language === 'fr' ? [
-    {
-      id: 'culinary',
-      title: "Améliorer l'expérience\nculinaire",
-      image: "/saf 1.JPG",
-      alt: "Dessert au safran",
-      text: "Avec son arôme profond, sa couleur vibrante et sa pureté inégalée, Safayra répond aux attentes des palais les plus raffinés du monde, des chefs étoilés aux créateurs artisanaux..."
-    },
+  ];
+
+  // Auto-rotate carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    }, 4000); // Change slide every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [carouselImages.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+  };
+
+  // Card data
+  const cards = [
     {
       id: 'skincare',
-      title: "L'or rouge pour la peau",
+      title: language === 'en' ? "Red Gold for the Skin" : language === 'fr' ? "L'Or Rouge pour la Peau" : "Rotes Gold für die Haut",
+      description: language === 'en' 
+        ? "Discover the beauty secrets of saffron for radiant, healthy skin with natural anti-aging properties."
+        : language === 'fr' 
+        ? "Découvrez les secrets de beauté du safran pour une peau radieuse et saine avec des propriétés anti-âge naturelles."
+        : "Entdecken Sie die Schönheitsgeheimnisse von Safran für strahlende, gesunde Haut mit natürlichen Anti-Aging-Eigenschaften.",
       image: "/saf 2.JPG",
-      alt: "Soins de la peau au safran",
-      text: "Nous offrons le safran dans sa forme la plus pure et la plus puissante, naturellement riche en crocine, safranal et autres antioxydants puissants. Vénéré depuis des siècles dans les rituels de beauté persans et ayurvédiques traditionnels, le safran est maintenant célébré dans les soins modernes pour ses remarquables bienfaits anti-âge, éclaircissants et anti-inflammatoires."
-    },
-    {
-      id: 'wellness',
-      title: "Bien-être",
-      image: "/saf 4.jpg",
-      alt: "Bien-être au safran",
-      text: "Connue pour ses propriétés apaisantes et revitalisantes, cette plante précieuse trouve ses racines dans une tradition ancienne. Riche en composés actifs tels que la crocine, la crocétine et le safranal, elle s'intègre désormais pleinement dans les approches modernes du bien-être."
-    },
-    {
-      id: 'about',
-      title: "Qui nous sommes",
-      image: "/Who are we.JPG",
-      alt: "Qui nous sommes",
-      text: "Safran d'origine éthique d'Iran, Safayra est un voyage des champs ensoleillés d'Iran au cœur de l'Europe. Nous vous apportons un safran de qualité supérieure, soigneusement cueilli à la main de son pays d'origine, où des siècles de tradition rencontrent des pratiques éthiques et modernes."
+      gradient: "from-rose-500 to-pink-600"
     },
     {
       id: 'ethical',
-      title: "Une source transparente et éthique",
+      title: language === 'en' ? "A Transparent and Ethical Source" : language === 'fr' ? "Une Source Transparente et Éthique" : "Eine Transparente und Ethische Quelle",
+      description: language === 'en'
+        ? "Learn about our commitment to fair trade practices and sustainable saffron sourcing from Iran."
+        : language === 'fr'
+        ? "Découvrez notre engagement envers les pratiques de commerce équitable et l'approvisionnement durable en safran d'Iran."
+        : "Erfahren Sie mehr über unser Engagement für fairen Handel und nachhaltige Safran-Beschaffung aus dem Iran.",
       image: "/a transparent ethical.jpg",
-      alt: "Source éthique transparente",
-      text: "Nous nous engageons à partager la riche culture de l'Iran et à honorer le patrimoine et les communautés derrière chaque fil."
-    }
-  ] : [
-    {
-      id: 'culinary',
-      title: "Verbesserung des\nkulinarischen Erlebnisses",
-      image: "/saf 1.JPG",
-      alt: "Safran-Dessert",
-      text: "Mit seinem tiefen Aroma, seiner lebendigen Farbe und seiner unvergleichlichen Reinheit erfüllt Safayra die Erwartungen der raffiniertesten Gaumen der Welt, von Sterneköchen bis hin zu handwerklichen Schöpfern..."
-    },
-    {
-      id: 'skincare',
-      title: "Rotes Gold für die Haut",
-      image: "/saf 2.JPG",
-      alt: "Safran-Hautpflege",
-      text: "Wir bieten Safran in seiner reinsten und wirksamsten Form an, natürlich reich an Crocin, Safranal und anderen kraftvollen Antioxidantien. Seit Jahrhunderten in traditionellen persischen und ayurvedischen Schönheitsritualen verehrt, wird Safran heute in der modernen Hautpflege für seine bemerkenswerten Anti-Aging-, aufhellenden und entzündungshemmenden Vorteile gefeiert."
+      gradient: "from-green-500 to-emerald-600"
     },
     {
       id: 'wellness',
-      title: "Wohlbefinden",
+      title: language === 'en' ? "Wellness" : language === 'fr' ? "Bien-être" : "Wohlbefinden",
+      description: language === 'en'
+        ? "Explore the therapeutic benefits of saffron for mental wellness, relaxation, and natural healing."
+        : language === 'fr'
+        ? "Explorez les bienfaits thérapeutiques du safran pour le bien-être mental, la relaxation et la guérison naturelle."
+        : "Entdecken Sie die therapeutischen Vorteile von Safran für geistiges Wohlbefinden, Entspannung und natürliche Heilung.",
       image: "/saf 4.jpg",
-      alt: "Safran-Wellness",
-      text: "Bekannt für ihre beruhigenden und revitalisierenden Eigenschaften, hat diese kostbare Pflanze ihre Wurzeln in einer alten Tradition. Reich an aktiven Verbindungen wie Crocin, Crocetin und Safranal, ist sie heute vollständig in moderne Wellness-Ansätze integriert."
+      gradient: "from-purple-500 to-indigo-600"
+    },
+    {
+      id: 'culinary',
+      title: language === 'en' ? "Enhancing the Culinary Experience" : language === 'fr' ? "Améliorer l'Expérience Culinaire" : "Verbesserung des Kulinarischen Erlebnisses",
+      description: language === 'en'
+        ? "Transform your cooking with premium saffron that brings authentic flavor and vibrant color to every dish."
+        : language === 'fr'
+        ? "Transformez votre cuisine avec du safran premium qui apporte une saveur authentique et une couleur vibrante à chaque plat."
+        : "Verwandeln Sie Ihr Kochen mit Premium-Safran, der authentischen Geschmack und lebendige Farbe in jedes Gericht bringt.",
+      image: "/saf 1.JPG",
+      gradient: "from-amber-500 to-orange-600"
     },
     {
       id: 'about',
-      title: "Wer wir sind",
+      title: language === 'en' ? "Who We Are" : language === 'fr' ? "Qui Nous Sommes" : "Wer Wir Sind",
+      description: language === 'en'
+        ? "Meet the passionate team behind Safayra and our journey from Iranian saffron fields to European markets."
+        : language === 'fr'
+        ? "Rencontrez l'équipe passionnée derrière Safayra et notre voyage des champs de safran iraniens aux marchés européens."
+        : "Lernen Sie das leidenschaftliche Team hinter Safayra und unsere Reise von iranischen Safranfeldern zu europäischen Märkten kennen.",
       image: "/Who are we.JPG",
-      alt: "Wer wir sind",
-      text: "Ethisch bezogener Safran aus dem Iran, Safayra ist eine Reise von den sonnenverwöhnten Feldern des Iran ins Herz Europas. Wir bringen Ihnen Premium-Qualität Safran, sorgfältig von Hand gepflückt aus seinem Ursprungsland, wo jahrhundertealte Tradition auf ethische und moderne Praktiken trifft."
-    },
-    {
-      id: 'ethical',
-      title: "Eine transparente, ethische Quelle",
-      image: "/a transparent ethical.jpg",
-      alt: "Transparente ethische Quelle",
-      text: "Wir sind verpflichtet, die reiche Kultur des Iran zu teilen und das Erbe und die Gemeinschaften hinter jedem Faden zu ehren."
+      gradient: "from-blue-500 to-cyan-600"
     }
   ];
 
   return (
-    <div className="space-y-16">
-      {/* Rotating Gallery Section */}
-      <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 md:p-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <p className="text-lg md:text-xl text-amber-900 leading-relaxed font-medium">
-              {language === 'en'
-                ? "Sourced directly from Iran, grown with care and respect for tradition. Ethically harvested and lab-tested, our saffron reflects purity, culture, and quality."
-                : language === 'fr' ? "Directement sourcé d'Iran, cultivé avec soin et respect pour la tradition. Récolté de manière éthique et testé en laboratoire, notre safran reflète la pureté, la culture et la qualité." : "Direkt aus dem Iran bezogen, mit Sorgfalt und Respekt für die Tradition angebaut. Ethisch geerntet und im Labor getestet, spiegelt unser Safran Reinheit, Kultur und Qualität wider."
-              }
-            </p>
-          </div>
-          <div className="relative h-[60vh] perspective-1000 flex items-center justify-center">
-            {/* 3D Spinning Carousel Container */}
-            <div
-              className="relative preserve-3d animate-spin-slow"
-              style={{
-                transformStyle: 'preserve-3d',
-                animation: 'spin 30s linear infinite',
-              }}
-            >
-              {galleryItems.map((item, index) => {
-                const rotation = (360 / galleryItems.length) * index;
-                const translateZ = window.innerWidth < 640 ? 140 : window.innerWidth < 768 ? 200 : 280;
+    <div className="space-y-12 md:space-y-16">
+      {/* Hero Text */}
+      <div className="text-center max-w-4xl mx-auto px-4">
+        <p className="text-lg md:text-xl lg:text-2xl text-amber-900 leading-relaxed font-medium">
+          {language === 'en'
+            ? "Sourced directly from Iran, grown with care and respect for tradition. Ethically harvested and lab-tested, our saffron reflects purity, culture, and quality."
+            : language === 'fr' 
+            ? "Directement sourcé d'Iran, cultivé avec soin et respect pour la tradition. Récolté de manière éthique et testé en laboratoire, notre safran reflète la pureté, la culture et la qualité." 
+            : "Direkt aus dem Iran bezogen, mit Sorgfalt und Respekt für die Tradition angebaut. Ethisch geerntet und im Labor getestet, spiegelt unser Safran Reinheit, Kultur und Qualität wider."
+          }
+        </p>
+      </div>
 
-                return (
-                  <div
-                    key={index}
-                    className="absolute w-32 h-44 sm:w-48 sm:h-64 md:w-72 md:h-96 bg-gradient-to-br from-[#4A1F1A] to-[#6B2C20] rounded-xl p-3 sm:p-4 md:p-6 text-white shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-300"
-                    onClick={() => setActiveDetailPage(item.id)}
-                    style={{
-                      transform: `rotateY(${rotation}deg) translateZ(${translateZ}px)`,
-                      left: '50%',
-                      top: '50%',
-                      marginLeft: window.innerWidth < 640 ? '-4rem' : window.innerWidth < 768 ? '-6rem' : '-9rem',
-                      marginTop: window.innerWidth < 640 ? '-5.5rem' : window.innerWidth < 768 ? '-8rem' : '-12rem',
-                    }}
-                  >
-                    <div className="relative z-10 h-full flex flex-col">
-                      <h3 className="text-xs sm:text-base md:text-xl font-bold mb-1 sm:mb-2 md:mb-4 leading-tight">
-                        {item.title.split('\n').map((line, lineIndex) => (
-                          <span key={lineIndex}>
-                            {line}
-                            {lineIndex < item.title.split('\n').length - 1 && <br />}
-                          </span>
-                        ))}
-                      </h3>
-                      <div className="w-full h-14 sm:h-24 md:h-40 bg-gradient-to-br from-[#5A2E26] to-[#7A3E32] rounded-lg mb-1 sm:mb-2 md:mb-4 overflow-hidden">
-                        <img
-                          src={item.image}
-                          alt={item.alt}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <p className="text-amber-100 leading-relaxed text-xs sm:text-sm flex-1 overflow-hidden">
-                        {window.innerWidth < 640
-                          ? (item.text.length > 50 ? `${item.text.substring(0, 47)}...` : item.text)
-                          : window.innerWidth < 768
-                            ? (item.text.length > 120 ? `${item.text.substring(0, 117)}...` : item.text)
-                            : (item.text.length > 100 ? `${item.text.substring(0, 97)}...` : item.text)
-                        }
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
+      {/* Image Carousel */}
+      <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-4 md:p-8 lg:p-12">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative overflow-hidden rounded-xl shadow-2xl">
+            {/* Carousel Container */}
+            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px]">
+              {carouselImages.map((image, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                    index === currentSlide ? 'opacity-100' : 'opacity-0'
+                  }`}
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              ))}
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="w-4 h-4 md:w-6 md:h-6" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+              aria-label="Next image"
+            >
+              <ChevronRight className="w-4 h-4 md:w-6 md:h-6" />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              {carouselImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide 
+                      ? 'bg-white shadow-lg scale-125' 
+                      : 'bg-white/60 hover:bg-white/80'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Clickable Cards Section */}
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-amber-900 mb-4">
+            {language === 'en' ? 'Discover Our World' : language === 'fr' ? 'Découvrez Notre Monde' : 'Entdecken Sie Unsere Welt'}
+          </h2>
+          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+            {language === 'en'
+              ? 'Explore the many facets of premium saffron and learn how it can enhance your life'
+              : language === 'fr'
+              ? 'Explorez les nombreuses facettes du safran premium et découvrez comment il peut améliorer votre vie'
+              : 'Entdecken Sie die vielen Facetten von Premium-Safran und erfahren Sie, wie er Ihr Leben bereichern kann'
+            }
+          </p>
+        </div>
+
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6">
+          {cards.map((card) => (
+            <div
+              key={card.id}
+              onClick={() => setActiveDetailPage(card.id)}
+              className="group cursor-pointer bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+            >
+              {/* Card Image */}
+              <div className="relative h-32 sm:h-40 md:h-48 overflow-hidden">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t ${card.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}></div>
+              </div>
+
+              {/* Card Content */}
+              <div className="p-4 md:p-6">
+                <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3 group-hover:text-amber-700 transition-colors duration-300">
+                  {card.title}
+                </h3>
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-3 md:mb-4 line-clamp-3">
+                  {card.description}
+                </p>
+                <div className="flex items-center text-amber-600 group-hover:text-amber-700 transition-colors duration-300">
+                  <span className="text-sm md:text-base font-medium">
+                    {language === 'en' ? 'Learn More' : language === 'fr' ? 'En Savoir Plus' : 'Mehr Erfahren'}
+                  </span>
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
