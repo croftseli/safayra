@@ -1,342 +1,110 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Menu, X } from 'lucide-react';
 
-// TODO: EmailJS Integration
-// 1. Install EmailJS: npm install @emailjs/browser
-// 2. Import EmailJS: import emailjs from '@emailjs/browser';
-// 3. Initialize EmailJS in useEffect or App.js with your public key
-// 4. Replace the simulated form submission with actual EmailJS send
+const Header = ({ activeTab, setActiveTab, mobileMenuOpen, setMobileMenuOpen, language, setLanguage }) => {
+  const navItems = [
+    { id: 'home', label: { en: 'Home', fr: 'Accueil', de: 'Startseite' } },
+    { id: 'about', label: { en: 'About', fr: 'À propos', de: 'Über uns' } },
+    { id: 'gallery', label: { en: 'Gallery', fr: 'Galerie', de: 'Galerie' } },
+    { id: 'contact', label: { en: 'Contact', fr: 'Contact', de: 'Kontakt' } },
+  ];
 
-const ContactPage = ({ language }) => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    confirmEmail: '',
-    subject: '',
-    message: '',
-  });
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
-
-  // TODO: EmailJS Configuration
-  // Add these constants when integrating EmailJS:
-  // const EMAILJS_SERVICE_ID = 'your_service_id';
-  // const EMAILJS_TEMPLATE_ID = 'your_template_id';
-  // const EMAILJS_PUBLIC_KEY = 'your_public_key';
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-    
-    if (!formData.fullName || formData.fullName.trim().length < 2) {
-      newErrors.fullName = 'Full name must be at least 2 characters long';
-    }
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email || !emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
-    }
-    
-    if (!formData.confirmEmail || !emailRegex.test(formData.confirmEmail)) {
-      newErrors.confirmEmail = 'Please enter a valid email address';
-    } else if (formData.email !== formData.confirmEmail) {
-      newErrors.confirmEmail = 'Email addresses do not match';
-    }
-    
-    if (!formData.subject || formData.subject.trim().length < 2) {
-      newErrors.subject = 'Subject must be at least 2 characters long';
-    }
-    
-    if (!formData.message || formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters long';
-    }
-    
-    return newErrors;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    setSubmitStatus(null);
-    
-    const formErrors = validateForm();
-    if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
-      return;
-    }
-
-    setIsSubmitting(true);
-    
-    try {
-      // TODO: Replace this simulation with actual EmailJS send
-      // Example EmailJS implementation:
-      /*
-      const templateParams = {
-        from_name: formData.fullName,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'your-email@domain.com', // Your receiving email
-      };
-
-      const result = await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      );
-
-      console.log('Email sent successfully:', result);
-      */
-      
-      // CURRENT: Simulated form submission (remove when implementing EmailJS)
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      setSubmitStatus({
-        type: 'success',
-        message: language === 'en' 
-          ? 'Message sent successfully! We will get back to you soon.'
-          : language === 'fr'
-          ? 'Message envoyé avec succès! Nous vous répondrons bientôt.'
-          : 'Nachricht erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.'
-      });
-      setFormData({ fullName: '', email: '', confirmEmail: '', subject: '', message: '' });
-    } catch (error) {
-      // TODO: Enhanced error handling for EmailJS
-      // EmailJS errors can be: network issues, invalid config, rate limits, etc.
-      console.error('Form submission error:', error);
-      setSubmitStatus({
-        type: 'error',
-        message: language === 'en'
-          ? 'Failed to send message. Please try again later.'
-          : language === 'fr'
-          ? 'Échec de l\'envoi du message. Veuillez réessayer plus tard.'
-          : 'Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.'
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  // TODO: EmailJS Template Variables
-  // When setting up your EmailJS template, use these variable names:
-  // {{from_name}} - User's full name
-  // {{from_email}} - User's email address  
-  // {{subject}} - Message subject
-  // {{message}} - Message content
-  // {{to_email}} - Your receiving email (optional, can be set in template)
+  const languages = [
+    { code: 'en', flag: '🇺🇸', name: 'English' },
+    { code: 'fr', flag: '🇫🇷', name: 'Français' },
+    { code: 'de', flag: '🇩🇪', name: 'Deutsch' },
+  ];
 
   return (
-    <div className="max-w-6xl mx-auto">
-      {/* Page Header */}
-      <div className="text-center mb-12">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-amber-900 mb-4 sm:mb-6 px-4">
-          {language === 'en' ? 'Contact Us' : language === 'fr' ? 'Contactez-nous' : 'Kontakt'}
-        </h2>
-        <p className="text-sm sm:text-base md:text-lg text-gray-600 px-4">
-          {language === 'en'
-            ? 'Get in touch with us for premium saffron inquiries'
-            : language === 'fr' ? 'Contactez-nous pour vos demandes de safran premium' : 'Kontaktieren Sie uns für Premium-Safran-Anfragen'
-          }
-        </p>
-      </div>
+    <header className="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-2 xs:px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 xs:h-18 sm:h-20">
+          {/* Logo */}
+          <div className="flex items-center space-x-2 xs:space-x-3">
+            <img
+              src="/safayra_logo-removebg.jpg"
+              alt="SAFAYRA"
+              className="h-12 xs:h-14 sm:h-16 md:h-18 w-auto object-contain"
+            />
+          </div>
 
-      {/* Contact Form Section */}
-      <div className="w-full mb-12">
-        <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 mx-2 sm:mx-0">
-          <h3 className="text-xl sm:text-2xl font-bold text-amber-900 mb-4 sm:mb-6">
-            {language === 'en' ? 'Send us a message' : language === 'fr' ? 'Envoyez-nous un message' : 'Senden Sie uns eine Nachricht'}
-          </h3>
-          
-          {/* Status Messages */}
-          {submitStatus && (
-            <div className={`mb-4 sm:mb-6 p-3 sm:p-4 rounded-lg text-sm sm:text-base ${
-              submitStatus.type === 'success' 
-                ? 'bg-green-50 text-green-800 border border-green-200' 
-                : 'bg-red-50 text-red-800 border border-red-200'
-            }`}>
-              {submitStatus.message}
-            </div>
-          )}
-          
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-            {/* Full Name */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">
-                {language === 'en' ? 'Full Name' : language === 'fr' ? 'Nom complet' : 'Vollständiger Name'}
-              </label>
-              <input
-                type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleInputChange}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm sm:text-base ${
-                  errors.fullName ? 'border-red-300' : 'border-gray-300'
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className={`px-3 lg:px-4 py-2 rounded-lg font-medium transition-all duration-300 text-sm lg:text-base ${
+                  activeTab === item.id
+                    ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-lg'
+                    : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
                 }`}
-                placeholder={language === 'en' ? 'Your name' : language === 'fr' ? 'Votre nom' : 'Ihr Name'}
-                required
-              />
-              {errors.fullName && <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>}
+              >
+                {item.label[language]}
+              </button>
+            ))}
+          </nav>
+
+          {/* Language Selector & Mobile Menu */}
+          <div className="flex items-center space-x-2 xs:space-x-3 sm:space-x-4">
+            {/* Language Flags */}
+            <div className="flex items-center space-x-1 xs:space-x-1.5 sm:space-x-2">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => setLanguage(lang.code)}
+                  className={`p-1 xs:p-1.5 sm:p-2 rounded-lg transition-all duration-300 text-lg xs:text-xl sm:text-2xl ${
+                    language === lang.code
+                      ? 'bg-amber-100 shadow-md scale-110'
+                      : 'hover:bg-gray-100 hover:scale-105'
+                  }`}
+                  title={lang.name}
+                >
+                  {lang.flag}
+                </button>
+              ))}
             </div>
 
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">
-                {language === 'en' ? 'Email' : language === 'fr' ? 'E-mail' : 'E-Mail'}
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm sm:text-base ${
-                  errors.email ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder={language === 'en' ? 'your@email.com' : language === 'fr' ? 'votre@email.com' : 'ihre@email.com'}
-                required
-              />
-              {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
-            </div>
-
-            {/* Confirm Email */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">
-                {language === 'en' ? 'Confirm Email' : language === 'fr' ? 'Confirmer l\'e-mail' : 'E-Mail bestätigen'}
-              </label>
-              <input
-                type="email"
-                name="confirmEmail"
-                value={formData.confirmEmail}
-                onChange={handleInputChange}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm sm:text-base ${
-                  errors.confirmEmail ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder={language === 'en' ? 'Confirm your email' : language === 'fr' ? 'Confirmez votre e-mail' : 'Bestätigen Sie Ihre E-Mail'}
-                required
-              />
-              {errors.confirmEmail && <p className="mt-1 text-sm text-red-600">{errors.confirmEmail}</p>}
-            </div>
-
-            {/* Subject */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">
-                {language === 'en' ? 'Subject' : language === 'fr' ? 'Sujet' : 'Betreff'}
-              </label>
-              <input
-                type="text"
-                name="subject"
-                value={formData.subject}
-                onChange={handleInputChange}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm sm:text-base ${
-                  errors.subject ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder={language === 'en' ? 'Enter subject' : language === 'fr' ? 'Entrez le sujet' : 'Betreff eingeben'}
-                required
-              />
-              {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject}</p>}
-            </div>
-
-            {/* Message */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2">
-                {language === 'en' ? 'Message' : language === 'fr' ? 'Message' : 'Nachricht'}
-              </label>
-              <textarea
-                rows={5}
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                className={`w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm sm:text-base resize-none ${
-                  errors.message ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder={language === 'en' ? 'Tell us about your saffron needs...' : language === 'fr' ? 'Parlez-nous de vos besoins en safran...' : 'Erzählen Sie uns von Ihren Safran-Bedürfnissen...'}
-                required
-              ></textarea>
-              {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
-            </div>
-
-            {/* Submit Button */}
+            {/* Mobile Menu Button */}
             <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base ${
-                isSubmitting
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white hover:shadow-lg transform hover:scale-105'
-              }`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg text-gray-700 hover:text-amber-700 hover:bg-amber-50 transition-all duration-300"
             >
-              {isSubmitting 
-                ? (language === 'en' ? 'Sending...' : language === 'fr' ? 'Envoi...' : 'Senden...')
-                : (language === 'en' ? 'Send Message' : language === 'fr' ? 'Envoyer le message' : 'Nachricht senden')
-              }
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 xs:w-6 xs:h-6" />
+              ) : (
+                <Menu className="w-5 h-5 xs:w-6 xs:h-6" />
+              )}
             </button>
-          </form>
-        </div>
-      </div>
-
-      {/* Get in Touch Section */}
-      <div className="w-full mb-12">
-        <div className="bg-gradient-to-br from-[#4A1F1A] to-[#6B2C20] text-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mx-2 sm:mx-0">
-          <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
-            {language === 'en' ? 'Get in Touch' : language === 'fr' ? 'Contactez-nous' : 'Kontakt aufnehmen'}
-          </h3>
-          <div className="space-y-3 sm:space-y-4">
-            <div>
-              <h4 className="font-semibold text-amber-200 mb-2">
-                {language === 'en' ? 'Phone' : language === 'fr' ? 'Téléphone' : 'Telefon'}
-              </h4>
-              <p className="text-amber-100 text-sm sm:text-base">+33 1 23 45 67 89 (France)</p>
-              <p className="text-amber-100 text-sm sm:text-base">+49 30 12 34 56 78 (Germany)</p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-amber-200 mb-2">
-                {language === 'en' ? 'Address' : language === 'fr' ? 'Adresse' : 'Adresse'}
-              </h4>
-              <p className="text-amber-100 text-sm sm:text-base whitespace-pre-line">
-                {language === 'en'
-                  ? 'European Distribution Center\n123 Saffron Street\n75001 Paris, France'
-                  : language === 'fr'
-                    ? 'Centre de Distribution Européen\n123 Rue du Safran\n75001 Paris, France'
-                    : 'Europäisches Vertriebszentrum\n123 Safranstraße\n75001 Paris, Frankreich'
-                }
-              </p>
-            </div>
           </div>
         </div>
-      </div>
 
-      {/* Business Hours Section */}
-      <div className="w-full">
-        <div className="bg-white rounded-lg xs:rounded-xl sm:rounded-2xl shadow-md xs:shadow-lg p-4 xs:p-6 sm:p-8">
-          <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-amber-900 mb-3 xs:mb-4 sm:mb-6">
-            {language === 'en' ? 'Business Hours' : language === 'fr' ? 'Heures d\'ouverture' : 'Geschäftszeiten'}
-          </h3>
-          <div className="space-y-2 text-gray-700">
-            <p><span className="font-medium">{language === 'en' ? 'Monday - Friday:' : language === 'fr' ? 'Lundi - Vendredi :' : 'Montag - Freitag:'}</span> 9:00 AM - 6:00 PM CET</p>
-            <p><span className="font-medium">{language === 'en' ? 'Saturday:' : language === 'fr' ? 'Samedi :' : 'Samstag:'}</span> 10:00 AM - 4:00 PM CET</p>
-            <p><span className="font-medium">{language === 'en' ? 'Sunday:' : language === 'fr' ? 'Dimanche :' : 'Sonntag:'}</span> {language === 'en' ? 'Closed' : language === 'fr' ? 'Fermé' : 'Geschlossen'}</p>
+        {/* Mobile Navigation Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-md">
+            <nav className="px-2 xs:px-4 py-3 xs:py-4 space-y-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setActiveTab(item.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`w-full text-left px-3 xs:px-4 py-2 xs:py-3 rounded-lg font-medium transition-all duration-300 text-sm xs:text-base ${
+                    activeTab === item.id
+                      ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-lg'
+                      : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
+                  }`}
+                >
+                  {item.label[language]}
+                </button>
+              ))}
+            </nav>
           </div>
-          <p className="text-sm text-gray-600 mt-4">
-            {language === 'en'
-              ? 'We typically respond to inquiries within 24 hours.'
-              : language === 'fr'
-                ? 'Nous répondons généralement aux demandes dans les 24 heures.'
-                : 'Wir antworten normalerweise innerhalb von 24 Stunden auf Anfragen.'
-            }
-          </p>
-        </div>
-        </div>
-    </div>
+        )}
+      </div>
+    </header>
   );
 };
 
-export default ContactPage;
+export default Header;
