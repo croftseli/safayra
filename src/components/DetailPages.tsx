@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Flower2 } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 
 interface DetailPageProps {
   pageId: string;
