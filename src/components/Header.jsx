@@ -316,6 +316,8 @@ const ContactPage = ({ language }) => {
 
       {/* Business Hours Section */}
       <div className="w-full">
+        <div className="bg-white rounded-lg xs:rounded-xl sm:rounded-2xl shadow-md xs:shadow-lg p-4 xs:p-6 sm:p-8">
+          <h3 className="text-lg xs:text-xl sm:text-2xl font-bold text-amber-900 mb-3 xs:mb-4 sm:mb-6">
             {language === 'en' ? 'Business Hours' : language === 'fr' ? 'Heures d\'ouverture' : 'Geschäftszeiten'}
           </h3>
           <div className="space-y-2 text-gray-700">
@@ -331,6 +333,7 @@ const ContactPage = ({ language }) => {
                 : 'Wir antworten normalerweise innerhalb von 24 Stunden auf Anfragen.'
             }
           </p>
+        </div>
         </div>
       </div>
     </div>
