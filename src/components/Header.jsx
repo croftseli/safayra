@@ -335,7 +335,6 @@ const ContactPage = ({ language }) => {
           </p>
         </div>
         </div>
-      </div>
     </div>
   );
 };
