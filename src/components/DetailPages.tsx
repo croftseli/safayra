@@ -102,7 +102,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
             </div>
           )
         };
-      
+
       case 'skincare':
         return {
           title: language === 'en' ? "Red Gold for the Skin" : language === 'fr' ? "L'Or Rouge pour la Peau" : "Rotes Gold für die Haut",
@@ -124,7 +124,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
                   : language === 'fr' ? "Ses actions anti-inflammatoires et antibactériennes font du safran un allié puissant pour prévenir les imperfections, apaiser les irritations et favoriser la régénération cellulaire. Idéal pour les peaux ternes, sensibles ou déshydratées, le safran apporte également une hydratation naturelle, aidant à restaurer la douceur, la lisseur et une luminosité durable." : "Seine entzündungshemmenden und antibakteriellen Wirkungen machen Safran zu einem mächtigen Verbündeten bei der Vorbeugung von Hautunreinheiten, der Beruhigung von Irritationen und der Förderung der Zellregeneration. Ideal für stumpfe, empfindliche oder dehydrierte Haut, liefert Safran auch natürliche Feuchtigkeit und hilft dabei, Weichheit, Glätte und dauerhafte Leuchtkraft wiederherzustellen."
                 }
               </p>
-              
+
               <div className="bg-amber-50 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-amber-900 mb-4">
                   {language === 'en' ? 'Visible benefits for your skin' : language === 'fr' ? 'Bienfaits visibles pour votre peau' : 'Sichtbare Vorteile für Ihre Haut'}
@@ -176,7 +176,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-rose-50 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-rose-900 mb-4">
                   {language === 'en' ? 'Rooted in tradition, perfected by science' : 'Enraciné dans la tradition, perfectionné par la science'}
@@ -269,7 +269,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
             </div>
           )
         };
-      
+
       case 'wellness':
         return {
           title: language === 'en' ? "Wellness" : "Bien-être",
@@ -277,12 +277,12 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
           content: (
             <div className="space-y-6">
               <p className="text-lg text-gray-700 leading-relaxed">
-                {language === 'en' 
+                {language === 'en'
                   ? 'Saffron is a natural ally for everyday well-being.'
                   : 'Le safran est un allié naturel pour le bien-être quotidien.'
                 }
               </p>
-              
+
               {/* Infusions & Aromatherapy */}
               <div className="bg-green-50 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-green-900 mb-2">
@@ -291,7 +291,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
                 <p className="text-green-700 font-medium mb-4">
                   {language === 'en' ? "→ Nature's touch in daily wellness" : '→ La touche de la nature dans le bien-être quotidien'}
                 </p>
-                
+
                 <div className="space-y-4">
                   <div>
                     <h4 className="font-semibold text-green-800 mb-2">
@@ -304,7 +304,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
                       }
                     </p>
                   </div>
-                  
+
                   <div>
                     <h4 className="font-semibold text-green-800 mb-2">
                       {language === 'en' ? 'Aromatherapy' : 'Aromathérapie'}
@@ -327,7 +327,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
                 <p className="text-blue-700 font-medium mb-4">
                   {language === 'en' ? '→ Naturally lifting mind and mood' : '→ Élever naturellement l\'esprit et l\'humeur'}
                 </p>
-                
+
                 <div>
                   <h4 className="font-semibold text-blue-800 mb-2">
                     {language === 'en' ? 'Capsules, softgels, and gummies' : 'Gélules, capsules molles et gommes'}
@@ -345,11 +345,11 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
               <div className="bg-purple-50 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-purple-900 mb-2">Massage Oils & Body Treatments</h3>
                 <p className="text-purple-700 font-medium mb-4">→ A natural ally for relaxation and recovery</p>
-                
+
                 <p className="text-gray-700 text-sm leading-relaxed mb-4">
                   Rich in active compounds with anti-inflammatory, antioxidant, and soothing properties, this botanical stands out as a premium ingredient in professional body care. In the form of oils or creams, it finds its place in massage institutes, wellness centers, and physiotherapy practices, delivering measurable comfort and added value to the client experience.
                 </p>
-                
+
                 <div className="space-y-4">
                   <div>
                     <h4 className="font-semibold text-purple-800 mb-2">Relief of muscle tension and inflammation</h4>
@@ -357,21 +357,21 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
                       Thanks to its active molecules, crocin, crocetin, and safranal, it helps relieve localized muscle pain, reduce chronic inflammation, and ease stiffness. When used in therapeutic or relaxation massages, it enhances calming effects and supports optimal physical recovery.
                     </p>
                   </div>
-                  
+
                   <div>
                     <h4 className="font-semibold text-purple-800 mb-2">Antioxidant and regenerative action</h4>
                     <p className="text-gray-700 text-sm leading-relaxed">
                       It protects skin and muscle tissues from oxidative stress, particularly in individuals exposed to intense physical exertion or skin aging. Applied topically, it nourishes the skin, improves elasticity, and promotes the repair of micro-lesions.
                     </p>
                   </div>
-                  
+
                   <div>
                     <h4 className="font-semibold text-purple-800 mb-2">A natural complement to physiotherapy</h4>
                     <p className="text-gray-700 text-sm leading-relaxed">
                       Oil-based treatments incorporating this botanical can support rehabilitation techniques by helping relieve joint pain, enhance mobility, and reduce inflammation from trauma or degenerative conditions.
                     </p>
                   </div>
-                  
+
                   <div>
                     <h4 className="font-semibold text-purple-800 mb-2">A high-end sensory experience</h4>
                     <p className="text-gray-700 text-sm leading-relaxed">
@@ -385,11 +385,11 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
               <div className="bg-pink-50 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-pink-900 mb-2">Women's Health</h3>
                 <p className="text-pink-700 font-medium mb-4">→ Natural support for women's balance</p>
-                
+
                 <p className="text-gray-700 text-sm leading-relaxed mb-4">
                   Saffron is also used to support women's well-being thanks to its hormone-regulating effects and anti-inflammatory properties.
                 </p>
-                
+
                 <div className="space-y-4">
                   <div>
                     <h4 className="font-semibold text-pink-800 mb-2">Menstrual Comfort Supplements</h4>
@@ -397,7 +397,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
                       This spice helps reduce menstrual pain, improve mood, and alleviate premenstrual symptoms.
                     </p>
                   </div>
-                  
+
                   <div>
                     <h4 className="font-semibold text-pink-800 mb-2">Hormonal Support</h4>
                     <p className="text-gray-700 text-sm leading-relaxed">
@@ -409,7 +409,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
             </div>
           )
         };
-      
+
       case 'about':
         return {
           title: language === 'en' ? "Who We Are" : "Qui Nous Sommes",
@@ -422,7 +422,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
                   : "Nous nous engageons à partager la riche culture de l'Iran et à honorer le patrimoine et les communautés derrière chaque fil. Nous travaillons directement avec les producteurs locaux dans des conditions équitables, éthiques et hygiéniques, garantissant transparence et respect tout au long de la chaîne d'approvisionnement. Notre safran est testé en laboratoire pour sa pureté et sa qualité, de sorte que chaque lot répond aux normes les plus élevées en matière de couleur, d'arôme et de force."
                 }
               </p>
-              
+
               <div className="bg-amber-50 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-amber-900 mb-4">
                   {language === 'en' ? 'The Heart of Saffron Production' : 'Le Cœur de la Production de Safran'}
@@ -443,7 +443,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
             </div>
           )
         };
-      
+
       case 'ethical':
         return {
           title: language === 'en' ? "A Transparent, Ethical Source" : "Une Source Transparente et Éthique",
@@ -471,7 +471,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
             </div>
           )
         };
-      
+
       default:
         return {
           title: language === 'en' ? "Page Not Found" : "Page Non Trouvée",
@@ -500,9 +500,9 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
 
             {/* Centered Logo */}
             <div className="flex items-center space-x-3 absolute left-1/2 transform -translate-x-1/2">
-              <img 
-                src="/safayra_logo-removebg.jpg" 
-                alt="SAFAYRA" 
+              <img
+                src="/safayra_logo-removebg.jpg"
+                alt="SAFAYRA"
                 className="h-28 w-auto object-contain"
               />
             </div>
@@ -521,7 +521,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
           </h1>
           {pageContent.image && (
             <div className="max-w-2xl mx-auto mb-8">
-              <img 
+              <img
                 src={pageContent.image}
                 alt={pageContent.title}
                 className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg"
@@ -529,7 +529,7 @@ const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) =>
             </div>
           )}
         </div>
-        
+
         <div className="max-w-4xl mx-auto">
           {pageContent.content}
         </div>

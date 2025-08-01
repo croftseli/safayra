@@ -138,10 +138,10 @@ function App() {
   // If we're on a detail page, render that instead
   if (activeDetailPage) {
     return (
-      <DetailPages 
-        pageId={activeDetailPage} 
-        onBack={() => setActiveDetailPage(null)} 
-       language={language}
+      <DetailPages
+        pageId={activeDetailPage}
+        onBack={() => setActiveDetailPage(null)}
+        language={language}
       />
     );
   }
@@ -163,7 +163,7 @@ function App() {
                 </div>
                 <div className="relative h-[60vh] perspective-1000 flex items-center justify-center">
                   {/* 3D Spinning Carousel Container */}
-                  <div 
+                  <div
                     className="relative preserve-3d animate-spin-slow"
                     style={{
                       transformStyle: 'preserve-3d',
@@ -174,7 +174,7 @@ function App() {
                     {galleryItems.map((item, index) => {
                       const rotation = (360 / galleryItems.length) * index;
                       const translateZ = window.innerWidth < 640 ? 140 : window.innerWidth < 768 ? 200 : 280;
-                      
+
                       return (
                         <div
                           key={index}
@@ -198,14 +198,14 @@ function App() {
                               ))}
                             </h3>
                             <div className="w-full h-14 sm:h-24 md:h-40 bg-gradient-to-br from-[#5A2E26] to-[#7A3E32] rounded-lg mb-1 sm:mb-2 md:mb-4 overflow-hidden">
-                              <img 
+                              <img
                                 src={item.image}
                                 alt={item.alt}
                                 className="w-full h-full object-cover"
                               />
                             </div>
                             <p className="text-amber-100 leading-relaxed text-xs sm:text-sm flex-1 overflow-hidden">
-                              {window.innerWidth < 640 
+                              {window.innerWidth < 640
                                 ? (item.text.length > 50 ? `${item.text.substring(0, 47)}...` : item.text)
                                 : window.innerWidth < 768
                                   ? (item.text.length > 120 ? `${item.text.substring(0, 117)}...` : item.text)
@@ -232,14 +232,14 @@ function App() {
                 {language === 'en' ? 'About Safayra' : language === 'fr' ? 'À propos de Safayra' : 'Über Safayra'}
               </h2>
               <div className="max-w-2xl mx-auto mb-8">
-                <img 
+                <img
                   src="/Who are we.JPG"
                   alt={language === 'en' ? 'Who We Are' : 'Qui nous sommes'}
                   className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg"
                 />
               </div>
             </div>
-            
+
             <div className="space-y-6">
               <p className="text-lg text-gray-700 leading-relaxed">
                 {language === 'en'
@@ -253,7 +253,7 @@ function App() {
                   : language === 'fr' ? "Nous nous engageons à partager la riche culture de l'Iran et à honorer le patrimoine et les communautés derrière chaque fil. Nous travaillons directement avec les producteurs locaux dans des conditions équitables, éthiques et hygiéniques, garantissant transparence et respect tout au long de la chaîne d'approvisionnement. Notre safran est testé en laboratoire pour sa pureté et sa qualité, de sorte que chaque lot répond aux normes les plus élevées en matière de couleur, d'arôme et de force." : "Wir sind verpflichtet, die reiche Kultur des Iran zu teilen und das Erbe und die Gemeinschaften hinter jedem Faden zu ehren. Wir arbeiten direkt mit lokalen Produzenten unter fairen, ethischen und hygienischen Bedingungen zusammen und gewährleisten Transparenz und Respekt in der gesamten Lieferkette. Unser Safran wird im Labor auf Reinheit und Qualität getestet, sodass jede Charge den höchsten Standards in Farbe, Aroma und Stärke entspricht."
                 }
               </p>
-              
+
               <div className="bg-amber-50 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-amber-900 mb-4">
                   {language === 'en' ? 'The Heart of Saffron Production' : language === 'fr' ? 'Le Cœur de la Production de Safran' : 'Das Herz der Safranproduktion'}
@@ -288,12 +288,12 @@ function App() {
                 }
               </p>
             </div>
-            
+
             {/* Gallery Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Saffron Threads */}
               <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <img 
+                <img
                   src="https://images.pexels.com/photos/4198019/pexels-photo-4198019.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                   alt="Premium saffron threads"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -309,7 +309,7 @@ function App() {
 
               {/* Saffron Flowers */}
               <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <img 
+                <img
                   src="https://images.pexels.com/photos/4198020/pexels-photo-4198020.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                   alt="Saffron flowers in field"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -325,7 +325,7 @@ function App() {
 
               {/* Saffron Spice Bowl */}
               <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <img 
+                <img
                   src="https://images.pexels.com/photos/1340116/pexels-photo-1340116.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                   alt="Saffron spice in wooden bowl"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -341,7 +341,7 @@ function App() {
 
               {/* Saffron Rice Dish */}
               <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <img 
+                <img
                   src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                   alt="Saffron rice dish"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -357,7 +357,7 @@ function App() {
 
               {/* Saffron Tea */}
               <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <img 
+                <img
                   src="https://images.pexels.com/photos/230477/pexels-photo-230477.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                   alt="Saffron tea"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -373,7 +373,7 @@ function App() {
 
               {/* Saffron Harvest */}
               <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <img 
+                <img
                   src="https://images.pexels.com/photos/1435735/pexels-photo-1435735.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                   alt="Saffron harvest"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -389,7 +389,7 @@ function App() {
 
               {/* Saffron Powder */}
               <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <img 
+                <img
                   src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                   alt="Saffron powder"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -405,7 +405,7 @@ function App() {
 
               {/* Saffron Dessert */}
               <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <img 
+                <img
                   src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                   alt="Saffron dessert"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -421,7 +421,7 @@ function App() {
 
               {/* Saffron Field */}
               <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <img 
+                <img
                   src="https://images.pexels.com/photos/1435736/pexels-photo-1435736.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                   alt="Saffron field"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -437,7 +437,7 @@ function App() {
 
               {/* Saffron Skincare */}
               <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <img 
+                <img
                   src="https://images.pexels.com/photos/3685530/pexels-photo-3685530.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
                   alt="Saffron skincare"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
@@ -554,9 +554,9 @@ function App() {
                         {language === 'en' ? 'Address' : language === 'fr' ? 'Adresse' : 'Adresse'}
                       </h4>
                       <p className="text-amber-100">
-                        {language === 'en' 
+                        {language === 'en'
                           ? 'European Distribution Center\n123 Saffron Street\n75001 Paris, France'
-                          : language === 'fr' 
+                          : language === 'fr'
                             ? 'Centre de Distribution Européen\n123 Rue du Safran\n75001 Paris, France'
                             : 'Europäisches Vertriebszentrum\n123 Safranstraße\n75001 Paris, Frankreich'
                         }
@@ -575,9 +575,9 @@ function App() {
                     <p><span className="font-medium">{language === 'en' ? 'Sunday:' : language === 'fr' ? 'Dimanche :' : 'Sonntag:'}</span> {language === 'en' ? 'Closed' : language === 'fr' ? 'Fermé' : 'Geschlossen'}</p>
                   </div>
                   <p className="text-sm text-gray-600 mt-4">
-                    {language === 'en' 
+                    {language === 'en'
                       ? 'We typically respond to inquiries within 24 hours.'
-                      : language === 'fr' 
+                      : language === 'fr'
                         ? 'Nous répondons généralement aux demandes dans les 24 heures.'
                         : 'Wir antworten normalerweise innerhalb von 24 Stunden auf Anfragen.'
                     }
@@ -597,31 +597,28 @@ function App() {
               <div className="flex justify-center space-x-4">
                 <button
                   onClick={() => setLanguage('en')}
-                  className={`px-6 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
-                    language === 'en'
-                      ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-lg transform scale-105'
-                      : 'bg-white text-gray-700 border-2 border-gray-300 hover:border-amber-400 hover:text-amber-700'
-                  }`}
+                  className={`px-6 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${language === 'en'
+                    ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-lg transform scale-105'
+                    : 'bg-white text-gray-700 border-2 border-gray-300 hover:border-amber-400 hover:text-amber-700'
+                    }`}
                 >
                   🇺🇸 English
                 </button>
                 <button
                   onClick={() => setLanguage('fr')}
-                  className={`px-6 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
-                    language === 'fr'
-                      ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-lg transform scale-105'
-                      : 'bg-white text-gray-700 border-2 border-gray-300 hover:border-amber-400 hover:text-amber-700'
-                  }`}
+                  className={`px-6 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${language === 'fr'
+                    ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-lg transform scale-105'
+                    : 'bg-white text-gray-700 border-2 border-gray-300 hover:border-amber-400 hover:text-amber-700'
+                    }`}
                 >
                   🇫🇷 Français
                 </button>
                 <button
                   onClick={() => setLanguage('de')}
-                  className={`px-6 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
-                    language === 'de'
-                      ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-lg transform scale-105'
-                      : 'bg-white text-gray-700 border-2 border-gray-300 hover:border-amber-400 hover:text-amber-700'
-                  }`}
+                  className={`px-6 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${language === 'de'
+                    ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-lg transform scale-105'
+                    : 'bg-white text-gray-700 border-2 border-gray-300 hover:border-amber-400 hover:text-amber-700'
+                    }`}
                 >
                   🇩🇪 Deutsch
                 </button>
@@ -629,7 +626,7 @@ function App() {
               <p className="text-gray-600 mt-6">
                 {language === 'en'
                   ? 'Select your preferred language to view the website content'
-                  : language === 'fr' 
+                  : language === 'fr'
                     ? 'Sélectionnez votre langue préférée pour afficher le contenu du site web'
                     : 'Wählen Sie Ihre bevorzugte Sprache, um den Website-Inhalt anzuzeigen'
                 }
@@ -652,21 +649,19 @@ function App() {
             <nav className="hidden md:flex space-x-1">
               <button
                 onClick={() => setActiveTab('home')}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                  activeTab === 'home'
-                    ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-md'
-                    : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
-                }`}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${activeTab === 'home'
+                  ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-md'
+                  : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
+                  }`}
               >
                 {language === 'en' ? 'Home Page' : 'Accueil'}
               </button>
               <button
                 onClick={() => setActiveTab('about')}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                  activeTab === 'about'
-                    ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-md'
-                    : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
-                }`}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${activeTab === 'about'
+                  ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-md'
+                  : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
+                  }`}
               >
                 {language === 'en' ? 'About us' : 'À propos'}
               </button>
@@ -674,9 +669,9 @@ function App() {
 
             {/* Centered Logo */}
             <div className="flex items-center space-x-3 absolute left-1/2 transform -translate-x-1/2">
-              <img 
-                src="/safayra_logo-removebg.jpg" 
-                alt="SAFAYRA" 
+              <img
+                src="/safayra_logo-removebg.jpg"
+                alt="SAFAYRA"
                 className="h-28 w-auto object-contain"
               />
             </div>
@@ -685,31 +680,28 @@ function App() {
             <nav className="hidden md:flex space-x-1">
               <button
                 onClick={() => setActiveTab('gallery')}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                  activeTab === 'gallery'
-                    ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-md'
-                    : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
-                }`}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${activeTab === 'gallery'
+                  ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-md'
+                  : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
+                  }`}
               >
                 {language === 'en' ? 'Gallery' : 'Galerie'}
               </button>
               <button
                 onClick={() => setActiveTab('contact')}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                  activeTab === 'contact'
-                    ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-md'
-                    : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
-                }`}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${activeTab === 'contact'
+                  ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-md'
+                  : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
+                  }`}
               >
                 {language === 'en' ? 'Contact us' : 'Contactez-nous'}
               </button>
               <button
                 onClick={() => setActiveTab('languages')}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                  activeTab === 'languages'
-                    ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-md'
-                    : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
-                }`}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${activeTab === 'languages'
+                  ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white shadow-md'
+                  : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
+                  }`}
               >
                 {language === 'en' ? 'Languages' : 'Langues'}
               </button>
@@ -734,11 +726,10 @@ function App() {
                     setActiveTab(tab.id);
                     setMobileMenuOpen(false);
                   }}
-                  className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
-                    activeTab === tab.id
-                      ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white'
-                      : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
-                  }`}
+                  className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition-all duration-300 ${activeTab === tab.id
+                    ? 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white'
+                    : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
+                    }`}
                 >
                   {tab.label}
                 </button>
@@ -764,6 +755,12 @@ function App() {
           </p>
           <p className="text-amber-200 text-xs">
             {language === 'en' ? '© 2025 Safayra. All rights reserved.' : language === 'fr' ? '© 2025 Safayra. Tous droits réservés.' : '© 2025 Safayra. Alle Rechte vorbehalten.'}
+          </p>
+          <p className="text-amber-200 text-xs">
+            {language === 'en' ? 'Website by ' : language === 'fr' ? 'Site web par ' : 'Website von '}
+            <a href="https://unitywall.co/" target="_blank" rel="noopener noreferrer" className="text-amber-100 hover:text-white hover:underline">
+              UnityWall
+            </a>
           </p>
         </div>
       </footer>
