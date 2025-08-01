@@ -1,13 +1,7 @@
 import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 
-interface DetailPageProps {
-  pageId: string;
-  onBack: () => void;
-  language: 'en' | 'fr' | 'de';
-}
-
-const DetailPages: React.FC<DetailPageProps> = ({ pageId, onBack, language }) => {
+const DetailPages = ({ pageId, onBack, language }) => {
   const getPageContent = () => {
     switch (pageId) {
       case 'culinary':

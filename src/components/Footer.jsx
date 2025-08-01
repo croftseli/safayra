@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface FooterProps {
-  language: 'en' | 'fr' | 'de';
-}
-
-const Footer: React.FC<FooterProps> = ({ language }) => {
+const Footer = ({ language }) => {
   return (
     <footer className="bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

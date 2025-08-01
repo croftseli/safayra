@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface AboutPageProps {
-  language: 'en' | 'fr' | 'de';
-}
-
-const AboutPage: React.FC<AboutPageProps> = ({ language }) => {
+const AboutPage = ({ language }) => {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="text-center">

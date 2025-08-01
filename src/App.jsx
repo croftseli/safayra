@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
 import GalleryPage from './components/GalleryPage';
 import ContactPage from './components/ContactPage';
-import LanguagePage from './components/LanguagePage';
 import DetailPages from './components/DetailPages';
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
-  const [activeDetailPage, setActiveDetailPage] = useState<string | null>(null);
+  const [activeDetailPage, setActiveDetailPage] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [language, setLanguage] = useState<'en' | 'fr' | 'de'>('en');
+  const [language, setLanguage] = useState('en');
 
   // If we're on a detail page, render that instead
   if (activeDetailPage) {

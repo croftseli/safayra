@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 
-interface HomePageProps {
-  language: 'en' | 'fr' | 'de';
-  setActiveDetailPage: (pageId: string) => void;
-}
-
-const HomePage: React.FC<HomePageProps> = ({ language, setActiveDetailPage }) => {
+const HomePage = ({ language, setActiveDetailPage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // Carousel images

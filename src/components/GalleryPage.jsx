@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface GalleryPageProps {
-  language: 'en' | 'fr' | 'de';
-}
-
-const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
+const GalleryPage = ({ language }) => {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-12">

@@ -1,62 +1,71 @@
-import { ContactFormData, ContactFormErrors } from '../types';
-import { validateContactForm, checkRateLimit } from '../utils/validation';
+import React, { useState } from 'react';
 
-interface ContactPageProps {
-  language: 'en' | 'fr' | 'de';
-}
-
-const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
-  const [formData, setFormData] = useState<ContactFormData>({
+const ContactPage = ({ language }) => {
+  const [formData, setFormData] = useState({
     fullName: '',
     email: '',
     confirmEmail: '',
     subject: '',
     message: '',
   });
-  const [errors, setErrors] = useState<ContactFormErrors>({});
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     
     // Clear error when user starts typing
-    if (errors[name as keyof ContactFormErrors]) {
+    if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: undefined }));
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.fullName || formData.fullName.trim().length < 2) {
+      newErrors.fullName = 'Full name must be at least 2 characters long';
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email || !emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    if (!formData.confirmEmail || !emailRegex.test(formData.confirmEmail)) {
+      newErrors.confirmEmail = 'Please enter a valid email address';
+    } else if (formData.email !== formData.confirmEmail) {
+      newErrors.confirmEmail = 'Email addresses do not match';
+    }
+    
+    if (!formData.subject || formData.subject.trim().length < 2) {
+      newErrors.subject = 'Subject must be at least 2 characters long';
+    }
+    
+    if (!formData.message || formData.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters long';
+    }
+    
+    return newErrors;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Clear previous status
     setSubmitStatus(null);
     
-    // Validate form
-    const formErrors = validateContactForm(formData);
+    const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
-      return;
-    }
-
-    // Check rate limiting
-    if (!checkRateLimit('contact_form', 3, 300000)) { // 3 attempts per 5 minutes
-      setSubmitStatus({
-        type: 'error',
-        message: language === 'en' 
-          ? 'Too many attempts. Please wait 5 minutes before trying again.'
-          : language === 'fr'
-          ? 'Trop de tentatives. Veuillez attendre 5 minutes avant de réessayer.'
-          : 'Zu viele Versuche. Bitte warten Sie 5 Minuten, bevor Sie es erneut versuchen.'
-      });
       return;
     }
 
     setIsSubmitting(true);
     
     try {
-      // Simulate form submission (replace with actual email service)
+      // Simulate form submission
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       setSubmitStatus({

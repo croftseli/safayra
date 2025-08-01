@@ -1,10 +1,8 @@
-import { ContactFormData, ContactFormErrors } from '../types';
-
 // Email validation regex
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Input sanitization
-export const sanitizeInput = (input: string): string => {
+export const sanitizeInput = (input) => {
   return input
     .trim()
     .replace(/[<>]/g, '') // Remove potential HTML tags
@@ -12,8 +10,8 @@ export const sanitizeInput = (input: string): string => {
 };
 
 // Validate contact form
-export const validateContactForm = (data: ContactFormData): ContactFormErrors => {
-  const errors: ContactFormErrors = {};
+export const validateContactForm = (data) => {
+  const errors = {};
 
   // Full name validation
   if (!data.fullName || data.fullName.trim().length < 2) {
@@ -46,12 +44,12 @@ export const validateContactForm = (data: ContactFormData): ContactFormErrors =>
 };
 
 // Rate limiting helper (simple client-side implementation)
-export const checkRateLimit = (key: string, maxAttempts: number = 3, windowMs: number = 300000): boolean => {
+export const checkRateLimit = (key, maxAttempts = 3, windowMs = 300000) => {
   const now = Date.now();
   const attempts = JSON.parse(localStorage.getItem(`rate_limit_${key}`) || '[]');
   
   // Filter out old attempts
-  const recentAttempts = attempts.filter((timestamp: number) => now - timestamp < windowMs);
+  const recentAttempts = attempts.filter((timestamp) => now - timestamp < windowMs);
   
   if (recentAttempts.length >= maxAttempts) {
     return false; // Rate limit exceeded

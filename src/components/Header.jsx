@@ -1,16 +1,7 @@
 import React from 'react';
 import { Menu, X } from 'lucide-react';
 
-interface HeaderProps {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-  mobileMenuOpen: boolean;
-  setMobileMenuOpen: (open: boolean) => void;
-  language: 'en' | 'fr' | 'de';
-  setLanguage: (lang: 'en' | 'fr' | 'de') => void;
-}
-
-const Header: React.FC<HeaderProps> = ({
+const Header = ({
   activeTab,
   setActiveTab,
   mobileMenuOpen,
