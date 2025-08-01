@@ -24,7 +24,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
         {/* Saffron Threads */}
         <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
-            src="https://images.pexels.com/photos/4198019/pexels-photo-4198019.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            src="https://images.pexels.com/photos/4198019/pexels-photo-4198019.jpeg"
             alt="Premium saffron threads"
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />
@@ -40,7 +40,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
         {/* Saffron Flowers */}
         <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
-            src="https://images.pexels.com/photos/4198020/pexels-photo-4198020.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            src="https://images.pexels.com/photos/4198020/pexels-photo-4198020.jpeg"
             alt="Saffron flowers in field"
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />
@@ -56,7 +56,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
         {/* Saffron Spice Bowl */}
         <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
-            src="https://images.pexels.com/photos/1340116/pexels-photo-1340116.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            src="https://images.pexels.com/photos/1340116/pexels-photo-1340116.jpeg"
             alt="Saffron spice in wooden bowl"
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />
@@ -72,7 +72,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
         {/* Saffron Rice Dish */}
         <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
-            src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg"
             alt="Saffron rice dish"
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />
@@ -88,7 +88,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
         {/* Saffron Tea */}
         <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
-            src="https://images.pexels.com/photos/230477/pexels-photo-230477.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            src="https://images.pexels.com/photos/230477/pexels-photo-230477.jpeg"
             alt="Saffron tea"
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />
@@ -104,7 +104,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
         {/* Saffron Harvest */}
         <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
-            src="https://images.pexels.com/photos/1435735/pexels-photo-1435735.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            src="https://images.pexels.com/photos/1435735/pexels-photo-1435735.jpeg"
             alt="Saffron harvest"
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />
@@ -120,7 +120,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
         {/* Saffron Powder */}
         <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
-            src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg"
             alt="Saffron powder"
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />
@@ -136,7 +136,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
         {/* Saffron Dessert */}
         <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
-            src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg"
             alt="Saffron dessert"
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />
@@ -152,7 +152,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
         {/* Saffron Field */}
         <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
-            src="https://images.pexels.com/photos/1435736/pexels-photo-1435736.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            src="https://images.pexels.com/photos/1435736/pexels-photo-1435736.jpeg"
             alt="Saffron field"
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />
@@ -168,7 +168,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
         {/* Saffron Skincare */}
         <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
-            src="https://images.pexels.com/photos/3685530/pexels-photo-3685530.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+            src="https://images.pexels.com/photos/3685530/pexels-photo-3685530.jpeg"
             alt="Saffron skincare"
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />

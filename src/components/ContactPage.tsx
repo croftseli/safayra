@@ -1,10 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ContactFormData, ContactFormErrors } from '../types';
+import { validateContactForm, checkRateLimit } from '../utils/validation';
+import { sendContactEmail } from '../services/emailService';
 
 interface ContactPageProps {
   language: 'en' | 'fr' | 'de';
 }
 
 const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
+  const [formData, setFormData] = useState<ContactFormData>({
+    fullName: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [errors, setErrors] = useState<ContactFormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Clear error when user starts typing
+    if (errors[name as keyof ContactFormErrors]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Clear previous status
+    setSubmitStatus(null);
+    
+    // Validate form
+    const formErrors = validateContactForm(formData);
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
+    // Check rate limiting
+    if (!checkRateLimit('contact_form', 3, 300000)) { // 3 attempts per 5 minutes
+      setSubmitStatus({
+        type: 'error',
+        message: language === 'en' 
+          ? 'Too many attempts. Please wait 5 minutes before trying again.'
+          : language === 'fr'
+          ? 'Trop de tentatives. Veuillez attendre 5 minutes avant de réessayer.'
+          : 'Zu viele Versuche. Bitte warten Sie 5 Minuten, bevor Sie es erneut versuchen.'
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const result = await sendContactEmail(formData);
+      
+      if (result.success) {
+        setSubmitStatus({ type: 'success', message: result.message });
+        setFormData({ fullName: '', email: '', subject: '', message: '' }); // Reset form
+      } else {
+        setSubmitStatus({ type: 'error', message: result.message });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: language === 'en'
+          ? 'An unexpected error occurred. Please try again.'
+          : language === 'fr'
+          ? 'Une erreur inattendue s\'est produite. Veuillez réessayer.'
+          : 'Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-12">
@@ -25,7 +99,19 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
           <h3 className="text-2xl font-bold text-amber-900 mb-6">
             {language === 'en' ? 'Send us a message' : language === 'fr' ? 'Envoyez-nous un message' : 'Senden Sie uns eine Nachricht'}
           </h3>
-          <form className="space-y-6">
+          
+          {/* Status Messages */}
+          {submitStatus && (
+            <div className={`mb-6 p-4 rounded-lg ${
+              submitStatus.type === 'success' 
+                ? 'bg-green-50 text-green-800 border border-green-200' 
+                : 'bg-red-50 text-red-800 border border-red-200'
+            }`}>
+              {submitStatus.message}
+            </div>
+          )}
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -33,9 +119,16 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                    errors.fullName ? 'border-red-300' : 'border-gray-300'
+                  }`}
                   placeholder={language === 'en' ? 'Your name' : language === 'fr' ? 'Votre nom' : 'Ihr Name'}
+                  required
                 />
+                {errors.fullName && <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -43,22 +136,38 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
                 </label>
                 <input
                   type="email"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                    errors.email ? 'border-red-300' : 'border-gray-300'
+                  }`}
                   placeholder={language === 'en' ? 'your@email.com' : language === 'fr' ? 'votre@email.com' : 'ihre@email.com'}
+                  required
                 />
+                {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
               </div>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 {language === 'en' ? 'Subject' : language === 'fr' ? 'Sujet' : 'Betreff'}
               </label>
-              <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+              <select 
+                name="subject"
+                value={formData.subject}
+                onChange={handleInputChange}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                  errors.subject ? 'border-red-300' : 'border-gray-300'
+                }`}
+                required
+              >
                 <option>{language === 'en' ? 'Select a subject' : language === 'fr' ? 'Sélectionnez un sujet' : 'Wählen Sie ein Thema'}</option>
                 <option>{language === 'en' ? 'Wholesale Inquiry' : language === 'fr' ? 'Demande de gros' : 'Großhandelsanfrage'}</option>
                 <option>{language === 'en' ? 'Partnership' : language === 'fr' ? 'Partenariat' : 'Partnerschaft'}</option>
                 <option>{language === 'en' ? 'Quality Questions' : language === 'fr' ? 'Questions qualité' : 'Qualitätsfragen'}</option>
                 <option>{language === 'en' ? 'Other' : language === 'fr' ? 'Autre' : 'Andere'}</option>
               </select>
+              {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject}</p>}
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -66,15 +175,30 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
               </label>
               <textarea
                 rows={5}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                  errors.message ? 'border-red-300' : 'border-gray-300'
+                }`}
                 placeholder={language === 'en' ? 'Tell us about your saffron needs...' : language === 'fr' ? 'Parlez-nous de vos besoins en safran...' : 'Erzählen Sie uns von Ihren Safran-Bedürfnissen...'}
+                required
               ></textarea>
+              {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
             </div>
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+              disabled={isSubmitting}
+              className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
+                isSubmitting
+                  ? 'bg-gray-400 cursor-not-allowed'
+                  : 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white hover:shadow-lg transform hover:scale-105'
+              }`}
             >
-              {language === 'en' ? 'Send Message' : language === 'fr' ? 'Envoyer le message' : 'Nachricht senden'}
+              {isSubmitting 
+                ? (language === 'en' ? 'Sending...' : language === 'fr' ? 'Envoi...' : 'Senden...')
+                : (language === 'en' ? 'Send Message' : language === 'fr' ? 'Envoyer le message' : 'Nachricht senden')
+              }
             </button>
           </form>
         </div>
