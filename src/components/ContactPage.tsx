@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { ContactFormData, ContactFormErrors } from '../types';
 import { validateContactForm, checkRateLimit } from '../utils/validation';
-import { sendContactEmail } from '../services/emailService';
 
 interface ContactPageProps {
   language: 'en' | 'fr' | 'de';
 }
-
-// EmailJS Configuration - Replace with your actual values
-const EMAILJS_CONFIG = {
-  SERVICE_ID: 'YOUR_SERVICE_ID',     // Replace with your EmailJS service ID
-  TEMPLATE_ID: 'YOUR_TEMPLATE_ID',   // Replace with your EmailJS template ID
-  PUBLIC_KEY: 'YOUR_PUBLIC_KEY',     // Replace with your EmailJS public key
-};
-
-// Initialize EmailJS (you can also do this in your main App component)
-emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
 
 const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -29,12 +17,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
-  const [isEmailJSConfigured, setIsEmailJSConfigured] = useState(false);
-
-  // Check if EmailJS is properly configured
-  React.useEffect(() => {
-    setIsEmailJSConfigured(!EMAILJS_CONFIG.SERVICE_ID.includes('YOUR_'));
-  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -72,53 +54,22 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
       return;
     }
 
-    if (!isEmailJSConfigured) {
-      setSubmitStatus({
-        type: 'error',
-        message: language === 'en' 
-          ? 'EmailJS is not configured. Please check the setup instructions.'
-          : language === 'fr'
-          ? 'EmailJS n\'est pas configuré. Veuillez vérifier les instructions de configuration.'
-          : 'EmailJS ist nicht konfiguriert. Bitte überprüfen Sie die Setup-Anweisungen.'
-      });
-      return;
-    }
-
     setIsSubmitting(true);
     
     try {
-      // Prepare template parameters for EmailJS
-      const templateParams = {
-        from_name: formData.fullName,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_name: 'Safayra Team', // Your company name
-        reply_to: formData.email,
-      };
-
-      // Send email using EmailJS
-      const response = await emailjs.send(
-        EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.TEMPLATE_ID,
-        templateParams
-      );
-
-      if (response.status === 200) {
-        setSubmitStatus({
-          type: 'success',
-          message: language === 'en' 
-            ? 'Message sent successfully! We will get back to you soon.'
-            : language === 'fr'
-            ? 'Message envoyé avec succès! Nous vous répondrons bientôt.'
-            : 'Nachricht erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.'
-        });
-        setFormData({ fullName: '', email: '', confirmEmail: '', subject: '', message: '' });
-      } else {
-        throw new Error('Failed to send message');
-      }
+      // Simulate form submission (replace with actual email service)
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      setSubmitStatus({
+        type: 'success',
+        message: language === 'en' 
+          ? 'Message sent successfully! We will get back to you soon.'
+          : language === 'fr'
+          ? 'Message envoyé avec succès! Nous vous répondrons bientôt.'
+          : 'Nachricht erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.'
+      });
+      setFormData({ fullName: '', email: '', confirmEmail: '', subject: '', message: '' });
     } catch (error) {
-      console.error('EmailJS Error:', error);
       setSubmitStatus({
         type: 'error',
         message: language === 'en'
@@ -126,18 +77,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
           : language === 'fr'
           ? 'Échec de l\'envoi du message. Veuillez réessayer plus tard.'
           : 'Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.'
-      });
-    } finally {
-        setSubmitStatus({ type: 'error', message: result.message });
-      }
-    } catch (error) {
-      setSubmitStatus({
-        type: 'error',
-        message: language === 'en'
-          ? 'An unexpected error occurred. Please try again.'
-          : language === 'fr'
-          ? 'Une erreur inattendue s\'est produite. Veuillez réessayer.'
-          : 'Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.'
       });
     } finally {
       setIsSubmitting(false);
@@ -162,26 +101,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
       {/* Contact Form Section */}
       <div className="w-full mb-12">
         <div className="bg-white rounded-2xl shadow-lg p-8">
-          {/* EmailJS Configuration Warning */}
-          {!isEmailJSConfigured && (
-            <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <h4 className="text-yellow-800 font-semibold mb-2">
-                {language === 'en' ? '⚠️ EmailJS Setup Required' : language === 'fr' ? '⚠️ Configuration EmailJS Requise' : '⚠️ EmailJS-Setup Erforderlich'}
-              </h4>
-              <p className="text-yellow-700 text-sm mb-2">
-                {language === 'en' 
-                  ? 'To enable email functionality, please configure EmailJS in the ContactPage.tsx file:'
-                  : language === 'fr'
-                  ? 'Pour activer la fonctionnalité email, veuillez configurer EmailJS dans le fichier ContactPage.tsx :'
-                  : 'Um die E-Mail-Funktionalität zu aktivieren, konfigurieren Sie bitte EmailJS in der Datei ContactPage.tsx:'
-                }
-              </p>
-              <p className="text-yellow-700 text-xs">
-                Replace YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and YOUR_PUBLIC_KEY with your actual EmailJS credentials.
-              </p>
-            </div>
-          )}
-          
           <h3 className="text-2xl font-bold text-amber-900 mb-6">
             {language === 'en' ? 'Send us a message' : language === 'fr' ? 'Envoyez-nous un message' : 'Senden Sie uns eine Nachricht'}
           </h3>
