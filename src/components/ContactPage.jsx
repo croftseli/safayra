@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 
+// TODO: EmailJS Integration
+// 1. Install EmailJS: npm install @emailjs/browser
+// 2. Import EmailJS: import emailjs from '@emailjs/browser';
+// 3. Initialize EmailJS in useEffect or App.js with your public key
+// 4. Replace the simulated form submission with actual EmailJS send
+
 const ContactPage = ({ language }) => {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -11,6 +17,12 @@ const ContactPage = ({ language }) => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  // TODO: EmailJS Configuration
+  // Add these constants when integrating EmailJS:
+  // const EMAILJS_SERVICE_ID = 'your_service_id';
+  // const EMAILJS_TEMPLATE_ID = 'your_template_id';
+  // const EMAILJS_PUBLIC_KEY = 'your_public_key';
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -65,7 +77,28 @@ const ContactPage = ({ language }) => {
     setIsSubmitting(true);
     
     try {
-      // Simulate form submission
+      // TODO: Replace this simulation with actual EmailJS send
+      // Example EmailJS implementation:
+      /*
+      const templateParams = {
+        from_name: formData.fullName,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'your-email@domain.com', // Your receiving email
+      };
+
+      const result = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      console.log('Email sent successfully:', result);
+      */
+      
+      // CURRENT: Simulated form submission (remove when implementing EmailJS)
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       setSubmitStatus({
@@ -78,6 +111,9 @@ const ContactPage = ({ language }) => {
       });
       setFormData({ fullName: '', email: '', confirmEmail: '', subject: '', message: '' });
     } catch (error) {
+      // TODO: Enhanced error handling for EmailJS
+      // EmailJS errors can be: network issues, invalid config, rate limits, etc.
+      console.error('Form submission error:', error);
       setSubmitStatus({
         type: 'error',
         message: language === 'en'
@@ -90,6 +126,14 @@ const ContactPage = ({ language }) => {
       setIsSubmitting(false);
     }
   };
+
+  // TODO: EmailJS Template Variables
+  // When setting up your EmailJS template, use these variable names:
+  // {{from_name}} - User's full name
+  // {{from_email}} - User's email address  
+  // {{subject}} - Message subject
+  // {{message}} - Message content
+  // {{to_email}} - Your receiving email (optional, can be set in template)
 
   return (
     <div className="max-w-6xl mx-auto">
