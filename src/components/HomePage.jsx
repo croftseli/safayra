@@ -106,6 +106,14 @@ const HomePage = ({ language, setActiveDetailPage }) => {
 
   return (
     <div className="space-y-12 md:space-y-16">
+      {/* Hero Heading */}
+      <div className="text-center pt-4 md:pt-8">
+        <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-amber-600 via-orange-500 to-red-600 bg-clip-text text-transparent mb-4 md:mb-6 tracking-tight leading-tight">
+          This is Safayra.
+        </h1>
+        <div className="w-24 xs:w-32 sm:w-40 md:w-48 h-1 bg-gradient-to-r from-amber-400 to-orange-500 mx-auto rounded-full shadow-lg"></div>
+      </div>
+
       {/* Hero Text */}
       <div className="text-center max-w-4xl mx-auto px-4">
         <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-amber-900 leading-relaxed font-medium px-2">
