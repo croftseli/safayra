@@ -268,7 +268,6 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
           </div>
         </div>
         </div>
-      </div>
     </div>
   );
 };
