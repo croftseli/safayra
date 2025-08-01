@@ -19,7 +19,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     
@@ -82,6 +82,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
 
   return (
     <div className="max-w-6xl mx-auto">
+      {/* Page Header */}
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-amber-900 mb-6">
           {language === 'en' ? 'Contact Us' : language === 'fr' ? 'Contactez-nous' : 'Kontakt'}
@@ -94,9 +95,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
         </p>
       </div>
 
-      <div className="space-y-12">
-        {/* Contact Form - Full Width */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
+      {/* Contact Form Section */}
+      <div className="w-full mb-12">
+        <div className="bg-white rounded-2xl shadow-lg p-8">
           <h3 className="text-2xl font-bold text-amber-900 mb-6">
             {language === 'en' ? 'Send us a message' : language === 'fr' ? 'Envoyez-nous un message' : 'Senden Sie uns eine Nachricht'}
           </h3>
@@ -113,59 +114,64 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
           )}
           
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {language === 'en' ? 'Full Name' : language === 'fr' ? 'Nom complet' : 'Vollständiger Name'}
-                </label>
-                <input
-                  type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
-                    errors.fullName ? 'border-red-300' : 'border-gray-300'
-                  }`}
-                  placeholder={language === 'en' ? 'Your name' : language === 'fr' ? 'Votre nom' : 'Ihr Name'}
-                  required
-                />
-                {errors.fullName && <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>}
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {language === 'en' ? 'Email' : language === 'fr' ? 'E-mail' : 'E-Mail'}
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
-                    errors.email ? 'border-red-300' : 'border-gray-300'
-                  }`}
-                  placeholder={language === 'en' ? 'your@email.com' : language === 'fr' ? 'votre@email.com' : 'ihre@email.com'}
-                  required
-                />
-                {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {language === 'en' ? 'Confirm Email' : language === 'fr' ? 'Confirmer l\'e-mail' : 'E-Mail bestätigen'}
-                </label>
-                <input
-                  type="email"
-                  name="confirmEmail"
-                  value={formData.confirmEmail}
-                  onChange={handleInputChange}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
-                    errors.confirmEmail ? 'border-red-300' : 'border-gray-300'
-                  }`}
-                  placeholder={language === 'en' ? 'Confirm your email' : language === 'fr' ? 'Confirmez votre e-mail' : 'Bestätigen Sie Ihre E-Mail'}
-                  required
-                />
-                {errors.confirmEmail && <p className="mt-1 text-sm text-red-600">{errors.confirmEmail}</p>}
-              </div>
+            {/* Full Name */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {language === 'en' ? 'Full Name' : language === 'fr' ? 'Nom complet' : 'Vollständiger Name'}
+              </label>
+              <input
+                type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleInputChange}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                  errors.fullName ? 'border-red-300' : 'border-gray-300'
+                }`}
+                placeholder={language === 'en' ? 'Your name' : language === 'fr' ? 'Votre nom' : 'Ihr Name'}
+                required
+              />
+              {errors.fullName && <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>}
             </div>
+
+            {/* Email */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {language === 'en' ? 'Email' : language === 'fr' ? 'E-mail' : 'E-Mail'}
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                  errors.email ? 'border-red-300' : 'border-gray-300'
+                }`}
+                placeholder={language === 'en' ? 'your@email.com' : language === 'fr' ? 'votre@email.com' : 'ihre@email.com'}
+                required
+              />
+              {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
+            </div>
+
+            {/* Confirm Email */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {language === 'en' ? 'Confirm Email' : language === 'fr' ? 'Confirmer l\'e-mail' : 'E-Mail bestätigen'}
+              </label>
+              <input
+                type="email"
+                name="confirmEmail"
+                value={formData.confirmEmail}
+                onChange={handleInputChange}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                  errors.confirmEmail ? 'border-red-300' : 'border-gray-300'
+                }`}
+                placeholder={language === 'en' ? 'Confirm your email' : language === 'fr' ? 'Confirmez votre e-mail' : 'Bestätigen Sie Ihre E-Mail'}
+                required
+              />
+              {errors.confirmEmail && <p className="mt-1 text-sm text-red-600">{errors.confirmEmail}</p>}
+            </div>
+
+            {/* Subject */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 {language === 'en' ? 'Subject' : language === 'fr' ? 'Sujet' : 'Betreff'}
@@ -183,6 +189,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
               />
               {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject}</p>}
             </div>
+
+            {/* Message */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 {language === 'en' ? 'Message' : language === 'fr' ? 'Message' : 'Nachricht'}
@@ -200,6 +208,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
               ></textarea>
               {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
             </div>
+
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -216,58 +226,58 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
             </button>
           </form>
         </div>
+      </div>
 
-        {/* Contact Information - Full Width */}
-        <div className="bg-gradient-to-br from-[#4A1F1A] to-[#6B2C20] text-white rounded-2xl p-8 max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
+      {/* Get in Touch Section */}
+      <div className="w-full mb-12">
+        <div className="bg-gradient-to-br from-[#4A1F1A] to-[#6B2C20] text-white rounded-2xl p-8">
+          <h3 className="text-2xl font-bold mb-6">
+            {language === 'en' ? 'Get in Touch' : language === 'fr' ? 'Contactez-nous' : 'Kontakt aufnehmen'}
+          </h3>
+          <div className="space-y-4">
             <div>
-            <h3 className="text-2xl font-bold mb-6">
-              {language === 'en' ? 'Get in Touch' : language === 'fr' ? 'Contactez-nous' : 'Kontakt aufnehmen'}
-            </h3>
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-amber-200 mb-2">
-                  {language === 'en' ? 'Phone' : language === 'fr' ? 'Téléphone' : 'Telefon'}
-                </h4>
-                <p className="text-amber-100">+33 1 23 45 67 89 (France)</p>
-                <p className="text-amber-100">+49 30 12 34 56 78 (Germany)</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-amber-200 mb-2">
-                  {language === 'en' ? 'Address' : language === 'fr' ? 'Adresse' : 'Adresse'}
-                </h4>
-                <p className="text-amber-100">
-                  {language === 'en'
-                    ? 'European Distribution Center\n123 Saffron Street\n75001 Paris, France'
-                    : language === 'fr'
-                      ? 'Centre de Distribution Européen\n123 Rue du Safran\n75001 Paris, France'
-                      : 'Europäisches Vertriebszentrum\n123 Safranstraße\n75001 Paris, Frankreich'
-                  }
-                </p>
-              </div>
+              <h4 className="font-semibold text-amber-200 mb-2">
+                {language === 'en' ? 'Phone' : language === 'fr' ? 'Téléphone' : 'Telefon'}
+              </h4>
+              <p className="text-amber-100">+33 1 23 45 67 89 (France)</p>
+              <p className="text-amber-100">+49 30 12 34 56 78 (Germany)</p>
             </div>
-            </div>
-
             <div>
-              <h3 className="text-2xl font-bold text-amber-200 mb-6">
-                {language === 'en' ? 'Business Hours' : language === 'fr' ? 'Heures d\'ouverture' : 'Geschäftszeiten'}
-              </h3>
-              <div className="space-y-2 text-amber-100">
-                <p><span className="font-medium">{language === 'en' ? 'Monday - Friday:' : language === 'fr' ? 'Lundi - Vendredi :' : 'Montag - Freitag:'}</span> 9:00 AM - 6:00 PM CET</p>
-                <p><span className="font-medium">{language === 'en' ? 'Saturday:' : language === 'fr' ? 'Samedi :' : 'Samstag:'}</span> 10:00 AM - 4:00 PM CET</p>
-                <p><span className="font-medium">{language === 'en' ? 'Sunday:' : language === 'fr' ? 'Dimanche :' : 'Sonntag:'}</span> {language === 'en' ? 'Closed' : language === 'fr' ? 'Fermé' : 'Geschlossen'}</p>
-              </div>
-              <p className="text-sm text-amber-200 mt-4">
+              <h4 className="font-semibold text-amber-200 mb-2">
+                {language === 'en' ? 'Address' : language === 'fr' ? 'Adresse' : 'Adresse'}
+              </h4>
+              <p className="text-amber-100">
                 {language === 'en'
-                  ? 'We typically respond to inquiries within 24 hours.'
+                  ? 'European Distribution Center\n123 Saffron Street\n75001 Paris, France'
                   : language === 'fr'
-                    ? 'Nous répondons généralement aux demandes dans les 24 heures.'
-                    : 'Wir antworten normalerweise innerhalb von 24 Stunden auf Anfragen.'
+                    ? 'Centre de Distribution Européen\n123 Rue du Safran\n75001 Paris, France'
+                    : 'Europäisches Vertriebszentrum\n123 Safranstraße\n75001 Paris, Frankreich'
                 }
               </p>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Business Hours Section */}
+      <div className="w-full">
+        <div className="bg-white rounded-2xl shadow-lg p-8">
+          <h3 className="text-2xl font-bold text-amber-900 mb-6">
+            {language === 'en' ? 'Business Hours' : language === 'fr' ? 'Heures d\'ouverture' : 'Geschäftszeiten'}
+          </h3>
+          <div className="space-y-2 text-gray-700">
+            <p><span className="font-medium">{language === 'en' ? 'Monday - Friday:' : language === 'fr' ? 'Lundi - Vendredi :' : 'Montag - Freitag:'}</span> 9:00 AM - 6:00 PM CET</p>
+            <p><span className="font-medium">{language === 'en' ? 'Saturday:' : language === 'fr' ? 'Samedi :' : 'Samstag:'}</span> 10:00 AM - 4:00 PM CET</p>
+            <p><span className="font-medium">{language === 'en' ? 'Sunday:' : language === 'fr' ? 'Dimanche :' : 'Sonntag:'}</span> {language === 'en' ? 'Closed' : language === 'fr' ? 'Fermé' : 'Geschlossen'}</p>
+          </div>
+          <p className="text-sm text-gray-600 mt-4">
+            {language === 'en'
+              ? 'We typically respond to inquiries within 24 hours.'
+              : language === 'fr'
+                ? 'Nous répondons généralement aux demandes dans les 24 heures.'
+                : 'Wir antworten normalerweise innerhalb von 24 Stunden auf Anfragen.'
+            }
+          </p>
         </div>
       </div>
     </div>
