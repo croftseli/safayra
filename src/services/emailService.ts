@@ -21,6 +21,7 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
     const sanitizedData = {
       fullName: sanitizeInput(formData.fullName),
       email: sanitizeInput(formData.email),
+      confirmEmail: sanitizeInput(formData.confirmEmail),
       subject: sanitizeInput(formData.subject),
       message: sanitizeInput(formData.message),
     };

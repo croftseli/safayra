@@ -2,6 +2,7 @@
 export interface ContactFormData {
   fullName: string;
   email: string;
+  confirmEmail: string;
   subject: string;
   message: string;
 }
@@ -9,6 +10,7 @@ export interface ContactFormData {
 export interface ContactFormErrors {
   fullName?: string;
   email?: string;
+  confirmEmail?: string;
   subject?: string;
   message?: string;
 }

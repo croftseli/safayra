@@ -19,10 +19,10 @@ const Header: React.FC<HeaderProps> = ({
   setLanguage
 }) => {
   const tabs = [
-    { id: 'home', label: language === 'en' ? 'Home Page' : language === 'fr' ? 'Accueil' : 'Startseite' },
-    { id: 'about', label: language === 'en' ? 'About us' : language === 'fr' ? 'À propos' : 'Über uns' },
+    { id: 'home', label: language === 'en' ? 'Home' : language === 'fr' ? 'Accueil' : 'Startseite' },
+    { id: 'about', label: language === 'en' ? 'About Us' : language === 'fr' ? 'À propos' : 'Über uns' },
     { id: 'gallery', label: language === 'en' ? 'Gallery' : language === 'fr' ? 'Galerie' : 'Galerie' },
-    { id: 'contact', label: language === 'en' ? 'Contact us' : language === 'fr' ? 'Contactez-nous' : 'Kontakt' }
+    { id: 'contact', label: language === 'en' ? 'Contact Us' : language === 'fr' ? 'Contactez-nous' : 'Kontakt' }
   ];
 
   return (
@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({
                 : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
                 }`}
             >
-              {language === 'en' ? 'Home Page' : 'Accueil'}
+              {language === 'en' ? 'Home' : 'Accueil'}
             </button>
             <button
               onClick={() => setActiveTab('about')}
@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({
                 : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
                 }`}
             >
-              {language === 'en' ? 'About us' : 'À propos'}
+              {language === 'en' ? 'About Us' : 'À propos'}
             </button>
           </nav>
 
@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({
                 : 'text-gray-700 hover:text-amber-700 hover:bg-amber-50'
                 }`}
             >
-              {language === 'en' ? 'Contact us' : 'Contactez-nous'}
+              {language === 'en' ? 'Contact Us' : 'Contactez-nous'}
             </button>
             
             {/* Language Flags */}

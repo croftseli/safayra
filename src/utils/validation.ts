@@ -25,9 +25,16 @@ export const validateContactForm = (data: ContactFormData): ContactFormErrors =>
     errors.email = 'Please enter a valid email address';
   }
 
+  // Confirm email validation
+  if (!data.confirmEmail || !EMAIL_REGEX.test(data.confirmEmail)) {
+    errors.confirmEmail = 'Please enter a valid email address';
+  } else if (data.email !== data.confirmEmail) {
+    errors.confirmEmail = 'Email addresses do not match';
+  }
+
   // Subject validation
-  if (!data.subject || data.subject === 'Select a subject') {
-    errors.subject = 'Please select a subject';
+  if (!data.subject || data.subject.trim().length < 2) {
+    errors.subject = 'Subject must be at least 2 characters long';
   }
 
   // Message validation

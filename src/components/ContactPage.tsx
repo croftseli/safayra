@@ -11,6 +11,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: '',
     email: '',
+    confirmEmail: '',
     subject: '',
     message: '',
   });
@@ -61,7 +62,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
       
       if (result.success) {
         setSubmitStatus({ type: 'success', message: result.message });
-        setFormData({ fullName: '', email: '', subject: '', message: '' }); // Reset form
+        setFormData({ fullName: '', email: '', confirmEmail: '', subject: '', message: '' }); // Reset form
       } else {
         setSubmitStatus({ type: 'error', message: result.message });
       }
@@ -93,9 +94,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-12">
-        {/* Contact Form */}
-        <div className="bg-white rounded-2xl shadow-lg p-8">
+      <div className="space-y-12">
+        {/* Contact Form - Full Width */}
+        <div className="bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
           <h3 className="text-2xl font-bold text-amber-900 mb-6">
             {language === 'en' ? 'Send us a message' : language === 'fr' ? 'Envoyez-nous un message' : 'Senden Sie uns eine Nachricht'}
           </h3>
@@ -147,26 +148,39 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
                 />
                 {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {language === 'en' ? 'Confirm Email' : language === 'fr' ? 'Confirmer l\'e-mail' : 'E-Mail bestätigen'}
+                </label>
+                <input
+                  type="email"
+                  name="confirmEmail"
+                  value={formData.confirmEmail}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                    errors.confirmEmail ? 'border-red-300' : 'border-gray-300'
+                  }`}
+                  placeholder={language === 'en' ? 'Confirm your email' : language === 'fr' ? 'Confirmez votre e-mail' : 'Bestätigen Sie Ihre E-Mail'}
+                  required
+                />
+                {errors.confirmEmail && <p className="mt-1 text-sm text-red-600">{errors.confirmEmail}</p>}
+              </div>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 {language === 'en' ? 'Subject' : language === 'fr' ? 'Sujet' : 'Betreff'}
               </label>
-              <select 
+              <input
+                type="text"
                 name="subject"
                 value={formData.subject}
                 onChange={handleInputChange}
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
                   errors.subject ? 'border-red-300' : 'border-gray-300'
                 }`}
+                placeholder={language === 'en' ? 'Enter subject' : language === 'fr' ? 'Entrez le sujet' : 'Betreff eingeben'}
                 required
-              >
-                <option>{language === 'en' ? 'Select a subject' : language === 'fr' ? 'Sélectionnez un sujet' : 'Wählen Sie ein Thema'}</option>
-                <option>{language === 'en' ? 'Wholesale Inquiry' : language === 'fr' ? 'Demande de gros' : 'Großhandelsanfrage'}</option>
-                <option>{language === 'en' ? 'Partnership' : language === 'fr' ? 'Partenariat' : 'Partnerschaft'}</option>
-                <option>{language === 'en' ? 'Quality Questions' : language === 'fr' ? 'Questions qualité' : 'Qualitätsfragen'}</option>
-                <option>{language === 'en' ? 'Other' : language === 'fr' ? 'Autre' : 'Andere'}</option>
-              </select>
+              />
               {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject}</p>}
             </div>
             <div>
@@ -203,20 +217,14 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
           </form>
         </div>
 
-        {/* Contact Information */}
-        <div className="space-y-6">
-          <div className="bg-gradient-to-br from-[#4A1F1A] to-[#6B2C20] text-white rounded-2xl p-8">
+        {/* Contact Information - Full Width */}
+        <div className="bg-gradient-to-br from-[#4A1F1A] to-[#6B2C20] text-white rounded-2xl p-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
             <h3 className="text-2xl font-bold mb-6">
               {language === 'en' ? 'Get in Touch' : language === 'fr' ? 'Contactez-nous' : 'Kontakt aufnehmen'}
             </h3>
             <div className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-amber-200 mb-2">
-                  {language === 'en' ? 'Email' : language === 'fr' ? 'E-mail' : 'E-Mail'}
-                </h4>
-                <p className="text-amber-100">info@safayra.com</p>
-                <p className="text-amber-100">sales@safayra.com</p>
-              </div>
               <div>
                 <h4 className="font-semibold text-amber-200 mb-2">
                   {language === 'en' ? 'Phone' : language === 'fr' ? 'Téléphone' : 'Telefon'}
@@ -238,18 +246,17 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
                 </p>
               </div>
             </div>
-          </div>
 
-          <div className="bg-amber-50 rounded-2xl p-8">
+            <div>
             <h3 className="text-2xl font-bold text-amber-900 mb-6">
               {language === 'en' ? 'Business Hours' : language === 'fr' ? 'Heures d\'ouverture' : 'Geschäftszeiten'}
             </h3>
-            <div className="space-y-2 text-gray-700">
+            <div className="space-y-2 text-amber-100">
               <p><span className="font-medium">{language === 'en' ? 'Monday - Friday:' : language === 'fr' ? 'Lundi - Vendredi :' : 'Montag - Freitag:'}</span> 9:00 AM - 6:00 PM CET</p>
               <p><span className="font-medium">{language === 'en' ? 'Saturday:' : language === 'fr' ? 'Samedi :' : 'Samstag:'}</span> 10:00 AM - 4:00 PM CET</p>
               <p><span className="font-medium">{language === 'en' ? 'Sunday:' : language === 'fr' ? 'Dimanche :' : 'Sonntag:'}</span> {language === 'en' ? 'Closed' : language === 'fr' ? 'Fermé' : 'Geschlossen'}</p>
             </div>
-            <p className="text-sm text-gray-600 mt-4">
+            <p className="text-sm text-amber-200 mt-4">
               {language === 'en'
                 ? 'We typically respond to inquiries within 24 hours.'
                 : language === 'fr'
@@ -258,6 +265,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
               }
             </p>
           </div>
+        </div>
         </div>
       </div>
     </div>
