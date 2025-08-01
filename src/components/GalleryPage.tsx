@@ -26,7 +26,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
           <img
             src="https://images.pexels.com/photos/4198019/pexels-photo-4198019.jpeg"
             alt="Premium saffron threads"
-            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-4 left-4 text-white">
@@ -58,7 +58,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
           <img
             src="https://images.pexels.com/photos/1340116/pexels-photo-1340116.jpeg"
             alt="Saffron spice in wooden bowl"
-            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-4 left-4 text-white">
@@ -74,7 +74,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
           <img
             src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg"
             alt="Saffron rice dish"
-            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-4 left-4 text-white">
@@ -90,7 +90,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
           <img
             src="https://images.pexels.com/photos/230477/pexels-photo-230477.jpeg"
             alt="Saffron tea"
-            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-4 left-4 text-white">
@@ -106,7 +106,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
           <img
             src="https://images.pexels.com/photos/1435735/pexels-photo-1435735.jpeg"
             alt="Saffron harvest"
-            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-4 left-4 text-white">
@@ -122,7 +122,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
           <img
             src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg"
             alt="Saffron powder"
-            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-4 left-4 text-white">
@@ -138,7 +138,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
           <img
             src="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg"
             alt="Saffron dessert"
-            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-4 left-4 text-white">
@@ -154,7 +154,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
           <img
             src="https://images.pexels.com/photos/1435736/pexels-photo-1435736.jpeg"
             alt="Saffron field"
-            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-4 left-4 text-white">
@@ -170,7 +170,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ language }) => {
           <img
             src="https://images.pexels.com/photos/3685530/pexels-photo-3685530.jpeg"
             alt="Saffron skincare"
-            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-4 left-4 text-white">

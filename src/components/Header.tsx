@@ -90,7 +90,8 @@ const Header: React.FC<HeaderProps> = ({
                 }`}
                 title="English"
               >
-                <span className="text-2xl">🇺🇸</span>
+                <span className="text-xl">🇺🇸</span>
+                <span className="text-xs font-medium text-gray-600 mt-1">EN</span>
               </button>
               <button
                 onClick={() => setLanguage('fr')}
@@ -99,7 +100,8 @@ const Header: React.FC<HeaderProps> = ({
                 }`}
                 title="Français"
               >
-                <span className="text-2xl">🇫🇷</span>
+                <span className="text-xl">🇫🇷</span>
+                <span className="text-xs font-medium text-gray-600 mt-1">FR</span>
               </button>
               <button
                 onClick={() => setLanguage('de')}
@@ -108,7 +110,8 @@ const Header: React.FC<HeaderProps> = ({
                 }`}
                 title="Deutsch"
               >
-                <span className="text-2xl">🇩🇪</span>
+                <span className="text-xl">🇩🇪</span>
+                <span className="text-xs font-medium text-gray-600 mt-1">DE</span>
               </button>
             </div>
           </nav>
@@ -159,7 +162,8 @@ const Header: React.FC<HeaderProps> = ({
                   }`}
                   title="English"
                 >
-                  <span className="text-3xl">🇺🇸</span>
+                  <span className="text-2xl">🇺🇸</span>
+                  <span className="text-sm font-medium text-gray-600 mt-1">EN</span>
                 </button>
                 <button
                   onClick={() => {
@@ -171,7 +175,8 @@ const Header: React.FC<HeaderProps> = ({
                   }`}
                   title="Français"
                 >
-                  <span className="text-3xl">🇫🇷</span>
+                  <span className="text-2xl">🇫🇷</span>
+                  <span className="text-sm font-medium text-gray-600 mt-1">FR</span>
                 </button>
                 <button
                   onClick={() => {
@@ -183,7 +188,8 @@ const Header: React.FC<HeaderProps> = ({
                   }`}
                   title="Deutsch"
                 >
-                  <span className="text-3xl">🇩🇪</span>
+                  <span className="text-2xl">🇩🇪</span>
+                  <span className="text-sm font-medium text-gray-600 mt-1">DE</span>
                 </button>
               </div>
             </div>

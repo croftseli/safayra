@@ -15,7 +15,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ language }) => {
           <img
             src="/Who are we.JPG"
             alt={language === 'en' ? 'Who We Are' : 'Qui nous sommes'}
-            className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg"
+            className="w-full h-64 md:h-80 object-cover object-center rounded-2xl shadow-lg"
           />
         </div>
       </div>
