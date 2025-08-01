@@ -246,9 +246,10 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
                 </p>
               </div>
             </div>
+            </div>
 
             <div>
-            <h3 className="text-2xl font-bold text-amber-900 mb-6">
+            <h3 className="text-2xl font-bold text-amber-200 mb-6">
               {language === 'en' ? 'Business Hours' : language === 'fr' ? 'Heures d\'ouverture' : 'Geschäftszeiten'}
             </h3>
             <div className="space-y-2 text-amber-100">
