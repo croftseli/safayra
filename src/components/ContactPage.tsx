@@ -248,22 +248,24 @@ const ContactPage: React.FC<ContactPageProps> = ({ language }) => {
             </div>
             </div>
 
-            <h3 className="text-2xl font-bold text-amber-200 mb-6">
-              {language === 'en' ? 'Business Hours' : language === 'fr' ? 'Heures d\'ouverture' : 'Geschäftszeiten'}
-            </h3>
-            <div className="space-y-2 text-amber-100">
-              <p><span className="font-medium">{language === 'en' ? 'Monday - Friday:' : language === 'fr' ? 'Lundi - Vendredi :' : 'Montag - Freitag:'}</span> 9:00 AM - 6:00 PM CET</p>
-              <p><span className="font-medium">{language === 'en' ? 'Saturday:' : language === 'fr' ? 'Samedi :' : 'Samstag:'}</span> 10:00 AM - 4:00 PM CET</p>
-              <p><span className="font-medium">{language === 'en' ? 'Sunday:' : language === 'fr' ? 'Dimanche :' : 'Sonntag:'}</span> {language === 'en' ? 'Closed' : language === 'fr' ? 'Fermé' : 'Geschlossen'}</p>
+            <div>
+              <h3 className="text-2xl font-bold text-amber-200 mb-6">
+                {language === 'en' ? 'Business Hours' : language === 'fr' ? 'Heures d\'ouverture' : 'Geschäftszeiten'}
+              </h3>
+              <div className="space-y-2 text-amber-100">
+                <p><span className="font-medium">{language === 'en' ? 'Monday - Friday:' : language === 'fr' ? 'Lundi - Vendredi :' : 'Montag - Freitag:'}</span> 9:00 AM - 6:00 PM CET</p>
+                <p><span className="font-medium">{language === 'en' ? 'Saturday:' : language === 'fr' ? 'Samedi :' : 'Samstag:'}</span> 10:00 AM - 4:00 PM CET</p>
+                <p><span className="font-medium">{language === 'en' ? 'Sunday:' : language === 'fr' ? 'Dimanche :' : 'Sonntag:'}</span> {language === 'en' ? 'Closed' : language === 'fr' ? 'Fermé' : 'Geschlossen'}</p>
+              </div>
+              <p className="text-sm text-amber-200 mt-4">
+                {language === 'en'
+                  ? 'We typically respond to inquiries within 24 hours.'
+                  : language === 'fr'
+                    ? 'Nous répondons généralement aux demandes dans les 24 heures.'
+                    : 'Wir antworten normalerweise innerhalb von 24 Stunden auf Anfragen.'
+                }
+              </p>
             </div>
-            <p className="text-sm text-amber-200 mt-4">
-              {language === 'en'
-                ? 'We typically respond to inquiries within 24 hours.'
-                : language === 'fr'
-                  ? 'Nous répondons généralement aux demandes dans les 24 heures.'
-                  : 'Wir antworten normalerweise innerhalb von 24 Stunden auf Anfragen.'
-              }
-            </p>
           </div>
         </div>
         </div>
