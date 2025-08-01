@@ -2,12 +2,12 @@ import React from 'react';
 
 const GalleryPage = ({ language }) => {
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto px-2 xs:px-4 sm:px-6">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-amber-900 mb-6">
+        <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-amber-900 mb-6">
           {language === 'en' ? 'Gallery' : language === 'fr' ? 'Galerie' : 'Galerie'}
         </h2>
-        <p className="text-lg text-gray-600">
+        <p className="text-sm xs:text-base sm:text-lg text-gray-600 px-4">
           {language === 'en'
             ? 'Discover the beauty and richness of premium saffron through our curated collection'
             : language === 'fr' ? 'Découvrez la beauté et la richesse du safran premium à travers notre collection' : 'Entdecken Sie die Schönheit und den Reichtum von Premium-Safran durch unsere Sammlung'
@@ -16,17 +16,17 @@ const GalleryPage = ({ language }) => {
       </div>
 
       {/* Gallery Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 xs:gap-4 sm:gap-6">
         {/* Saffron Threads */}
-        <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+        <div className="group relative overflow-hidden rounded-lg xs:rounded-xl shadow-md xs:shadow-lg hover:shadow-xl xs:hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
             src="https://images.pexels.com/photos/4198019/pexels-photo-4198019.jpeg"
             alt="Premium saffron threads"
-            className="w-full h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-48 xs:h-56 sm:h-64 object-cover object-center group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="absolute bottom-4 left-4 text-white">
-              <h3 className="text-lg font-semibold">
+            <div className="absolute bottom-2 xs:bottom-4 left-2 xs:left-4 text-white">
+              <h3 className="text-sm xs:text-base sm:text-lg font-semibold">
                 {language === 'en' ? 'Premium Saffron Threads' : language === 'fr' ? 'Fils de Safran Premium' : 'Premium Safran-Fäden'}
               </h3>
             </div>
@@ -34,15 +34,15 @@ const GalleryPage = ({ language }) => {
         </div>
 
         {/* Saffron Flowers */}
-        <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+        <div className="group relative overflow-hidden rounded-lg xs:rounded-xl shadow-md xs:shadow-lg hover:shadow-xl xs:hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
           <img
             src="https://images.pexels.com/photos/4198020/pexels-photo-4198020.jpeg"
             alt="Saffron flowers in field"
-            className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-48 xs:h-56 sm:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="absolute bottom-4 left-4 text-white">
-              <h3 className="text-lg font-semibold">
+            <div className="absolute bottom-2 xs:bottom-4 left-2 xs:left-4 text-white">
+              <h3 className="text-sm xs:text-base sm:text-lg font-semibold">
                 {language === 'en' ? 'Saffron Flowers' : language === 'fr' ? 'Fleurs de Safran' : 'Safran-Blüten'}
               </h3>
             </div>

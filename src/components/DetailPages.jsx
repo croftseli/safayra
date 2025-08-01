@@ -482,14 +482,14 @@ const DetailPages = ({ pageId, onBack, language }) => {
       {/* Header */}
       <header className="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16 xs:h-18 sm:h-20">
             {/* Back Button */}
             <button
               onClick={onBack}
-              className="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-700 hover:text-amber-700 hover:bg-amber-50 transition-all duration-300"
+              className="flex items-center space-x-1 xs:space-x-2 px-2 xs:px-3 sm:px-4 py-1 xs:py-2 rounded-lg text-gray-700 hover:text-amber-700 hover:bg-amber-50 transition-all duration-300"
             >
-              <ArrowLeft className="w-5 h-5" />
-              <span className="font-medium">{language === 'en' ? 'Back' : 'Retour'}</span>
+              <ArrowLeft className="w-4 h-4 xs:w-5 xs:h-5" />
+              <span className="font-medium text-sm xs:text-base">{language === 'en' ? 'Back' : 'Retour'}</span>
             </button>
 
             {/* Centered Logo */}
@@ -497,7 +497,7 @@ const DetailPages = ({ pageId, onBack, language }) => {
               <img
                 src="/safayra_logo-removebg.jpg"
                 alt="SAFAYRA"
-                className="h-28 w-auto object-contain"
+                className="h-16 xs:h-20 sm:h-24 md:h-28 w-auto object-contain"
               />
             </div>
 
@@ -508,9 +508,9 @@ const DetailPages = ({ pageId, onBack, language }) => {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-6xl mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 py-6 xs:py-8 sm:py-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-amber-900 mb-6">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-amber-900 mb-6 px-4">
             {pageContent.title}
           </h1>
           {pageContent.image && (
@@ -518,7 +518,7 @@ const DetailPages = ({ pageId, onBack, language }) => {
               <img
                 src={pageContent.image}
                 alt={pageContent.title}
-                className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg"
+                className="w-full h-48 xs:h-56 sm:h-64 md:h-80 object-cover rounded-lg xs:rounded-xl sm:rounded-2xl shadow-md xs:shadow-lg"
               />
             </div>
           )}
@@ -533,9 +533,9 @@ const DetailPages = ({ pageId, onBack, language }) => {
       <footer className="bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center space-x-3 mb-2">
-            <h3 className="text-xl font-bold">SAFAYRA</h3>
+            <h3 className="text-lg xs:text-xl font-bold">SAFAYRA</h3>
           </div>
-          <p className="text-amber-100 mb-2 text-sm">
+          <p className="text-amber-100 mb-2 text-xs xs:text-sm">
             {language === 'en' ? 'Premium Saffron Exchange' : 'Échange de Safran Premium'}
           </p>
           <p className="text-amber-200 text-xs">

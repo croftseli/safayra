@@ -108,7 +108,7 @@ const HomePage = ({ language, setActiveDetailPage }) => {
     <div className="space-y-12 md:space-y-16">
       {/* Hero Text */}
       <div className="text-center max-w-4xl mx-auto px-4">
-        <p className="text-lg md:text-xl lg:text-2xl text-amber-900 leading-relaxed font-medium">
+        <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-amber-900 leading-relaxed font-medium px-2">
           {language === 'en'
             ? "Sourced directly from Iran, grown with care and respect for tradition. Ethically harvested and lab-tested, our saffron reflects purity, culture, and quality."
             : language === 'fr' 
@@ -119,11 +119,11 @@ const HomePage = ({ language, setActiveDetailPage }) => {
       </div>
 
       {/* Image Carousel */}
-      <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-4 md:p-8 lg:p-12">
+      <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg xs:rounded-xl sm:rounded-2xl p-2 xs:p-3 sm:p-4 md:p-8 lg:p-12 mx-1 xs:mx-2 sm:mx-0">
         <div className="max-w-5xl mx-auto">
-          <div className="relative overflow-hidden rounded-xl shadow-2xl">
+          <div className="relative overflow-hidden rounded-md xs:rounded-lg sm:rounded-xl shadow-md xs:shadow-lg sm:shadow-2xl">
             {/* Carousel Container */}
-            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px]">
+            <div className="relative h-48 xs:h-56 sm:h-64 md:h-80 lg:h-96 xl:h-[500px]">
               {carouselImages.map((image, index) => (
                 <div
                   key={index}
@@ -144,26 +144,26 @@ const HomePage = ({ language, setActiveDetailPage }) => {
             {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
-              className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+              className="absolute left-1 xs:left-2 sm:left-3 md:left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-1 xs:p-1.5 sm:p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-10"
               aria-label="Previous image"
             >
-              <ChevronLeft className="w-4 h-4 md:w-6 md:h-6" />
+              <ChevronLeft className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+              className="absolute right-1 xs:right-2 sm:right-3 md:right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-1 xs:p-1.5 sm:p-2 md:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-10"
               aria-label="Next image"
             >
-              <ChevronRight className="w-4 h-4 md:w-6 md:h-6" />
+              <ChevronRight className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
 
             {/* Dots Indicator */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            <div className="absolute bottom-1 xs:bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2">
               {carouselImages.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                  className={`w-1.5 h-1.5 xs:w-2 xs:h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide 
                       ? 'bg-white shadow-lg scale-125' 
                       : 'bg-white/60 hover:bg-white/80'
@@ -177,12 +177,12 @@ const HomePage = ({ language, setActiveDetailPage }) => {
       </div>
 
       {/* Clickable Cards Section */}
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-2 xs:px-3 sm:px-4">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-amber-900 mb-4">
+          <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-amber-900 mb-4 px-2">
             {language === 'en' ? 'Discover Our World' : language === 'fr' ? 'Découvrez Notre Monde' : 'Entdecken Sie Unsere Welt'}
           </h2>
-          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xs xs:text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4">
             {language === 'en'
               ? 'Explore the many facets of premium saffron and learn how it can enhance your life'
               : language === 'fr'
@@ -193,15 +193,15 @@ const HomePage = ({ language, setActiveDetailPage }) => {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 xs:gap-3 sm:gap-4 md:gap-6">
           {cards.map((card) => (
             <div
               key={card.id}
               onClick={() => setActiveDetailPage(card.id)}
-              className="group cursor-pointer bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+              className="group cursor-pointer bg-white rounded-md xs:rounded-lg sm:rounded-xl shadow-sm xs:shadow-md sm:shadow-lg hover:shadow-lg xs:hover:shadow-xl sm:hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
             >
               {/* Card Image */}
-              <div className="relative h-32 sm:h-40 md:h-48 overflow-hidden">
+              <div className="relative h-24 xs:h-28 sm:h-32 md:h-40 lg:h-48 overflow-hidden">
                 <img
                   src={card.image}
                   alt={card.title}
@@ -211,18 +211,18 @@ const HomePage = ({ language, setActiveDetailPage }) => {
               </div>
 
               {/* Card Content */}
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3 group-hover:text-amber-700 transition-colors duration-300">
+              <div className="p-2 xs:p-3 sm:p-4 md:p-6">
+                <h3 className="text-sm xs:text-base sm:text-lg md:text-xl font-bold text-gray-800 mb-1 xs:mb-2 md:mb-3 group-hover:text-amber-700 transition-colors duration-300 leading-tight">
                   {card.title}
                 </h3>
-                <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-3 md:mb-4 line-clamp-3">
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed mb-2 xs:mb-3 md:mb-4 line-clamp-3">
                   {card.description}
                 </p>
                 <div className="flex items-center text-amber-600 group-hover:text-amber-700 transition-colors duration-300">
-                  <span className="text-sm md:text-base font-medium">
+                  <span className="text-xs sm:text-sm md:text-base font-medium">
                     {language === 'en' ? 'Learn More' : language === 'fr' ? 'En Savoir Plus' : 'Mehr Erfahren'}
                   </span>
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 ml-1 sm:ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
               </div>
             </div>

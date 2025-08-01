@@ -136,13 +136,13 @@ const ContactPage = ({ language }) => {
   // {{to_email}} - Your receiving email (optional, can be set in template)
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto px-2 xs:px-4 sm:px-6">
       {/* Page Header */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-amber-900 mb-6">
+        <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-amber-900 mb-6">
           {language === 'en' ? 'Contact Us' : language === 'fr' ? 'Contactez-nous' : 'Kontakt'}
         </h2>
-        <p className="text-lg text-gray-600">
+        <p className="text-sm xs:text-base sm:text-lg text-gray-600 px-4">
           {language === 'en'
             ? 'Get in touch with us for premium saffron inquiries'
             : language === 'fr' ? 'Contactez-nous pour vos demandes de safran premium' : 'Kontaktieren Sie uns für Premium-Safran-Anfragen'
@@ -152,14 +152,14 @@ const ContactPage = ({ language }) => {
 
       {/* Contact Form Section */}
       <div className="w-full mb-12">
-        <div className="bg-white rounded-2xl shadow-lg p-8">
-          <h3 className="text-2xl font-bold text-amber-900 mb-6">
+        <div className="bg-white rounded-lg xs:rounded-xl sm:rounded-2xl shadow-md xs:shadow-lg p-4 xs:p-6 sm:p-8">
+          <h3 className="text-xl xs:text-2xl font-bold text-amber-900 mb-6">
             {language === 'en' ? 'Send us a message' : language === 'fr' ? 'Envoyez-nous un message' : 'Senden Sie uns eine Nachricht'}
           </h3>
           
           {/* Status Messages */}
           {submitStatus && (
-            <div className={`mb-6 p-4 rounded-lg ${
+            <div className={`mb-6 p-3 xs:p-4 rounded-lg text-sm xs:text-base ${
               submitStatus.type === 'success' 
                 ? 'bg-green-50 text-green-800 border border-green-200' 
                 : 'bg-red-50 text-red-800 border border-red-200'
@@ -171,7 +171,7 @@ const ContactPage = ({ language }) => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Full Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
                 {language === 'en' ? 'Full Name' : language === 'fr' ? 'Nom complet' : 'Vollständiger Name'}
               </label>
               <input
@@ -179,7 +179,7 @@ const ContactPage = ({ language }) => {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                className={`w-full px-3 xs:px-4 py-2 xs:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm xs:text-base ${
                   errors.fullName ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder={language === 'en' ? 'Your name' : language === 'fr' ? 'Votre nom' : 'Ihr Name'}
@@ -190,7 +190,7 @@ const ContactPage = ({ language }) => {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
                 {language === 'en' ? 'Email' : language === 'fr' ? 'E-mail' : 'E-Mail'}
               </label>
               <input
@@ -198,7 +198,7 @@ const ContactPage = ({ language }) => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                className={`w-full px-3 xs:px-4 py-2 xs:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm xs:text-base ${
                   errors.email ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder={language === 'en' ? 'your@email.com' : language === 'fr' ? 'votre@email.com' : 'ihre@email.com'}
@@ -209,7 +209,7 @@ const ContactPage = ({ language }) => {
 
             {/* Confirm Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
                 {language === 'en' ? 'Confirm Email' : language === 'fr' ? 'Confirmer l\'e-mail' : 'E-Mail bestätigen'}
               </label>
               <input
@@ -217,7 +217,7 @@ const ContactPage = ({ language }) => {
                 name="confirmEmail"
                 value={formData.confirmEmail}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                className={`w-full px-3 xs:px-4 py-2 xs:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm xs:text-base ${
                   errors.confirmEmail ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder={language === 'en' ? 'Confirm your email' : language === 'fr' ? 'Confirmez votre e-mail' : 'Bestätigen Sie Ihre E-Mail'}
@@ -228,7 +228,7 @@ const ContactPage = ({ language }) => {
 
             {/* Subject */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
                 {language === 'en' ? 'Subject' : language === 'fr' ? 'Sujet' : 'Betreff'}
               </label>
               <input
@@ -236,7 +236,7 @@ const ContactPage = ({ language }) => {
                 name="subject"
                 value={formData.subject}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                className={`w-full px-3 xs:px-4 py-2 xs:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm xs:text-base ${
                   errors.subject ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder={language === 'en' ? 'Enter subject' : language === 'fr' ? 'Entrez le sujet' : 'Betreff eingeben'}
@@ -247,15 +247,15 @@ const ContactPage = ({ language }) => {
 
             {/* Message */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
                 {language === 'en' ? 'Message' : language === 'fr' ? 'Message' : 'Nachricht'}
               </label>
               <textarea
-                rows={5}
+                rows={4}
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent ${
+                className={`w-full px-3 xs:px-4 py-2 xs:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm xs:text-base ${
                   errors.message ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder={language === 'en' ? 'Tell us about your saffron needs...' : language === 'fr' ? 'Parlez-nous de vos besoins en safran...' : 'Erzählen Sie uns von Ihren Safran-Bedürfnissen...'}
@@ -268,7 +268,7 @@ const ContactPage = ({ language }) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
+              className={`w-full py-2 xs:py-3 px-4 xs:px-6 rounded-lg font-semibold text-sm xs:text-base transition-all duration-300 ${
                 isSubmitting
                   ? 'bg-gray-400 cursor-not-allowed'
                   : 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white hover:shadow-lg transform hover:scale-105'
@@ -285,23 +285,23 @@ const ContactPage = ({ language }) => {
 
       {/* Get in Touch Section */}
       <div className="w-full mb-12">
-        <div className="bg-gradient-to-br from-[#4A1F1A] to-[#6B2C20] text-white rounded-2xl p-8">
-          <h3 className="text-2xl font-bold mb-6">
+        <div className="bg-gradient-to-br from-[#4A1F1A] to-[#6B2C20] text-white rounded-lg xs:rounded-xl sm:rounded-2xl p-4 xs:p-6 sm:p-8">
+          <h3 className="text-xl xs:text-2xl font-bold mb-6">
             {language === 'en' ? 'Get in Touch' : language === 'fr' ? 'Contactez-nous' : 'Kontakt aufnehmen'}
           </h3>
           <div className="space-y-4">
             <div>
-              <h4 className="font-semibold text-amber-200 mb-2">
+              <h4 className="font-semibold text-amber-200 mb-2 text-sm xs:text-base">
                 {language === 'en' ? 'Phone' : language === 'fr' ? 'Téléphone' : 'Telefon'}
               </h4>
-              <p className="text-amber-100">+33 1 23 45 67 89 (France)</p>
-              <p className="text-amber-100">+49 30 12 34 56 78 (Germany)</p>
+              <p className="text-amber-100 text-sm xs:text-base">+33 1 23 45 67 89 (France)</p>
+              <p className="text-amber-100 text-sm xs:text-base">+49 30 12 34 56 78 (Germany)</p>
             </div>
             <div>
-              <h4 className="font-semibold text-amber-200 mb-2">
+              <h4 className="font-semibold text-amber-200 mb-2 text-sm xs:text-base">
                 {language === 'en' ? 'Address' : language === 'fr' ? 'Adresse' : 'Adresse'}
               </h4>
-              <p className="text-amber-100">
+              <p className="text-amber-100 text-sm xs:text-base whitespace-pre-line">
                 {language === 'en'
                   ? 'European Distribution Center\n123 Saffron Street\n75001 Paris, France'
                   : language === 'fr'
@@ -316,11 +316,11 @@ const ContactPage = ({ language }) => {
 
       {/* Business Hours Section */}
       <div className="w-full">
-        <div className="bg-white rounded-2xl shadow-lg p-8">
-          <h3 className="text-2xl font-bold text-amber-900 mb-6">
+        <div className="bg-white rounded-lg xs:rounded-xl sm:rounded-2xl shadow-md xs:shadow-lg p-4 xs:p-6 sm:p-8">
+          <h3 className="text-xl xs:text-2xl font-bold text-amber-900 mb-6">
             {language === 'en' ? 'Business Hours' : language === 'fr' ? 'Heures d\'ouverture' : 'Geschäftszeiten'}
           </h3>
-          <div className="space-y-2 text-gray-700">
+          <div className="space-y-2 text-gray-700 text-sm xs:text-base">
             <p><span className="font-medium">{language === 'en' ? 'Monday - Friday:' : language === 'fr' ? 'Lundi - Vendredi :' : 'Montag - Freitag:'}</span> 9:00 AM - 6:00 PM CET</p>
             <p><span className="font-medium">{language === 'en' ? 'Saturday:' : language === 'fr' ? 'Samedi :' : 'Samstag:'}</span> 10:00 AM - 4:00 PM CET</p>
             <p><span className="font-medium">{language === 'en' ? 'Sunday:' : language === 'fr' ? 'Dimanche :' : 'Sonntag:'}</span> {language === 'en' ? 'Closed' : language === 'fr' ? 'Fermé' : 'Geschlossen'}</p>
