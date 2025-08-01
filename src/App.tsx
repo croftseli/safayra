@@ -7,18 +7,12 @@ import GalleryPage from './components/GalleryPage';
 import ContactPage from './components/ContactPage';
 import LanguagePage from './components/LanguagePage';
 import DetailPages from './components/DetailPages';
-import { initializeEmailJS } from './services/emailService';
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [activeDetailPage, setActiveDetailPage] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState<'en' | 'fr' | 'de'>('en');
-
-  // Initialize EmailJS on component mount
-  useEffect(() => {
-    initializeEmailJS();
-  }, []);
 
   // If we're on a detail page, render that instead
   if (activeDetailPage) {
