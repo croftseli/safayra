@@ -109,7 +109,7 @@ const HomePage = ({ language, setActiveDetailPage }) => {
       {/* Hero Heading */}
       <div className="text-center pt-4 md:pt-8">
         <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-amber-700 via-red-600 to-red-800 bg-clip-text text-transparent mb-4 md:mb-6 tracking-tight leading-tight">
-          This is Safayra
+          This is Safayra.
         </h1>
         <div className="w-24 xs:w-32 sm:w-40 md:w-48 h-1 bg-gradient-to-r from-amber-400 to-orange-500 mx-auto rounded-full shadow-lg"></div>
       </div>
