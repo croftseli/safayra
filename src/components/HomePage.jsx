@@ -171,9 +171,9 @@ const HomePage = ({ language, setActiveDetailPage }) => {
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-1.5 h-1.5 xs:w-2 xs:h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+                  className={`w-1 h-1 xs:w-1.5 xs:h-1.5 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide 
-                      ? 'bg-white shadow-lg scale-125' 
+                      ? 'bg-white shadow-lg scale-110' 
                       : 'bg-white/60 hover:bg-white/80'
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
