@@ -19,7 +19,7 @@ const AboutPage = ({ language }) => {
       <div className="space-y-6">
         <p className="text-sm xs:text-base sm:text-lg text-gray-700 leading-relaxed">
           {language === 'en'
-            ? "Ethically sourced saffron from Iran, Safayra is a journey from the sun-drenched fields of Iran to the heart of Europe. We bring you premium-quality saffron, carefully handpicked from its land of origin, where centuries of tradition meet ethical and modern practices."
+            ? "Ethically sourced from Iran, Safayra represents a journey from the sun-drenched fields of Iran to the heart of Europe. We bring you premium-quality saffron, carefully handpicked from its land of origin, where centuries of tradition meet ethical and modern practices."
             : language === 'fr' ? "Safran d'origine éthique d'Iran, Safayra est un voyage des champs ensoleillés d'Iran au cœur de l'Europe. Nous vous apportons un safran de qualité supérieure, soigneusement cueilli à la main de son pays d'origine, où des siècles de tradition rencontrent des pratiques éthiques et modernes." : "Ethisch bezogener Safran aus dem Iran, Safayra ist eine Reise von den sonnenverwöhnten Feldern des Iran ins Herz Europas. Wir bringen Ihnen Premium-Qualität Safran, sorgfältig von Hand gepflückt aus seinem Ursprungsland, wo jahrhundertealte Tradition auf ethische und moderne Praktiken trifft."
           }
         </p>

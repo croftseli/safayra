@@ -118,7 +118,7 @@ const HomePage = ({ language, setActiveDetailPage }) => {
       <div className="text-center max-w-4xl mx-auto px-4">
         <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-amber-900 leading-relaxed font-medium px-2">
           {language === 'en'
-            ? "Sourced directly from Iran, grown with care and respect for tradition. Ethically harvested and lab-tested, our saffron reflects purity, culture, and quality."
+            ? "Sourced directly from Iran and grown with care and respect for tradition. Ethically harvested and lab-tested, our saffron reflects purity, culture, and quality."
             : language === 'fr' 
             ? "Directement sourcé d'Iran, cultivé avec soin et respect pour la tradition. Récolté de manière éthique et testé en laboratoire, notre safran reflète la pureté, la culture et la qualité." 
             : "Direkt aus dem Iran bezogen, mit Sorgfalt und Respekt für die Tradition angebaut. Ethisch geerntet und im Labor getestet, spiegelt unser Safran Reinheit, Kultur und Qualität wider."
