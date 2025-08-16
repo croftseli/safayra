@@ -8,6 +8,7 @@ const Header = ({
   setMobileMenuOpen,
   language,
   setLanguage,
+  overHero = false,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -15,12 +16,12 @@ const Header = ({
   const [dropdownTimeout, setDropdownTimeout] = useState(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const positionClass = overHero ? "fixed" : "sticky";
 
   // Handle mouse enter for the language toggle
   const handleMouseEnter = () => {
@@ -78,16 +79,20 @@ const Header = ({
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-lg" : "bg-transparent"
-      }`}
+      className={`${positionClass} top-0 left-0 right-0 z-50 w-full transition-all duration-300
+        ${
+          isScrolled || !overHero
+            ? "backdrop-blur-md shadow-lg"
+            : "bg-transparent"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 relative">
         <div className="flex items-center h-16 xs:h-18 sm:h-20">
           {/* Mobile Menu Button (Visible on Mobile) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-gray-700 hover:text-amber-700 hover:bg-amber-50 transition-all duration-300"
+            className="md:hidden p-2 rounded-lg hover:bg-amber-50 transition-all duration-300"
+            style={{ color: "#f1e1c6" }}
           >
             {mobileMenuOpen ? (
               <X className="w-5 h-5 xs:w-6 xs:h-6" />
@@ -102,7 +107,7 @@ const Header = ({
               <div key={item.id} className="flex items-center">
                 {item.isLogo ? (
                   <img
-                    src="/safayra-logo-removebg.jpg"
+                    src="/safayra-logo-simple.png"
                     alt="SAFAYRA"
                     className="h-12 xs:h-14 sm:h-16 md:h-18 w-auto object-contain"
                   />
@@ -111,9 +116,10 @@ const Header = ({
                     onClick={() => setActiveTab(item.id)}
                     className={`px-3 lg:px-4 py-2 font-medium transition-all duration-300 text-sm lg:text-base ${
                       activeTab === item.id
-                        ? "text-[#4A1F1A] border-b-2 border-[#4A1F1A]"
-                        : "text-gray-700 hover:text-amber-700 hover:border-b-2 hover:border-amber-700"
+                        ? "border-b-2 border-[#f1e1c6]"
+                        : "hover:border-b-2 hover:border-[#f1e1c6]"
                     }`}
+                    style={{ color: "#f1e1c6" }}
                   >
                     {item.label[language]}
                   </button>
@@ -128,7 +134,10 @@ const Header = ({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <button className="p-1 xs:p-1.5 sm:p-2 rounded-lg transition-all duration-300 text-sm xs:text-base font-medium text-gray-700 hover:text-amber-700 hover:bg-amber-50">
+            <button
+              className="p-1 xs:p-1.5 sm:p-2 rounded-lg transition-all duration-300 text-sm xs:text-base font-medium hover:bg-amber-50"
+              style={{ color: "#f1e1c6" }}
+            >
               {language.toUpperCase()}
             </button>
             {showDropdown && (
@@ -144,7 +153,8 @@ const Header = ({
                       setLanguage(lang.code);
                       setShowDropdown(false);
                     }}
-                    className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 w-full"
+                    className="flex items-center px-4 py-2 text-sm hover:bg-amber-50 w-full"
+                    style={{ color: "#f1e1c6" }}
                   >
                     {lang.code.toUpperCase()}
                   </button>
@@ -169,16 +179,20 @@ const Header = ({
                     }}
                     className={`w-full text-left px-3 xs:px-4 py-2 xs:py-3 font-medium transition-all duration-300 text-sm xs:text-base ${
                       activeTab === item.id
-                        ? "text-[#4A1F1A] border-b-2 border-[#4A1F1A]"
-                        : "text-gray-700 hover:text-amber-700 hover:border-b-2 hover:border-amber-700"
+                        ? "border-b-2 border-[#f1e1c6]"
+                        : "hover:border-b-2 hover:border-[#f1e1c6]"
                     }`}
+                    style={{ color: "#f1e1c6" }}
                   >
                     {item.label[language]}
                   </button>
                 ))}
               {/* Mobile Language Options */}
               <div className="px-3 xs:px-4 py-2 xs:py-3">
-                <span className="text-sm xs:text-base font-medium text-gray-700">
+                <span
+                  className="text-sm xs:text-base font-medium"
+                  style={{ color: "#f1e1c6" }}
+                >
                   Language:
                 </span>
                 <div className="flex space-x-2 mt-2">
@@ -191,6 +205,7 @@ const Header = ({
                           ? "bg-amber-100 shadow-md"
                           : "hover:bg-gray-100"
                       }`}
+                      style={{ color: "#f1e1c6" }}
                     >
                       {lang.code.toUpperCase()}
                     </button>

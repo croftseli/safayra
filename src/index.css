@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,6 +17,7 @@
   /* Ensure smooth scrolling on all devices */
   html {
     scroll-behavior: smooth;
+    background-color: #4d1112;
   }
   
   /* Improve touch targets on mobile */
@@ -22,4 +27,14 @@
       min-width: 44px;
     }
   }
+}
+
+:root {
+  --brand-beige: #EBD4AD;
+}
+
+@layer utilities {
+  .text-brand { color: var(--brand-beige); }
+  .bg-brand   { background-color: var(--brand-beige); }
+  .border-brand { border-color: var(--brand-beige); }
 }
