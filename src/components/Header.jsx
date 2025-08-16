@@ -11,6 +11,8 @@ const Header = ({
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isDropdownHovered, setIsDropdownHovered] = useState(false);
+  const [dropdownTimeout, setDropdownTimeout] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,18 +22,55 @@ const Header = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Handle mouse enter for the language toggle
+  const handleMouseEnter = () => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      setDropdownTimeout(null);
+    }
+    setShowDropdown(true);
+  };
+
+  // Handle mouse leave for the language toggle
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      if (!isDropdownHovered) {
+        setShowDropdown(false);
+      }
+    }, 200); // 200ms delay before closing
+    setDropdownTimeout(timeout);
+  };
+
+  // Handle mouse enter for the dropdown menu
+  const handleDropdownMouseEnter = () => {
+    setIsDropdownHovered(true);
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      setDropdownTimeout(null);
+    }
+  };
+
+  // Handle mouse leave for the dropdown menu
+  const handleDropdownMouseLeave = () => {
+    setIsDropdownHovered(false);
+    const timeout = setTimeout(() => {
+      setShowDropdown(false);
+    }, 200); // 200ms delay before closing
+    setDropdownTimeout(timeout);
+  };
+
   const navItems = [
     { id: "home", label: { en: "Home", fr: "Accueil", de: "Startseite" } },
     { id: "about", label: { en: "About Us", fr: "À propos", de: "Über uns" } },
-    { id: "logo", isLogo: true }, // Logo as a nav item
+    { id: "logo", isLogo: true },
     { id: "gallery", label: { en: "Gallery", fr: "Galerie", de: "Galerie" } },
     { id: "contact", label: { en: "Contact", fr: "Contact", de: "Kontakt" } },
   ];
 
   const languages = [
-    { code: "en", flag: "🇺🇸", name: "English" },
-    { code: "fr", flag: "🇫🇷", name: "Français" },
-    { code: "de", flag: "🇩🇪", name: "Deutsch" },
+    { code: "en", name: "English" },
+    { code: "fr", name: "Français" },
+    { code: "de", name: "Deutsch" },
   ];
 
   const currentLang = languages.find((lang) => lang.code === language);
@@ -85,15 +124,19 @@ const Header = ({
 
           {/* Language Toggle (Positioned further right) */}
           <div
-            className="absolute right-0 xs:right-0 sm:right-2 md:right-4 top-1/2 transform -translate-y-1/2"
-            onMouseEnter={() => setShowDropdown(true)}
-            onMouseLeave={() => setShowDropdown(false)}
+            className="absolute right-0 xs:right-0 sm:right-2 md:right-0 top-1/2 transform -translate-y-1/2"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <button className="p-1 xs:p-1.5 sm:p-2 rounded-lg transition-all duration-300 text-sm xs:text-base font-medium text-gray-700 hover:text-amber-700 hover:bg-amber-50">
               {language.toUpperCase()}
             </button>
             {showDropdown && (
-              <div className="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-lg py-2 z-50">
+              <div
+                className="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-lg py-2 z-50"
+                onMouseEnter={handleDropdownMouseEnter}
+                onMouseLeave={handleDropdownMouseLeave}
+              >
                 {otherLangs.map((lang) => (
                   <button
                     key={lang.code}
@@ -103,7 +146,7 @@ const Header = ({
                     }}
                     className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 w-full"
                   >
-                    {lang.flag} {lang.code.toUpperCase()}
+                    {lang.code.toUpperCase()}
                   </button>
                 ))}
               </div>
@@ -149,7 +192,7 @@ const Header = ({
                           : "hover:bg-gray-100"
                       }`}
                     >
-                      {lang.flag} {lang.code.toUpperCase()}
+                      {lang.code.toUpperCase()}
                     </button>
                   ))}
                 </div>
