@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
 const HomePage = ({ language, setActiveDetailPage }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -7,25 +7,50 @@ const HomePage = ({ language, setActiveDetailPage }) => {
   // Carousel images
   const carouselImages = [
     {
-      src: "/saf 1.JPG",
-      alt: language === 'en' ? "Premium Saffron Culinary" : language === 'fr' ? "Safran Premium Culinaire" : "Premium Safran Kulinarisch"
+      src: "/safayra-saffron-cake.JPG",
+      alt:
+        language === "en"
+          ? "Premium Saffron Culinary"
+          : language === "fr"
+          ? "Safran Premium Culinaire"
+          : "Premium Safran Kulinarisch",
     },
     {
-      src: "/saf 2.JPG", 
-      alt: language === 'en' ? "Saffron Skincare Beauty" : language === 'fr' ? "Beauté Safran Soins" : "Safran Hautpflege Schönheit"
+      src: "/safayra-saffron-oil-parfume.JPG",
+      alt:
+        language === "en"
+          ? "Saffron Skincare Beauty"
+          : language === "fr"
+          ? "Beauté Safran Soins"
+          : "Safran Hautpflege Schönheit",
     },
     {
-      src: "/saf 4.jpg",
-      alt: language === 'en' ? "Saffron Wellness" : language === 'fr' ? "Bien-être Safran" : "Safran Wellness"
+      src: "/safayra-saffron-flower.jpg",
+      alt:
+        language === "en"
+          ? "Saffron Wellness"
+          : language === "fr"
+          ? "Bien-être Safran"
+          : "Safran Wellness",
     },
     {
-      src: "/Who are we.JPG",
-      alt: language === 'en' ? "Who We Are" : language === 'fr' ? "Qui Nous Sommes" : "Wer Wir Sind"
+      src: "/safayra-saffron-spice-purple.JPG",
+      alt:
+        language === "en"
+          ? "Who We Are"
+          : language === "fr"
+          ? "Qui Nous Sommes"
+          : "Wer Wir Sind",
     },
     {
-      src: "/a transparent ethical.jpg",
-      alt: language === 'en' ? "Ethical Source" : language === 'fr' ? "Source Éthique" : "Ethische Quelle"
-    }
+      src: "/safayra-saffron-flowers.jpg",
+      alt:
+        language === "en"
+          ? "Ethical Source"
+          : language === "fr"
+          ? "Source Éthique"
+          : "Ethische Quelle",
+    },
   ];
 
   // Auto-rotate carousel
@@ -42,66 +67,98 @@ const HomePage = ({ language, setActiveDetailPage }) => {
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+    setCurrentSlide(
+      (prev) => (prev - 1 + carouselImages.length) % carouselImages.length
+    );
   };
 
   // Card data
   const cards = [
     {
-      id: 'skincare',
-      title: language === 'en' ? "Red Gold for the Skin" : language === 'fr' ? "L'Or Rouge pour la Peau" : "Rotes Gold für die Haut",
-      description: language === 'en' 
-        ? "Discover the beauty secrets of saffron for radiant, healthy skin with natural anti-aging properties."
-        : language === 'fr' 
-        ? "Découvrez les secrets de beauté du safran pour une peau radieuse et saine avec des propriétés anti-âge naturelles."
-        : "Entdecken Sie die Schönheitsgeheimnisse von Safran für strahlende, gesunde Haut mit natürlichen Anti-Aging-Eigenschaften.",
-      image: "/saf 2.JPG",
-      gradient: "from-rose-500 to-pink-600"
+      id: "skincare",
+      title:
+        language === "en"
+          ? "Red Gold for the Skin"
+          : language === "fr"
+          ? "L'Or Rouge pour la Peau"
+          : "Rotes Gold für die Haut",
+      description:
+        language === "en"
+          ? "Discover the beauty secrets of saffron for radiant, healthy skin with natural anti-aging properties."
+          : language === "fr"
+          ? "Découvrez les secrets de beauté du safran pour une peau radieuse et saine avec des propriétés anti-âge naturelles."
+          : "Entdecken Sie die Schönheitsgeheimnisse von Safran für strahlende, gesunde Haut mit natürlichen Anti-Aging-Eigenschaften.",
+      image: "/safayra-saffron-oil-parfume.JPG",
+      gradient: "from-rose-500 to-pink-600",
     },
     {
-      id: 'ethical',
-      title: language === 'en' ? "A Transparent and Ethical Source" : language === 'fr' ? "Une Source Transparente et Éthique" : "Eine Transparente und Ethische Quelle",
-      description: language === 'en'
-        ? "Learn about our commitment to fair trade practices and sustainable saffron sourcing from Iran."
-        : language === 'fr'
-        ? "Découvrez notre engagement envers les pratiques de commerce équitable et l'approvisionnement durable en safran d'Iran."
-        : "Erfahren Sie mehr über unser Engagement für fairen Handel und nachhaltige Safran-Beschaffung aus dem Iran.",
-      image: "/a transparent ethical.jpg",
-      gradient: "from-green-500 to-emerald-600"
+      id: "ethical",
+      title:
+        language === "en"
+          ? "A Transparent and Ethical Source"
+          : language === "fr"
+          ? "Une Source Transparente et Éthique"
+          : "Eine Transparente und Ethische Quelle",
+      description:
+        language === "en"
+          ? "Learn about our commitment to fair trade practices and sustainable saffron sourcing from Iran."
+          : language === "fr"
+          ? "Découvrez notre engagement envers les pratiques de commerce équitable et l'approvisionnement durable en safran d'Iran."
+          : "Erfahren Sie mehr über unser Engagement für fairen Handel und nachhaltige Safran-Beschaffung aus dem Iran.",
+      image: "/safayra-saffron-flowers.jpg",
+      gradient: "from-green-500 to-emerald-600",
     },
     {
-      id: 'wellness',
-      title: language === 'en' ? "Wellness" : language === 'fr' ? "Bien-être" : "Wohlbefinden",
-      description: language === 'en'
-        ? "Explore the therapeutic benefits of saffron for mental wellness, relaxation, and natural healing."
-        : language === 'fr'
-        ? "Explorez les bienfaits thérapeutiques du safran pour le bien-être mental, la relaxation et la guérison naturelle."
-        : "Entdecken Sie die therapeutischen Vorteile von Safran für geistiges Wohlbefinden, Entspannung und natürliche Heilung.",
-      image: "/saf 4.jpg",
-      gradient: "from-purple-500 to-indigo-600"
+      id: "wellness",
+      title:
+        language === "en"
+          ? "Wellness"
+          : language === "fr"
+          ? "Bien-être"
+          : "Wohlbefinden",
+      description:
+        language === "en"
+          ? "Explore the therapeutic benefits of saffron for mental wellness, relaxation, and natural healing."
+          : language === "fr"
+          ? "Explorez les bienfaits thérapeutiques du safran pour le bien-être mental, la relaxation et la guérison naturelle."
+          : "Entdecken Sie die therapeutischen Vorteile von Safran für geistiges Wohlbefinden, Entspannung und natürliche Heilung.",
+      image: "/safayra-saffron-flower.jpg",
+      gradient: "from-purple-500 to-indigo-600",
     },
     {
-      id: 'culinary',
-      title: language === 'en' ? "Enhancing the Culinary Experience" : language === 'fr' ? "Améliorer l'Expérience Culinaire" : "Verbesserung des Kulinarischen Erlebnisses",
-      description: language === 'en'
-        ? "Transform your cooking with premium saffron that brings authentic flavor and vibrant color to every dish."
-        : language === 'fr'
-        ? "Transformez votre cuisine avec du safran premium qui apporte une saveur authentique et une couleur vibrante à chaque plat."
-        : "Verwandeln Sie Ihr Kochen mit Premium-Safran, der authentischen Geschmack und lebendige Farbe in jedes Gericht bringt.",
-      image: "/saf 1.JPG",
-      gradient: "from-amber-500 to-orange-600"
+      id: "culinary",
+      title:
+        language === "en"
+          ? "Enhancing the Culinary Experience"
+          : language === "fr"
+          ? "Améliorer l'Expérience Culinaire"
+          : "Verbesserung des Kulinarischen Erlebnisses",
+      description:
+        language === "en"
+          ? "Transform your cooking with premium saffron that brings authentic flavor and vibrant color to every dish."
+          : language === "fr"
+          ? "Transformez votre cuisine avec du safran premium qui apporte une saveur authentique et une couleur vibrante à chaque plat."
+          : "Verwandeln Sie Ihr Kochen mit Premium-Safran, der authentischen Geschmack und lebendige Farbe in jedes Gericht bringt.",
+      image: "/safayra-saffron-cake.JPG",
+      gradient: "from-amber-500 to-orange-600",
     },
     {
-      id: 'about',
-      title: language === 'en' ? "Who We Are" : language === 'fr' ? "Qui Nous Sommes" : "Wer Wir Sind",
-      description: language === 'en'
-        ? "Meet the passionate team behind Safayra and our journey from Iranian saffron fields to European markets."
-        : language === 'fr'
-        ? "Rencontrez l'équipe passionnée derrière Safayra et notre voyage des champs de safran iraniens aux marchés européens."
-        : "Lernen Sie das leidenschaftliche Team hinter Safayra und unsere Reise von iranischen Safranfeldern zu europäischen Märkten kennen.",
-      image: "/Who are we.JPG",
-      gradient: "from-blue-500 to-cyan-600"
-    }
+      id: "about",
+      title:
+        language === "en"
+          ? "Who We Are"
+          : language === "fr"
+          ? "Qui Nous Sommes"
+          : "Wer Wir Sind",
+      description:
+        language === "en"
+          ? "Meet the passionate team behind Safayra and our journey from Iranian saffron fields to European markets."
+          : language === "fr"
+          ? "Rencontrez l'équipe passionnée derrière Safayra et notre voyage des champs de safran iraniens aux marchés européens."
+          : "Lernen Sie das leidenschaftliche Team hinter Safayra und unsere Reise von iranischen Safranfeldern zu europäischen Märkten kennen.",
+      image: "/safayra-saffron-spice-purple.JPG",
+      gradient: "from-blue-500 to-cyan-600",
+    },
   ];
 
   return (
@@ -117,12 +174,11 @@ const HomePage = ({ language, setActiveDetailPage }) => {
       {/* Hero Text */}
       <div className="text-center max-w-4xl mx-auto px-4">
         <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-amber-900 leading-relaxed font-medium px-2">
-          {language === 'en'
+          {language === "en"
             ? "Sourced directly from Iran, grown with care and respect for tradition. Ethically harvested and lab-tested, our saffron reflects purity, culture, and quality."
-            : language === 'fr' 
-            ? "Directement sourcé d'Iran, cultivé avec soin et respect pour la tradition. Récolté de manière éthique et testé en laboratoire, notre safran reflète la pureté, la culture et la qualité." 
-            : "Direkt aus dem Iran bezogen, mit Sorgfalt und Respekt für die Tradition angebaut. Ethisch geerntet und im Labor getestet, spiegelt unser Safran Reinheit, Kultur und Qualität wider."
-          }
+            : language === "fr"
+            ? "Directement sourcé d'Iran, cultivé avec soin et respect pour la tradition. Récolté de manière éthique et testé en laboratoire, notre safran reflète la pureté, la culture et la qualité."
+            : "Direkt aus dem Iran bezogen, mit Sorgfalt und Respekt für die Tradition angebaut. Ethisch geerntet und im Labor getestet, spiegelt unser Safran Reinheit, Kultur und Qualität wider."}
         </p>
       </div>
 
@@ -136,7 +192,7 @@ const HomePage = ({ language, setActiveDetailPage }) => {
                 <div
                   key={index}
                   className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                    index === currentSlide ? 'opacity-100' : 'opacity-0'
+                    index === currentSlide ? "opacity-100" : "opacity-0"
                   }`}
                 >
                   <img
@@ -172,9 +228,9 @@ const HomePage = ({ language, setActiveDetailPage }) => {
                   key={index}
                   onClick={() => setCurrentSlide(index)}
                   className={`w-0.5 h-0.5 xs:w-1 xs:h-1 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'bg-white shadow-sm scale-105' 
-                      : 'bg-white/60 hover:bg-white/80'
+                    index === currentSlide
+                      ? "bg-white shadow-sm scale-105"
+                      : "bg-white/60 hover:bg-white/80"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -188,15 +244,18 @@ const HomePage = ({ language, setActiveDetailPage }) => {
       <div className="max-w-7xl mx-auto px-2 xs:px-3 sm:px-4">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-amber-900 mb-4 px-2">
-            {language === 'en' ? 'Discover Our World' : language === 'fr' ? 'Découvrez Notre Monde' : 'Entdecken Sie Unsere Welt'}
+            {language === "en"
+              ? "Discover Our World"
+              : language === "fr"
+              ? "Découvrez Notre Monde"
+              : "Entdecken Sie Unsere Welt"}
           </h2>
           <p className="text-xs xs:text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4">
-            {language === 'en'
-              ? 'Explore the many facets of premium saffron and learn how it can enhance your life'
-              : language === 'fr'
-              ? 'Explorez les nombreuses facettes du safran premium et découvrez comment il peut améliorer votre vie'
-              : 'Entdecken Sie die vielen Facetten von Premium-Safran und erfahren Sie, wie er Ihr Leben bereichern kann'
-            }
+            {language === "en"
+              ? "Explore the many facets of premium saffron and learn how it can enhance your life"
+              : language === "fr"
+              ? "Explorez les nombreuses facettes du safran premium et découvrez comment il peut améliorer votre vie"
+              : "Entdecken Sie die vielen Facetten von Premium-Safran und erfahren Sie, wie er Ihr Leben bereichern kann"}
           </p>
         </div>
 
@@ -215,7 +274,9 @@ const HomePage = ({ language, setActiveDetailPage }) => {
                   alt={card.title}
                   className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-t ${card.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}></div>
+                <div
+                  className={`absolute inset-0 bg-gradient-to-t ${card.gradient} opacity-20 group-hover:opacity-30 transition-opacity duration-300`}
+                ></div>
               </div>
 
               {/* Card Content */}
@@ -228,7 +289,11 @@ const HomePage = ({ language, setActiveDetailPage }) => {
                 </p>
                 <div className="flex items-center text-amber-600 group-hover:text-amber-700 transition-colors duration-300">
                   <span className="text-xs sm:text-sm md:text-base font-medium">
-                    {language === 'en' ? 'Learn More' : language === 'fr' ? 'En Savoir Plus' : 'Mehr Erfahren'}
+                    {language === "en"
+                      ? "Learn More"
+                      : language === "fr"
+                      ? "En Savoir Plus"
+                      : "Mehr Erfahren"}
                   </span>
                   <ArrowRight className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 ml-1 sm:ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
