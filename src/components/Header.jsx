@@ -23,7 +23,6 @@ const Header = ({
 
   const positionClass = "fixed";
 
-  // Handle mouse enter for the language toggle
   const handleMouseEnter = () => {
     if (dropdownTimeout) {
       clearTimeout(dropdownTimeout);
@@ -32,17 +31,13 @@ const Header = ({
     setShowDropdown(true);
   };
 
-  // Handle mouse leave for the language toggle
   const handleMouseLeave = () => {
     const timeout = setTimeout(() => {
-      if (!isDropdownHovered) {
-        setShowDropdown(false);
-      }
-    }, 200); // 200ms delay before closing
+      if (!isDropdownHovered) setShowDropdown(false);
+    }, 200);
     setDropdownTimeout(timeout);
   };
 
-  // Handle mouse enter for the dropdown menu
   const handleDropdownMouseEnter = () => {
     setIsDropdownHovered(true);
     if (dropdownTimeout) {
@@ -51,12 +46,9 @@ const Header = ({
     }
   };
 
-  // Handle mouse leave for the dropdown menu
   const handleDropdownMouseLeave = () => {
     setIsDropdownHovered(false);
-    const timeout = setTimeout(() => {
-      setShowDropdown(false);
-    }, 200); // 200ms delay before closing
+    const timeout = setTimeout(() => setShowDropdown(false), 200);
     setDropdownTimeout(timeout);
   };
 
@@ -64,6 +56,7 @@ const Header = ({
     { id: "home", label: { en: "Home", fr: "Accueil", de: "Startseite" } },
     { id: "about", label: { en: "About Us", fr: "À propos", de: "Über uns" } },
     { id: "logo", isLogo: true },
+    // NOTE: if your route is "products", change this id to "products"
     { id: "product", label: { en: "Product", fr: "Produit", de: "Produkt" } },
     { id: "contact", label: { en: "Contact", fr: "Contact", de: "Kontakt" } },
   ];
@@ -74,25 +67,24 @@ const Header = ({
     { code: "de", name: "Deutsch" },
   ];
 
-  const currentLang = languages.find((lang) => lang.code === language);
-  const otherLangs = languages.filter((lang) => lang.code !== language);
+  const currentLang = languages.find((l) => l.code === language);
+  const otherLangs = languages.filter((l) => l.code !== language);
 
   return (
     <header
-      className={`${positionClass} top-0 left-0 right-0 z-50 w-full transition-all duration-300
-        ${
-          isScrolled || !overHero
-            ? "backdrop-blur-md shadow-lg"
-            : "bg-transparent"
-        }`}
+      className={`${positionClass} top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
+        isScrolled || !overHero
+          ? "backdrop-blur-md shadow-lg"
+          : "bg-transparent"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 relative">
         <div className="flex items-center h-16 xs:h-18 sm:h-20">
-          {/* Mobile Menu Button (Visible on Mobile) */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-amber-50 transition-all duration-300"
-            style={{ color: "#f1e1c6" }}
+            className="md:hidden p-2 rounded-lg transition-all duration-300 text-brand hover:bg-amber-50"
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? (
               <X className="w-5 h-5 xs:w-6 xs:h-6" />
@@ -114,12 +106,11 @@ const Header = ({
                 ) : (
                   <button
                     onClick={() => setActiveTab(item.id)}
-                    className={`px-3 lg:px-4 py-2 font-medium transition-all duration-300 text-sm lg:text-base ${
+                    className={`px-3 lg:px-4 py-2 font-medium transition-all duration-300 text-sm lg:text-base text-brand ${
                       activeTab === item.id
-                        ? "border-b-2 border-[#f1e1c6]"
-                        : "hover:border-b-2 hover:border-[#f1e1c6]"
+                        ? "border-b-2 border-brand"
+                        : "hover:border-b-2 hover:border-brand"
                     }`}
-                    style={{ color: "#f1e1c6" }}
                   >
                     {item.label[language]}
                   </button>
@@ -128,23 +119,28 @@ const Header = ({
             ))}
           </nav>
 
-          {/* Language Toggle (Positioned further right) */}
+          {/* Language Toggle */}
           <div
-            className="absolute right-0 xs:right-0 sm:right-2 md:right-0 top-1/2 transform -translate-y-1/2"
+            className="absolute right-0 xs:right-0 sm:right-2 md:right-0 top-1/2 -translate-y-1/2"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             <button
-              className="p-1 xs:p-1.5 sm:p-2 rounded-lg transition-all duration-300 text-sm xs:text-base font-medium hover:bg-amber-50"
-              style={{ color: "#f1e1c6" }}
+              className={`p-1 xs:p-1.5 sm:p-2 rounded-lg transition-all duration-200 text-sm xs:text-base font-medium hover:bg-amber-50 ${
+                showDropdown ? "text-[#4d1112]" : "text-brand"
+              }`}
+              aria-haspopup="menu"
+              aria-expanded={showDropdown}
             >
               {language.toUpperCase()}
             </button>
+
             {showDropdown && (
               <div
                 className="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-lg py-2 z-50"
                 onMouseEnter={handleDropdownMouseEnter}
                 onMouseLeave={handleDropdownMouseLeave}
+                role="menu"
               >
                 {otherLangs.map((lang) => (
                   <button
@@ -153,8 +149,8 @@ const Header = ({
                       setLanguage(lang.code);
                       setShowDropdown(false);
                     }}
-                    className="flex items-center px-4 py-2 text-sm hover:bg-amber-50 w-full"
-                    style={{ color: "#f1e1c6" }}
+                    className="flex items-center px-4 py-2 text-sm w-full text-[#4d1112] hover:bg-amber-50"
+                    role="menuitem"
                   >
                     {lang.code.toUpperCase()}
                   </button>
@@ -166,7 +162,7 @@ const Header = ({
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-md">
+          <div className="md:hidden border-t border-[#4d1112]/20 bg-white/95 backdrop-blur-md">
             <nav className="w-full px-4 xs:px-6 py-3 xs:py-4 space-y-2">
               {navItems
                 .filter((item) => !item.isLogo)
@@ -177,35 +173,35 @@ const Header = ({
                       setActiveTab(item.id);
                       setMobileMenuOpen(false);
                     }}
-                    className={`w-full text-left px-3 xs:px-4 py-2 xs:py-3 font-medium transition-all duration-300 text-sm xs:text-base ${
+                    className={`w-full text-left px-3 xs:px-4 py-2 xs:py-3 font-medium transition-all duration-300 text-sm xs:text-base text-[#4d1112] ${
                       activeTab === item.id
-                        ? "border-b-2 border-[#f1e1c6]"
-                        : "hover:border-b-2 hover:border-[#f1e1c6]"
+                        ? "border-b-2 border-[#4d1112]"
+                        : "border-b-2 border-transparent hover:border-[#4d1112]"
                     }`}
-                    style={{ color: "#f1e1c6" }}
                   >
                     {item.label[language]}
                   </button>
                 ))}
+
               {/* Mobile Language Options */}
               <div className="px-3 xs:px-4 py-2 xs:py-3">
-                <span
-                  className="text-sm xs:text-base font-medium"
-                  style={{ color: "#f1e1c6" }}
-                >
-                  Language:
+                <span className="text-sm xs:text-base font-medium text-[#4d1112]">
+                  {language === "fr"
+                    ? "Langue :"
+                    : language === "de"
+                    ? "Sprache:"
+                    : "Language:"}
                 </span>
                 <div className="flex space-x-2 mt-2">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
                       onClick={() => setLanguage(lang.code)}
-                      className={`p-1 xs:p-1.5 rounded-lg transition-all duration-300 text-sm xs:text-base ${
+                      className={`p-1 xs:p-1.5 rounded-lg transition-all duration-200 text-sm xs:text-base text-[#4d1112] ${
                         language === lang.code
-                          ? "bg-amber-100 shadow-md"
-                          : "hover:bg-gray-100"
+                          ? "bg-[#EBD4AD]/60 shadow-md"
+                          : "hover:bg-[#EBD4AD]/30"
                       }`}
-                      style={{ color: "#f1e1c6" }}
                     >
                       {lang.code.toUpperCase()}
                     </button>
