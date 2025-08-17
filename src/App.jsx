@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
@@ -13,6 +13,7 @@ function App() {
   const [activeTab, setActiveTab] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState("en");
+  const [activeDetailPage, setActiveDetailPage] = useState(null);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -34,6 +35,13 @@ function App() {
         return <HomePage language={language} setActiveTab={setActiveTab} />;
     }
   };
+
+  // Reset scroll on "navigation"
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [activeTab, activeDetailPage]);
 
   return (
     <div className="min-h-screen">
