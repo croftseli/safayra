@@ -1,73 +1,210 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 // TODO: EmailJS Integration
-// 1. Install EmailJS: npm install @emailjs/browser
-// 2. Import EmailJS: import emailjs from '@emailjs/browser';
-// 3. Initialize EmailJS in useEffect or App.js with your public key
-// 4. Replace the simulated form submission with actual EmailJS send
+// 1) npm i @emailjs/browser
+// 2) import emailjs from '@emailjs/browser'
+// 3) Initialize with your public key
+// 4) Replace the simulated submit with emailjs.send(...)
 
-const ContactPage = ({ language }) => {
+const ContactPage = ({ language = "en" }) => {
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    confirmEmail: '',
-    subject: '',
-    message: '',
+    fullName: "",
+    email: "",
+    confirmEmail: "",
+    subject: "",
+    message: "",
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  // TODO: EmailJS Configuration
-  // Add these constants when integrating EmailJS:
-  // const EMAILJS_SERVICE_ID = 'your_service_id';
-  // const EMAILJS_TEMPLATE_ID = 'your_template_id';
-  // const EMAILJS_PUBLIC_KEY = 'your_public_key';
+  // TODO: EmailJS configuration constants
+  // const EMAILJS_SERVICE_ID = '...';
+  // const EMAILJS_TEMPLATE_ID = '...';
+  // const EMAILJS_PUBLIC_KEY = '...';
+
+  const t = {
+    title: { en: "Contact Us", fr: "Contactez-nous", de: "Kontakt" },
+    subtitle: {
+      en: "Get in touch with us for premium saffron inquiries.",
+      fr: "Contactez-nous pour vos demandes de safran premium.",
+      de: "Kontaktieren Sie uns für Premium-Safran-Anfragen.",
+    },
+    formTitle: {
+      en: "Send us a message",
+      fr: "Envoyez-nous un message",
+      de: "Senden Sie uns eine Nachricht",
+    },
+    labels: {
+      fullName: {
+        en: "Full Name",
+        fr: "Nom complet",
+        de: "Vollständiger Name",
+      },
+      email: { en: "Email", fr: "E-mail", de: "E-Mail" },
+      confirmEmail: {
+        en: "Confirm Email",
+        fr: "Confirmer l’e-mail",
+        de: "E-Mail bestätigen",
+      },
+      subject: { en: "Subject", fr: "Sujet", de: "Betreff" },
+      message: { en: "Message", fr: "Message", de: "Nachricht" },
+    },
+    placeholders: {
+      name: { en: "Your name", fr: "Votre nom", de: "Ihr Name" },
+      email: {
+        en: "your@email.com",
+        fr: "votre@email.com",
+        de: "ihre@email.com",
+      },
+      confirmEmail: {
+        en: "Confirm your email",
+        fr: "Confirmez votre e-mail",
+        de: "Bestätigen Sie Ihre E-Mail",
+      },
+      subject: {
+        en: "Enter subject",
+        fr: "Entrez le sujet",
+        de: "Betreff eingeben",
+      },
+      message: {
+        en: "Tell us about your saffron needs…",
+        fr: "Parlez-nous de vos besoins en safran…",
+        de: "Erzählen Sie uns von Ihren Safran-Bedürfnissen…",
+      },
+    },
+    status: {
+      success: {
+        en: "Message sent successfully! We will get back to you soon.",
+        fr: "Message envoyé avec succès ! Nous vous répondrons bientôt.",
+        de: "Nachricht erfolgreich gesendet! Wir melden uns bald bei Ihnen.",
+      },
+      error: {
+        en: "Failed to send message. Please try again later.",
+        fr: "Échec de l’envoi du message. Veuillez réessayer plus tard.",
+        de: "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.",
+      },
+      sending: { en: "Sending…", fr: "Envoi…", de: "Senden…" },
+      send: {
+        en: "Send Message",
+        fr: "Envoyer le message",
+        de: "Nachricht senden",
+      },
+    },
+    info: {
+      getInTouch: {
+        en: "Get in Touch",
+        fr: "Contactez-nous",
+        de: "Kontakt aufnehmen",
+      },
+      phone: { en: "Phone", fr: "Téléphone", de: "Telefon" },
+      address: { en: "Address", fr: "Adresse", de: "Adresse" },
+      hours: {
+        en: "Business Hours",
+        fr: "Heures d’ouverture",
+        de: "Geschäftszeiten",
+      },
+      hoursLines: {
+        monFri: {
+          en: "Monday – Friday: 9:00 – 18:00 CET",
+          fr: "Lundi – Vendredi : 9h00 – 18h00 CET",
+          de: "Montag – Freitag: 9:00 – 18:00 CET",
+        },
+        sat: {
+          en: "Saturday: Closed",
+          fr: "Samedi : Fermé",
+          de: "Samstag: Geschlossen",
+        },
+        sun: {
+          en: "Sunday: Closed",
+          fr: "Dimanche : Fermé",
+          de: "Sonntag: Geschlossen",
+        },
+        sla: {
+          en: "We typically respond to inquiries within 24 hours.",
+          fr: "Nous répondons généralement aux demandes sous 24 heures.",
+          de: "Wir antworten in der Regel innerhalb von 24 Stunden.",
+        },
+      },
+      phoneLines: {
+        fr: "+33 1 23 45 67 89 (France)",
+        de: "+49 30 12 34 56 78 (Germany)",
+      },
+      addressBlock: {
+        en: "European Distribution Center\n123 Saffron Street\n75001 Paris, France",
+        fr: "Centre de Distribution Européen\n123 Rue du Safran\n75001 Paris, France",
+        de: "Europäisches Vertriebszentrum\nSafranstraße 123\n75001 Paris, Frankreich",
+      },
+    },
+    tagline: {
+      en: "A direct line to red gold.",
+      fr: "Un accès direct à l’or rouge.",
+      de: "Direkter Draht zum roten Gold.",
+    },
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
-    }
+    setFormData((p) => ({ ...p, [name]: value }));
+    if (errors[name]) setErrors((p) => ({ ...p, [name]: undefined }));
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
     if (!formData.fullName || formData.fullName.trim().length < 2) {
-      newErrors.fullName = 'Full name must be at least 2 characters long';
+      newErrors.fullName =
+        language === "fr"
+          ? "Le nom doit comporter au moins 2 caractères"
+          : language === "de"
+          ? "Der Name muss mindestens 2 Zeichen enthalten"
+          : "Full name must be at least 2 characters long";
     }
-    
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email || !emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email =
+        language === "fr"
+          ? "Veuillez entrer une adresse e-mail valide"
+          : language === "de"
+          ? "Bitte geben Sie eine gültige E-Mail-Adresse ein"
+          : "Please enter a valid email address";
     }
-    
     if (!formData.confirmEmail || !emailRegex.test(formData.confirmEmail)) {
-      newErrors.confirmEmail = 'Please enter a valid email address';
+      newErrors.confirmEmail =
+        language === "fr"
+          ? "Veuillez entrer une adresse e-mail valide"
+          : language === "de"
+          ? "Bitte geben Sie eine gültige E-Mail-Adresse ein"
+          : "Please enter a valid email address";
     } else if (formData.email !== formData.confirmEmail) {
-      newErrors.confirmEmail = 'Email addresses do not match';
+      newErrors.confirmEmail =
+        language === "fr"
+          ? "Les adresses e-mail ne correspondent pas"
+          : language === "de"
+          ? "E-Mail-Adressen stimmen nicht überein"
+          : "Email addresses do not match";
     }
-    
     if (!formData.subject || formData.subject.trim().length < 2) {
-      newErrors.subject = 'Subject must be at least 2 characters long';
+      newErrors.subject =
+        language === "fr"
+          ? "Le sujet doit comporter au moins 2 caractères"
+          : language === "de"
+          ? "Der Betreff muss mindestens 2 Zeichen enthalten"
+          : "Subject must be at least 2 characters long";
     }
-    
     if (!formData.message || formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters long';
+      newErrors.message =
+        language === "fr"
+          ? "Le message doit comporter au moins 10 caractères"
+          : language === "de"
+          ? "Die Nachricht muss mindestens 10 Zeichen enthalten"
+          : "Message must be at least 10 characters long";
     }
-    
     return newErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     setSubmitStatus(null);
-    
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
@@ -75,266 +212,243 @@ const ContactPage = ({ language }) => {
     }
 
     setIsSubmitting(true);
-    
     try {
-      // TODO: Replace this simulation with actual EmailJS send
-      // Example EmailJS implementation:
-      /*
-      const templateParams = {
-        from_name: formData.fullName,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'your-email@domain.com', // Your receiving email
-      };
-
-      const result = await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      );
-
-      console.log('Email sent successfully:', result);
-      */
-      
-      // CURRENT: Simulated form submission (remove when implementing EmailJS)
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      setSubmitStatus({
-        type: 'success',
-        message: language === 'en' 
-          ? 'Message sent successfully! We will get back to you soon.'
-          : language === 'fr'
-          ? 'Message envoyé avec succès! Nous vous répondrons bientôt.'
-          : 'Nachricht erfolgreich gesendet! Wir werden uns bald bei Ihnen melden.'
+      // TODO: replace with EmailJS send(...)
+      await new Promise((r) => setTimeout(r, 1500));
+      setSubmitStatus({ type: "success", message: t.status.success[language] });
+      setFormData({
+        fullName: "",
+        email: "",
+        confirmEmail: "",
+        subject: "",
+        message: "",
       });
-      setFormData({ fullName: '', email: '', confirmEmail: '', subject: '', message: '' });
-    } catch (error) {
-      // TODO: Enhanced error handling for EmailJS
-      // EmailJS errors can be: network issues, invalid config, rate limits, etc.
-      console.error('Form submission error:', error);
-      setSubmitStatus({
-        type: 'error',
-        message: language === 'en'
-          ? 'Failed to send message. Please try again later.'
-          : language === 'fr'
-          ? 'Échec de l\'envoi du message. Veuillez réessayer plus tard.'
-          : 'Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut.'
-      });
+    } catch (err) {
+      console.error(err);
+      setSubmitStatus({ type: "error", message: t.status.error[language] });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // TODO: EmailJS Template Variables
-  // When setting up your EmailJS template, use these variable names:
-  // {{from_name}} - User's full name
-  // {{from_email}} - User's email address  
-  // {{subject}} - Message subject
-  // {{message}} - Message content
-  // {{to_email}} - Your receiving email (optional, can be set in template)
-
   return (
-    <div className="max-w-6xl mx-auto px-2 xs:px-4 sm:px-6">
-      {/* Page Header */}
-      <div className="text-center mb-12">
-        <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-amber-900 mb-6">
-          {language === 'en' ? 'Contact Us' : language === 'fr' ? 'Contactez-nous' : 'Kontakt'}
-        </h2>
-        <p className="text-sm xs:text-base sm:text-lg text-gray-600 px-4">
-          {language === 'en'
-            ? 'Get in touch with us for premium saffron inquiries'
-            : language === 'fr' ? 'Contactez-nous pour vos demandes de safran premium' : 'Kontaktieren Sie uns für Premium-Safran-Anfragen'
-          }
+    <div className="w-full">
+      {/* Title + subtitle */}
+      <section className="w-full px-4 py-12 md:py-16">
+        <h1 className="text-center text-brand font-nanum text-4xl md:text-5xl">
+          {t.title[language]}
+        </h1>
+        <p className="mt-3 text-center text-brand font-nanum text-base md:text-lg leading-relaxed">
+          {t.subtitle[language]}
         </p>
-      </div>
+      </section>
 
-      {/* Contact Form Section */}
-      <div className="w-full mb-12">
-        <div className="bg-white rounded-lg xs:rounded-xl sm:rounded-2xl shadow-md xs:shadow-lg p-4 xs:p-6 sm:p-8">
-          <h3 className="text-xl xs:text-2xl font-bold text-amber-900 mb-6">
-            {language === 'en' ? 'Send us a message' : language === 'fr' ? 'Envoyez-nous un message' : 'Senden Sie uns eine Nachricht'}
-          </h3>
-          
-          {/* Status Messages */}
-          {submitStatus && (
-            <div className={`mb-6 p-3 xs:p-4 rounded-lg text-sm xs:text-base ${
-              submitStatus.type === 'success' 
-                ? 'bg-green-50 text-green-800 border border-green-200' 
-                : 'bg-red-50 text-red-800 border border-red-200'
-            }`}>
-              {submitStatus.message}
-            </div>
-          )}
-          
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Full Name */}
-            <div>
-              <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
-                {language === 'en' ? 'Full Name' : language === 'fr' ? 'Nom complet' : 'Vollständiger Name'}
-              </label>
-              <input
-                type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleInputChange}
-                className={`w-full px-3 xs:px-4 py-2 xs:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm xs:text-base ${
-                  errors.fullName ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder={language === 'en' ? 'Your name' : language === 'fr' ? 'Votre nom' : 'Ihr Name'}
-                required
-              />
-              {errors.fullName && <p className="mt-1 text-sm text-red-600">{errors.fullName}</p>}
-            </div>
+      {/* Full-bleed off-white panel: left info / right form */}
+      <section className="relative left-1/2 -translate-x-1/2 w-screen bg-[#EBD4AD]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-start px-6 md:px-8 lg:px-10 py-12 md:py-16">
+          {/* Left: Contact info */}
+          <div className="text-[#4d1112]">
+            <h3 className="font-nanum text-2xl md:text-3xl mb-4 md:mb-6">
+              {t.info.getInTouch[language]}
+            </h3>
 
-            {/* Email */}
-            <div>
-              <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
-                {language === 'en' ? 'Email' : language === 'fr' ? 'E-mail' : 'E-Mail'}
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className={`w-full px-3 xs:px-4 py-2 xs:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm xs:text-base ${
-                  errors.email ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder={language === 'en' ? 'your@email.com' : language === 'fr' ? 'votre@email.com' : 'ihre@email.com'}
-                required
-              />
-              {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
-            </div>
+            <div className="space-y-6 font-nanum text-base md:text-lg leading-relaxed">
+              <div>
+                <div className="font-bold mb-1">{t.info.phone[language]}</div>
+                <p>
+                  <a
+                    href="tel:+33123456789"
+                    className="underline underline-offset-4"
+                  >
+                    {t.info.phoneLines.fr}
+                  </a>
+                </p>
+                <p>
+                  <a
+                    href="tel:+493012345678"
+                    className="underline underline-offset-4"
+                  >
+                    {t.info.phoneLines.de}
+                  </a>
+                </p>
+              </div>
 
-            {/* Confirm Email */}
-            <div>
-              <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
-                {language === 'en' ? 'Confirm Email' : language === 'fr' ? 'Confirmer l\'e-mail' : 'E-Mail bestätigen'}
-              </label>
-              <input
-                type="email"
-                name="confirmEmail"
-                value={formData.confirmEmail}
-                onChange={handleInputChange}
-                className={`w-full px-3 xs:px-4 py-2 xs:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm xs:text-base ${
-                  errors.confirmEmail ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder={language === 'en' ? 'Confirm your email' : language === 'fr' ? 'Confirmez votre e-mail' : 'Bestätigen Sie Ihre E-Mail'}
-                required
-              />
-              {errors.confirmEmail && <p className="mt-1 text-sm text-red-600">{errors.confirmEmail}</p>}
-            </div>
+              <div>
+                <div className="font-bold mb-1">{t.info.address[language]}</div>
+                <p className="whitespace-pre-line">
+                  {t.info.addressBlock[language]}
+                </p>
+              </div>
 
-            {/* Subject */}
-            <div>
-              <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
-                {language === 'en' ? 'Subject' : language === 'fr' ? 'Sujet' : 'Betreff'}
-              </label>
-              <input
-                type="text"
-                name="subject"
-                value={formData.subject}
-                onChange={handleInputChange}
-                className={`w-full px-3 xs:px-4 py-2 xs:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm xs:text-base ${
-                  errors.subject ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder={language === 'en' ? 'Enter subject' : language === 'fr' ? 'Entrez le sujet' : 'Betreff eingeben'}
-                required
-              />
-              {errors.subject && <p className="mt-1 text-sm text-red-600">{errors.subject}</p>}
-            </div>
-
-            {/* Message */}
-            <div>
-              <label className="block text-sm xs:text-base font-medium text-gray-700 mb-2">
-                {language === 'en' ? 'Message' : language === 'fr' ? 'Message' : 'Nachricht'}
-              </label>
-              <textarea
-                rows={4}
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                className={`w-full px-3 xs:px-4 py-2 xs:py-3 border rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-sm xs:text-base ${
-                  errors.message ? 'border-red-300' : 'border-gray-300'
-                }`}
-                placeholder={language === 'en' ? 'Tell us about your saffron needs...' : language === 'fr' ? 'Parlez-nous de vos besoins en safran...' : 'Erzählen Sie uns von Ihren Safran-Bedürfnissen...'}
-                required
-              ></textarea>
-              {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message}</p>}
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full py-2 xs:py-3 px-4 xs:px-6 rounded-lg font-semibold text-sm xs:text-base transition-all duration-300 ${
-                isSubmitting
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-[#4A1F1A] to-[#6B2C20] text-white hover:shadow-lg transform hover:scale-105'
-              }`}
-            >
-              {isSubmitting 
-                ? (language === 'en' ? 'Sending...' : language === 'fr' ? 'Envoi...' : 'Senden...')
-                : (language === 'en' ? 'Send Message' : language === 'fr' ? 'Envoyer le message' : 'Nachricht senden')
-              }
-            </button>
-          </form>
-        </div>
-      </div>
-
-      {/* Get in Touch Section */}
-      <div className="w-full mb-12">
-        <div className="bg-gradient-to-br from-[#4A1F1A] to-[#6B2C20] text-white rounded-lg xs:rounded-xl sm:rounded-2xl p-4 xs:p-6 sm:p-8">
-          <h3 className="text-xl xs:text-2xl font-bold mb-6">
-            {language === 'en' ? 'Get in Touch' : language === 'fr' ? 'Contactez-nous' : 'Kontakt aufnehmen'}
-          </h3>
-          <div className="space-y-4">
-            <div>
-              <h4 className="font-semibold text-amber-200 mb-2 text-sm xs:text-base">
-                {language === 'en' ? 'Phone' : language === 'fr' ? 'Téléphone' : 'Telefon'}
-              </h4>
-              <p className="text-amber-100 text-sm xs:text-base">+33 1 23 45 67 89 (France)</p>
-              <p className="text-amber-100 text-sm xs:text-base">+49 30 12 34 56 78 (Germany)</p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-amber-200 mb-2 text-sm xs:text-base">
-                {language === 'en' ? 'Address' : language === 'fr' ? 'Adresse' : 'Adresse'}
-              </h4>
-              <p className="text-amber-100 text-sm xs:text-base whitespace-pre-line">
-                {language === 'en'
-                  ? 'European Distribution Center\n123 Saffron Street\n75001 Paris, France'
-                  : language === 'fr'
-                    ? 'Centre de Distribution Européen\n123 Rue du Safran\n75001 Paris, France'
-                    : 'Europäisches Vertriebszentrum\n123 Safranstraße\n75001 Paris, Frankreich'
-                }
-              </p>
+              <div>
+                <div className="font-bold mb-1">{t.info.hours[language]}</div>
+                <p>{t.info.hoursLines.monFri[language]}</p>
+                <p>{t.info.hoursLines.sat[language]}</p>
+                <p>{t.info.hoursLines.sun[language]}</p>
+                <p className="mt-2 opacity-80">
+                  {t.info.hoursLines.sla[language]}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Business Hours Section */}
-      <div className="w-full">
-        <div className="bg-white rounded-lg xs:rounded-xl sm:rounded-2xl shadow-md xs:shadow-lg p-4 xs:p-6 sm:p-8">
-          <h3 className="text-xl xs:text-2xl font-bold text-amber-900 mb-6">
-            {language === 'en' ? 'Business Hours' : language === 'fr' ? 'Heures d\'ouverture' : 'Geschäftszeiten'}
-          </h3>
-          <div className="space-y-2 text-gray-700 text-sm xs:text-base">
-            <p><span className="font-medium">{language === 'en' ? 'Monday – Friday:' : language === 'fr' ? 'Lundi - Vendredi :' : 'Montag - Freitag:'}</span> 9:00 AM – 6:00 PM CET</p>
-            <p><span className="font-medium">{language === 'en' ? 'Saturday:' : language === 'fr' ? 'Samedi :' : 'Samstag:'}</span> 10:00 AM – 4:00 PM CET</p>
-            <p><span className="font-medium">{language === 'en' ? 'Sunday:' : language === 'fr' ? 'Dimanche :' : 'Sonntag:'}</span> {language === 'en' ? 'Closed' : language === 'fr' ? 'Fermé' : 'Geschlossen'}</p>
+          {/* Right: Form */}
+          <div className="bg-white shadow-2xl p-6 md:p-8 rounded-none">
+            <h3 className="text-[#4d1112] font-nanum text-xl md:text-2xl mb-6">
+              {t.formTitle[language]}
+            </h3>
+
+            {/* Status */}
+            {submitStatus && (
+              <div
+                className={`mb-6 p-4 rounded text-sm md:text-base ${
+                  submitStatus.type === "success"
+                    ? "bg-green-50 text-green-800 border border-green-200"
+                    : "bg-red-50 text-red-800 border border-red-200"
+                }`}
+              >
+                {submitStatus.message}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Full Name */}
+              <div>
+                <label className="block font-nanum text-[#4d1112] text-sm md:text-base mb-2">
+                  {t.labels.fullName[language]}
+                </label>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-none text-[#4d1112] placeholder-[#4d1112]/50 focus:ring-2 focus:ring-[#4d1112] focus:border-transparent ${
+                    errors.fullName ? "border-red-300" : "border-[#4d1112]/20"
+                  }`}
+                  placeholder={t.placeholders.name[language]}
+                  required
+                />
+                {errors.fullName && (
+                  <p className="mt-1 text-sm text-red-700">{errors.fullName}</p>
+                )}
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="block font-nanum text-[#4d1112] text-sm md:text-base mb-2">
+                  {t.labels.email[language]}
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-none text-[#4d1112] placeholder-[#4d1112]/50 focus:ring-2 focus:ring-[#4d1112] focus:border-transparent ${
+                    errors.email ? "border-red-300" : "border-[#4d1112]/20"
+                  }`}
+                  placeholder={t.placeholders.email[language]}
+                  required
+                />
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-700">{errors.email}</p>
+                )}
+              </div>
+
+              {/* Confirm Email */}
+              <div>
+                <label className="block font-nanum text-[#4d1112] text-sm md:text-base mb-2">
+                  {t.labels.confirmEmail[language]}
+                </label>
+                <input
+                  type="email"
+                  name="confirmEmail"
+                  value={formData.confirmEmail}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-none text-[#4d1112] placeholder-[#4d1112]/50 focus:ring-2 focus:ring-[#4d1112] focus:border-transparent ${
+                    errors.confirmEmail
+                      ? "border-red-300"
+                      : "border-[#4d1112]/20"
+                  }`}
+                  placeholder={t.placeholders.confirmEmail[language]}
+                  required
+                />
+                {errors.confirmEmail && (
+                  <p className="mt-1 text-sm text-red-700">
+                    {errors.confirmEmail}
+                  </p>
+                )}
+              </div>
+
+              {/* Subject */}
+              <div>
+                <label className="block font-nanum text-[#4d1112] text-sm md:text-base mb-2">
+                  {t.labels.subject[language]}
+                </label>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-none text-[#4d1112] placeholder-[#4d1112]/50 focus:ring-2 focus:ring-[#4d1112] focus:border-transparent ${
+                    errors.subject ? "border-red-300" : "border-[#4d1112]/20"
+                  }`}
+                  placeholder={t.placeholders.subject[language]}
+                  required
+                />
+                {errors.subject && (
+                  <p className="mt-1 text-sm text-red-700">{errors.subject}</p>
+                )}
+              </div>
+
+              {/* Message */}
+              <div>
+                <label className="block font-nanum text-[#4d1112] text-sm md:text-base mb-2">
+                  {t.labels.message[language]}
+                </label>
+                <textarea
+                  rows={5}
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 border rounded-none text-[#4d1112] placeholder-[#4d1112]/50 focus:ring-2 focus:ring-[#4d1112] focus:border-transparent ${
+                    errors.message ? "border-red-300" : "border-[#4d1112]/20"
+                  }`}
+                  placeholder={t.placeholders.message[language]}
+                  required
+                />
+                {errors.message && (
+                  <p className="mt-1 text-sm text-red-700">{errors.message}</p>
+                )}
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full py-3 rounded-none font-semibold transition ${
+                  isSubmitting
+                    ? "bg-[#4d1112]/60 text-brand cursor-not-allowed"
+                    : "bg-[#4d1112] text-brand hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#4d1112]/40"
+                }`}
+              >
+                {isSubmitting
+                  ? t.status.sending[language]
+                  : t.status.send[language]}
+              </button>
+            </form>
           </div>
-          <p className="text-sm text-gray-600 mt-4">
-            {language === 'en'
-              ? 'We typically respond to inquiries within 24 hours.'
-              : language === 'fr'
-                ? 'Nous répondons généralement aux demandes dans les 24 heures.'
-                : 'Wir antworten normalerweise innerhalb von 24 Stunden auf Anfragen.'
-            }
-          </p>
         </div>
-      </div>
+      </section>
+
+      {/* Contact tagline */}
+      <section
+        id="contact-tagline"
+        className="w-full px-4 pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-12"
+      >
+        <p className="text-center text-brand font-aurore text-3xl md:text-4xl lg:text-5xl leading-tight">
+          {t.tagline[language]}
+        </p>
+      </section>
     </div>
   );
 };

@@ -1,11 +1,37 @@
-body {
-  margin: 0;
-}
+/* Imports MUST be first */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
 
+/* Tailwind layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Base (global) styles */
+@layer base {
+  :root {
+    --brand-beige: #EBD4AD;
+    --brand-deep: #4d1112;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--brand-deep);
+    overflow-x: hidden; /* prevent horizontal scroll */
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  /* Site-wide serif for headings */
+  h1, h2, h3 {
+    font-family: 'Nanum Myeongjo', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+}
+
+/* Utilities */
 @layer utilities {
   .line-clamp-3 {
     display: -webkit-box;
@@ -13,13 +39,19 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
-  /* Ensure smooth scrolling on all devices */
-  html {
-    scroll-behavior: smooth;
-    background-color: #4d1112;
+
+  .text-brand { color: var(--brand-beige); }
+  .bg-brand { background-color: var(--brand-beige); }
+  .border-brand { border-color: var(--brand-beige); }
+
+  .font-nanum {
+    font-family: 'Nanum Myeongjo', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   }
-  
+
+  .font-aurore {
+    font-family: 'La Belle Aurore', cursive;
+  }
+
   /* Improve touch targets on mobile */
   @media (max-width: 640px) {
     button, a {
@@ -27,14 +59,4 @@ body {
       min-width: 44px;
     }
   }
-}
-
-:root {
-  --brand-beige: #EBD4AD;
-}
-
-@layer utilities {
-  .text-brand { color: var(--brand-beige); }
-  .bg-brand   { background-color: var(--brand-beige); }
-  .border-brand { border-color: var(--brand-beige); }
 }

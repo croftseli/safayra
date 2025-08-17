@@ -21,7 +21,7 @@ const Header = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const positionClass = overHero ? "fixed" : "sticky";
+  const positionClass = "fixed";
 
   // Handle mouse enter for the language toggle
   const handleMouseEnter = () => {
@@ -64,7 +64,7 @@ const Header = ({
     { id: "home", label: { en: "Home", fr: "Accueil", de: "Startseite" } },
     { id: "about", label: { en: "About Us", fr: "À propos", de: "Über uns" } },
     { id: "logo", isLogo: true },
-    { id: "gallery", label: { en: "Gallery", fr: "Galerie", de: "Galerie" } },
+    { id: "product", label: { en: "Product", fr: "Produit", de: "Produkt" } },
     { id: "contact", label: { en: "Contact", fr: "Contact", de: "Kontakt" } },
   ];
 

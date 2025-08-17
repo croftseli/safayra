@@ -3,49 +3,35 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import AboutPage from "./components/AboutPage";
-import GalleryPage from "./components/GalleryPage";
+import ProductPage from "./components/ProductPage";
 import ContactPage from "./components/ContactPage";
-import DetailPages from "./components/DetailPages";
+import SkinPage from "./components/SkinPage";
+import CulinaryPage from "./components/CulinaryPage";
+import WellnessPage from "./components/WellnessPage";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home");
-  const [activeDetailPage, setActiveDetailPage] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState("en");
-
-  // If we're on a detail page, render that instead
-  if (activeDetailPage) {
-    return (
-      <DetailPages
-        pageId={activeDetailPage}
-        onBack={() => setActiveDetailPage(null)}
-        language={language}
-      />
-    );
-  }
 
   const renderContent = () => {
     switch (activeTab) {
       case "home":
-        return (
-          <HomePage
-            language={language}
-            setActiveDetailPage={setActiveDetailPage}
-          />
-        );
+        return <HomePage language={language} setActiveTab={setActiveTab} />; // 👈 pass setActiveTab
       case "about":
         return <AboutPage language={language} />;
-      case "gallery":
-        return <GalleryPage language={language} />;
+      case "product":
+        return <ProductPage language={language} />;
       case "contact":
         return <ContactPage language={language} />;
+      case "culinary":
+        return <CulinaryPage language={language} />;
+      case "skin":
+        return <SkinPage language={language} />;
+      case "wellness":
+        return <WellnessPage language={language} />;
       default:
-        return (
-          <HomePage
-            language={language}
-            setActiveDetailPage={setActiveDetailPage}
-          />
-        );
+        return <HomePage language={language} setActiveTab={setActiveTab} />;
     }
   };
 
@@ -64,7 +50,7 @@ function App() {
       <main
         className={
           activeTab === "home"
-            ? "w-full" // allow full bleed for homepage
+            ? "w-full" // full-bleed hero
             : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
         }
       >
