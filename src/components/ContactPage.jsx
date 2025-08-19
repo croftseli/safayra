@@ -17,6 +17,10 @@ const ContactPage = ({ language = "en" }) => {
   const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
   const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 
+  if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+    console.error("EmailJS env vars are missing in this environment.");
+  }
+
   const t = {
     title: { en: "Contact Us", fr: "Contactez-nous", de: "Kontakt" },
     subtitle: {
