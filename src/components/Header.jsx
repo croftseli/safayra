@@ -56,7 +56,6 @@ const Header = ({
     { id: "home", label: { en: "Home", fr: "Accueil", de: "Startseite" } },
     { id: "about", label: { en: "About Us", fr: "À propos", de: "Über uns" } },
     { id: "logo", isLogo: true },
-    // NOTE: if your route is "products", change this id to "products"
     { id: "product", label: { en: "Product", fr: "Produit", de: "Produkt" } },
     { id: "contact", label: { en: "Contact", fr: "Contact", de: "Kontakt" } },
   ];
@@ -73,9 +72,7 @@ const Header = ({
   return (
     <header
       className={`${positionClass} top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
-        isScrolled || !overHero
-          ? "backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+        isScrolled ? "backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-2 xs:px-4 sm:px-6 lg:px-8 relative">
@@ -101,7 +98,7 @@ const Header = ({
                   <img
                     src="/safayra-logo-simple.png"
                     alt="SAFAYRA"
-                    className="h-12 xs:h-14 sm:h-16 md:h-18 w-auto object-contain"
+                    className="h-8 sm:h-10 md:h-12 lg:h-12 w-auto object-contain"
                   />
                 ) : (
                   <button

@@ -68,7 +68,7 @@ const HomePage = ({ language, setActiveTab }) => {
       <div
         className="absolute top-0 left-0 w-screen h-screen z-0"
         style={{
-          backgroundImage: "url('/safayra-saffron-homepage-background.png')",
+          backgroundImage: "url('/safayra-saffron-homepage-background.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -81,19 +81,44 @@ const HomePage = ({ language, setActiveTab }) => {
       <div className="relative z-10 min-h-screen flex flex-col items-center">
         {/* Heading */}
         <div className="text-center pt-28 md:pt-36 pb-0 w-full">
-          <img
-            src="/safayra-text-logo.png"
-            alt="Safayra"
-            className="mx-auto h-24 sm:h-32 md:h-40 lg:h-48 xl:h-56 w-auto max-w-[92vw] object-contain"
-            loading="eager"
-            decoding="async"
-          />
-          <p className="text-xs md:text-sm mt-1 text-brand font-nanum">
-            {language === "en"
-              ? "A journey from the sun-scorched fields of Iran to the heart of Europe"
-              : language === "fr"
-              ? "Un voyage des champs brûlés par le soleil d'Iran au cœur de l'Europe"
-              : "Eine Reise von den sonnengebrannten Feldern des Iran ins Herz Europas"}
+          {/* Logo with blur effect */}
+          <div className="relative w-fit mx-auto mt-2">
+            <img
+              src="/safayra-text-logo.png"
+              alt="Safayra"
+              className="mx-auto h-16 sm:h-24 md:h-32 lg:h-40 xl:h-44 w-auto max-w-[84vw] object-contain"
+              loading="eager"
+              decoding="async"
+            />
+            {/* blur */}
+            <div
+              className="pointer-events-none absolute inset-x-0 bottom-0
+               h-[45%] backdrop-blur-[1px]
+               [mask-image:linear-gradient(to_top,black_80%,transparent)]
+               [-webkit-mask-image:linear-gradient(to_top,black_80%,transparent)]"
+            />
+          </div>
+
+          <p className="text-base md:text-lg lg:text-xl mt-3 text-brand font-nanum leading-relaxed">
+            {language === "en" ? (
+              <>
+                A journey from the sun-scorched fields of Iran
+                <br className="block" />
+                to the heart of Europe
+              </>
+            ) : language === "fr" ? (
+              <>
+                Un voyage des champs brûlés par le soleil d’Iran
+                <br className="block" />
+                au cœur de l’Europe
+              </>
+            ) : (
+              <>
+                Eine Reise von den sonnengebrannten Feldern des Iran
+                <br className="block" />
+                ins Herz Europas
+              </>
+            )}
           </p>
         </div>
 

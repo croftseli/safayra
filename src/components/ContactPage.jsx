@@ -1,10 +1,5 @@
+"use client";
 import React, { useState } from "react";
-
-// TODO: EmailJS Integration
-// 1) npm i @emailjs/browser
-// 2) import emailjs from '@emailjs/browser'
-// 3) Initialize with your public key
-// 4) Replace the simulated submit with emailjs.send(...)
 
 const ContactPage = ({ language = "en" }) => {
   const [formData, setFormData] = useState({
@@ -18,10 +13,9 @@ const ContactPage = ({ language = "en" }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  // TODO: EmailJS configuration constants
-  // const EMAILJS_SERVICE_ID = '...';
-  // const EMAILJS_TEMPLATE_ID = '...';
-  // const EMAILJS_PUBLIC_KEY = '...';
+  const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 
   const t = {
     title: { en: "Contact Us", fr: "Contactez-nous", de: "Kontakt" },
@@ -213,8 +207,27 @@ const ContactPage = ({ language = "en" }) => {
 
     setIsSubmitting(true);
     try {
-      // TODO: replace with EmailJS send(...)
-      await new Promise((r) => setTimeout(r, 1500));
+      const { default: emailjs } = await import("@emailjs/browser");
+
+      const templateParams = {
+        from_name: formData.fullName,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      };
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.fullName,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
       setSubmitStatus({ type: "success", message: t.status.success[language] });
       setFormData({
         fullName: "",
@@ -224,7 +237,7 @@ const ContactPage = ({ language = "en" }) => {
         message: "",
       });
     } catch (err) {
-      console.error(err);
+      console.error("EmailJS error:", err);
       setSubmitStatus({ type: "error", message: t.status.error[language] });
     } finally {
       setIsSubmitting(false);
@@ -440,11 +453,30 @@ const ContactPage = ({ language = "en" }) => {
         </div>
       </section>
 
-      {/* Contact tagline */}
+      {/* Contact tagline with halo */}
       <section
         id="contact-tagline"
-        className="w-full px-4 pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-12"
+        className="relative w-full px-4 pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-12 overflow-visible"
       >
+        {/* glow background */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10"
+        >
+          {/* wide outer glow */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                 w-[80vmin] md:w-[72vmin] lg:w-[64vmin] aspect-square rounded-full blur-3xl
+                 bg-[radial-gradient(circle_at_center,rgba(235,212,173,0.18)_0%,rgba(235,212,173,0.09)_42%,transparent_78%)]"
+          />
+          {/* softer inner core */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                 w-[56vmin] md:w-[50vmin] lg:w-[44vmin] aspect-square rounded-full blur-2xl opacity-75
+                 bg-[radial-gradient(circle_at_center,rgba(235,212,173,0.25)_0%,rgba(235,212,173,0.12)_50%,transparent_72%)]"
+          />
+        </div>
+
         <p className="text-center text-brand font-aurore text-3xl md:text-4xl lg:text-5xl leading-tight">
           {t.tagline[language]}
         </p>

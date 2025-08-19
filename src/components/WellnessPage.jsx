@@ -131,11 +131,30 @@ const WellnessPage = ({ language = "en" }) => {
         })}
       </section>
 
-      {/* Tagline */}
+      {/* Tagline with halo */}
       <section
         id="tagline"
-        className="w-full px-4 pt-20 md:pt-28 lg:pt-32 pb-12 md:pb-16"
+        className="relative w-full px-4 pt-20 md:pt-28 lg:pt-32 pb-12 md:pb-16 overflow-visible"
       >
+        {/* glow background */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10"
+        >
+          {/* wide outer glow */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                 w-[80vmin] md:w-[72vmin] lg:w-[64vmin] aspect-square rounded-full blur-3xl
+                 bg-[radial-gradient(circle_at_center,rgba(235,212,173,0.18)_0%,rgba(235,212,173,0.09)_42%,transparent_78%)]"
+          />
+          {/* softer inner core */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+                 w-[56vmin] md:w-[50vmin] lg:w-[44vmin] aspect-square rounded-full blur-2xl opacity-75
+                 bg-[radial-gradient(circle_at_center,rgba(235,212,173,0.25)_0%,rgba(235,212,173,0.12)_50%,transparent_72%)]"
+          />
+        </div>
+
         <p className="text-center text-brand font-aurore text-3xl md:text-4xl lg:text-5xl leading-tight">
           {t.tagline[language]}
         </p>
