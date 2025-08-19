@@ -27,11 +27,20 @@ const ProductsPage = ({ language = "en" }) => {
 
   return (
     <div className="w-full">
-      {/* Title */}
+      {/* Title with bottom blur */}
       <section className="w-full px-4 py-12 md:py-16">
-        <h1 className="text-center text-brand font-nanum text-4xl md:text-5xl">
-          {t.title[language]}
-        </h1>
+        <div className="relative w-fit mx-auto">
+          <h1 className="text-center text-brand font-nanum text-4xl md:text-5xl">
+            {t.title[language]}
+          </h1>
+          {/* blur overlay */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0
+                 h-[40%] backdrop-blur-[1px]
+                 [mask-image:linear-gradient(to_top,black_80%,transparent_95%)]
+                 [-webkit-mask-image:linear-gradient(to_top,black_80%,transparent_95%)]"
+          />
+        </div>
       </section>
 
       {/* One-line sentence */}
