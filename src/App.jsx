@@ -65,7 +65,7 @@ function App() {
         {renderContent()}
       </main>
 
-      <Footer language={language} />
+      <Footer language={language} setActiveTab={setActiveTab} />
     </div>
   );
 }

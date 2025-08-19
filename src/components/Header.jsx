@@ -66,7 +66,6 @@ const Header = ({
     { code: "de", name: "Deutsch" },
   ];
 
-  const currentLang = languages.find((l) => l.code === language);
   const otherLangs = languages.filter((l) => l.code !== language);
 
   return (
@@ -103,7 +102,7 @@ const Header = ({
                 ) : (
                   <button
                     onClick={() => setActiveTab(item.id)}
-                    className={`px-3 lg:px-4 py-2 font-medium transition-all duration-300 text-sm lg:text-base text-brand ${
+                    className={`px-3 lg:px-4 py-2 font-nanum font-extrabold transition-all duration-300 text-sm lg:text-base text-brand ${
                       activeTab === item.id
                         ? "border-b-2 border-brand"
                         : "hover:border-b-2 hover:border-brand"
@@ -123,7 +122,7 @@ const Header = ({
             onMouseLeave={handleMouseLeave}
           >
             <button
-              className={`p-1 xs:p-1.5 sm:p-2 rounded-lg transition-all duration-200 text-sm xs:text-base font-medium hover:bg-amber-50 ${
+              className={`p-1 xs:p-1.5 sm:p-2 rounded-lg transition-all duration-200 text-sm xs:text-base font-nanum font-extrabold hover:bg-amber-50 ${
                 showDropdown ? "text-[#4d1112]" : "text-brand"
               }`}
               aria-haspopup="menu"
@@ -146,7 +145,7 @@ const Header = ({
                       setLanguage(lang.code);
                       setShowDropdown(false);
                     }}
-                    className="flex items-center px-4 py-2 text-sm w-full text-[#4d1112] hover:bg-amber-50"
+                    className="flex items-center px-4 py-2 text-sm w-full text-[#4d1112] hover:bg-amber-50 font-nanum font-extrabold"
                     role="menuitem"
                   >
                     {lang.code.toUpperCase()}
@@ -170,7 +169,7 @@ const Header = ({
                       setActiveTab(item.id);
                       setMobileMenuOpen(false);
                     }}
-                    className={`w-full text-left px-3 xs:px-4 py-2 xs:py-3 font-medium transition-all duration-300 text-sm xs:text-base text-[#4d1112] ${
+                    className={`w-full text-left px-3 xs:px-4 py-2 xs:py-3 font-nanum font-extrabold transition-all duration-300 text-sm xs:text-base text-[#4d1112] ${
                       activeTab === item.id
                         ? "border-b-2 border-[#4d1112]"
                         : "border-b-2 border-transparent hover:border-[#4d1112]"
@@ -182,7 +181,7 @@ const Header = ({
 
               {/* Mobile Language Options */}
               <div className="px-3 xs:px-4 py-2 xs:py-3">
-                <span className="text-sm xs:text-base font-medium text-[#4d1112]">
+                <span className="text-sm xs:text-base font-nanum font-extrabold text-[#4d1112]">
                   {language === "fr"
                     ? "Langue :"
                     : language === "de"
@@ -194,7 +193,7 @@ const Header = ({
                     <button
                       key={lang.code}
                       onClick={() => setLanguage(lang.code)}
-                      className={`p-1 xs:p-1.5 rounded-lg transition-all duration-200 text-sm xs:text-base text-[#4d1112] ${
+                      className={`p-1 xs:p-1.5 rounded-lg transition-all duration-200 text-sm xs:text-base text-[#4d1112] font-nanum font-extrabold ${
                         language === lang.code
                           ? "bg-[#EBD4AD]/60 shadow-md"
                           : "hover:bg-[#EBD4AD]/30"

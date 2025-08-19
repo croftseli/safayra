@@ -62,6 +62,20 @@ const HomePage = ({ language, setActiveTab }) => {
     },
   };
 
+  const cta = {
+    title: {
+      en: "Let’s talk saffron",
+      fr: "Parlons safran",
+      de: "Sprechen wir über Safran",
+    },
+    body: {
+      en: "From restaurants to retail, we tailor our premium Super Negin saffron to your needs. Tell us what you’re building—culinary, skincare, or wellness—and we’ll craft the right fit.",
+      fr: "De la restauration au retail, nous adaptons notre safran Super Negin à vos besoins. Dites-nous votre projet — cuisine, soin, bien-être — et nous trouverons la meilleure solution.",
+      de: "Von Gastronomie bis Handel: Wir passen unseren Super-Negin-Safran Ihren Anforderungen an. Erzählen Sie uns Ihr Vorhaben – Kulinarik, Pflege oder Wellness – und wir finden die passende Lösung.",
+    },
+    btn: { en: "Contact us", fr: "Nous contacter", de: "Kontakt aufnehmen" },
+  };
+
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       {/* Full-screen background image */}
@@ -80,7 +94,7 @@ const HomePage = ({ language, setActiveTab }) => {
       {/* Content overlay */}
       <div className="relative z-10 min-h-screen flex flex-col items-center">
         {/* Heading */}
-        <div className="text-center pt-28 md:pt-36 pb-0 w-full">
+        <div className="text-center pt-[24vh] md:pt-[28vh] lg:pt-[32vh] pb-0 w-full">
           {/* Logo with blur effect */}
           <div className="relative w-fit mx-auto mt-2">
             <img
@@ -93,7 +107,7 @@ const HomePage = ({ language, setActiveTab }) => {
             {/* blur */}
             <div
               className="pointer-events-none absolute inset-x-0 bottom-0
-               h-[45%] backdrop-blur-[1px]
+               h-[50%] backdrop-blur-[2.5px]
                [mask-image:linear-gradient(to_top,black_80%,transparent)]
                [-webkit-mask-image:linear-gradient(to_top,black_80%,transparent)]"
             />
@@ -270,6 +284,36 @@ const HomePage = ({ language, setActiveTab }) => {
                 style={{ backgroundImage: "url('/products-4.jpg')" }}
                 aria-hidden="true"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA — contained, dark red background */}
+      <section className="w-full px-4 py-12 md:py-16">
+        <div className="max-w-5xl mx-auto bg-[#681c18] rounded-none shadow-2xl">
+          <div className="px-6 md:px-10 py-10 md:py-14 text-center">
+            <h2 className="text-brand font-nanum text-3xl md:text-4xl">
+              {cta.title[language]}
+            </h2>
+            <p className="mt-3 text-brand font-nanum text-base md:text-lg leading-relaxed">
+              {cta.body[language]}
+            </p>
+
+            <div className="mt-6 md:mt-8">
+              <button
+                onClick={() => {
+                  setActiveTab?.("contact");
+                  window.scrollTo({ top: 0, behavior: "auto" });
+                }}
+                className="inline-flex items-center rounded-none
+                     bg-[#EBD4AD]/90 hover:bg-[#EBD4AD] focus:bg-[#EBD4AD]
+                     px-5 py-2.5 text-sm md:text-base font-medium text-[#4d1112]
+                     shadow-sm transition-colors duration-200
+                     focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/40"
+              >
+                {cta.btn[language]}
+              </button>
             </div>
           </div>
         </div>

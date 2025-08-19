@@ -114,7 +114,7 @@ const CulinaryPage = ({ language = "en" }) => {
       {/* Script tagline with halo */}
       <section
         id="culinary-tagline"
-        className="relative w-full px-4 pt-20 md:pt-24 lg:pt-28 pb-8 overflow-visible"
+        className="relative w-full px-4 py-16 md:py-20 lg:py-24 overflow-visible"
       >
         {/* glow background */}
         <div
