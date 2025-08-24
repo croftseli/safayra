@@ -3,7 +3,7 @@ import React from "react";
 const CulinaryPage = ({ language = "en" }) => {
   const t = {
     title: {
-      en: "Enhancing the culinary experience",
+      en: "Enhancing the Culinary Experience",
       fr: "Sublimer l'expérience culinaire",
       de: "Das kulinarische Erlebnis bereichern",
     },
@@ -15,7 +15,7 @@ const CulinaryPage = ({ language = "en" }) => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-8 md:pt-12">
       {/* Title with bottom blur */}
       <section className="w-full px-4 py-12 md:py-16">
         <div className="relative w-fit mx-auto">
@@ -24,7 +24,7 @@ const CulinaryPage = ({ language = "en" }) => {
           </h1>
           {/* blur overlay */}
           <div
-            className="pointer-events-none absolute inset-x-0 bottom-0
+            className="hidden md:block pointer-events-none absolute inset-x-0 bottom-0
                  h-[40%] backdrop-blur-[1px]
                  [mask-image:linear-gradient(to_top,black_80%,transparent_95%)]
                  [-webkit-mask-image:linear-gradient(to_top,black_80%,transparent_95%)]"

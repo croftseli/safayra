@@ -2,13 +2,13 @@ import React from "react";
 
 const SkinPage = ({ language = "en" }) => {
   const title = {
-    en: "Red Gold For The Skin",
+    en: "Red Gold for the Skin",
     fr: "Or rouge pour la peau",
     de: "Rotes Gold für die Haut",
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-8 md:pt-12">
       {/* Title with bottom blur */}
       <section className="w-full px-4 py-12 md:py-16">
         <div className="relative w-fit mx-auto">
@@ -17,7 +17,7 @@ const SkinPage = ({ language = "en" }) => {
           </h1>
           {/* blur overlay */}
           <div
-            className="pointer-events-none absolute inset-x-0 bottom-0
+            className="hidden md:block pointer-events-none absolute inset-x-0 bottom-0
                  h-[40%] backdrop-blur-[1px]
                  [mask-image:linear-gradient(to_top,black_80%,transparent_95%)]
                  [-webkit-mask-image:linear-gradient(to_top,black_80%,transparent_95%)]"
@@ -99,7 +99,7 @@ const SkinPage = ({ language = "en" }) => {
             {[
               {
                 id: "brightening",
-                img: "/safayra-skin-benefit-brightening.jpg",
+                img: "/safayra-skin-benefit-brightening-new.jpg",
                 title: { en: "Brightening", fr: "Éclat", de: "Aufhellend" },
                 desc: {
                   en: "Revives dull skin and evens out complexion",
@@ -114,7 +114,7 @@ const SkinPage = ({ language = "en" }) => {
               },
               {
                 id: "calming",
-                img: "/safayra-skin-benefit-calming.jpg",
+                img: "/safayra-skin-benefit-calming-new.jpg",
                 title: { en: "Calming", fr: "Apaisant", de: "Beruhigend" },
                 desc: {
                   en: "Reduces inflammation and soothes sensitivities",

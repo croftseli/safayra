@@ -95,8 +95,11 @@ const ContactPage = ({ language = "en" }) => {
         fr: "Contactez-nous",
         de: "Kontakt aufnehmen",
       },
-      phone: { en: "Phone", fr: "Téléphone", de: "Telefon" },
-      address: { en: "Address", fr: "Adresse", de: "Adresse" },
+      locationLine: {
+        en: "We are based in Luxembourg.",
+        fr: "Nous sommes basés au Luxembourg.",
+        de: "Wir haben notre siège au Luxembourg.", // or "Nous sommes basés au Luxembourg."
+      },
       hours: {
         en: "Business Hours",
         fr: "Heures d’ouverture",
@@ -123,15 +126,6 @@ const ContactPage = ({ language = "en" }) => {
           fr: "Nous répondons généralement aux demandes sous 24 heures.",
           de: "Wir antworten in der Regel innerhalb von 24 Stunden.",
         },
-      },
-      phoneLines: {
-        fr: "+33 1 23 45 67 89 (France)",
-        de: "+49 30 12 34 56 78 (Germany)",
-      },
-      addressBlock: {
-        en: "European Distribution Center\n123 Saffron Street\n75001 Paris, France",
-        fr: "Centre de Distribution Européen\n123 Rue du Safran\n75001 Paris, France",
-        de: "Europäisches Vertriebszentrum\nSafranstraße 123\n75001 Paris, Frankreich",
       },
     },
     tagline: {
@@ -249,7 +243,7 @@ const ContactPage = ({ language = "en" }) => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-8 md:pt-12">
       {/* Title + subtitle (title has bottom blur) */}
       <section className="w-full px-4 py-12 md:py-16">
         <div className="relative w-fit mx-auto">
@@ -258,7 +252,7 @@ const ContactPage = ({ language = "en" }) => {
           </h1>
           {/* blur overlay */}
           <div
-            className="pointer-events-none absolute inset-x-0 bottom-0
+            className="hidden md:block pointer-events-none absolute inset-x-0 bottom-0
                  h-[40%] backdrop-blur-[1px]
                  [mask-image:linear-gradient(to_top,black_80%,transparent_95%)]
                  [-webkit-mask-image:linear-gradient(to_top,black_80%,transparent_95%)]"
@@ -272,41 +266,18 @@ const ContactPage = ({ language = "en" }) => {
 
       {/* Full-bleed off-white panel: left info / right form */}
       <section className="relative left-1/2 -translate-x-1/2 w-screen bg-[#EBD4AD]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-start px-6 md:px-8 lg:px-10 py-12 md:py-16">
-          {/* Left: Contact info */}
-          <div className="text-[#4d1112]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch px-6 md:px-8 lg:px-10 py-12 md:py-16">
+          {/* Left: Contact info (no phone/address) */}
+          <div className="text-[#4d1112] self-center">
             <h3 className="font-nanum text-2xl md:text-3xl mb-4 md:mb-6">
               {t.info.getInTouch[language]}
             </h3>
 
             <div className="space-y-6 font-nanum text-base md:text-lg leading-relaxed">
-              <div>
-                <div className="font-bold mb-1">{t.info.phone[language]}</div>
-                <p>
-                  <a
-                    href="tel:+33123456789"
-                    className="underline underline-offset-4"
-                  >
-                    {t.info.phoneLines.fr}
-                  </a>
-                </p>
-                <p>
-                  <a
-                    href="tel:+493012345678"
-                    className="underline underline-offset-4"
-                  >
-                    {t.info.phoneLines.de}
-                  </a>
-                </p>
-              </div>
+              {/* Location line */}
+              <p className="italic">{t.info.locationLine[language]}</p>
 
-              <div>
-                <div className="font-bold mb-1">{t.info.address[language]}</div>
-                <p className="whitespace-pre-line">
-                  {t.info.addressBlock[language]}
-                </p>
-              </div>
-
+              {/* (Optional) keep hours + SLA */}
               <div>
                 <div className="font-bold mb-1">{t.info.hours[language]}</div>
                 <p>{t.info.hoursLines.monFri[language]}</p>

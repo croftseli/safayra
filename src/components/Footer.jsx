@@ -4,7 +4,7 @@ const Footer = ({ language = "en", setActiveTab }) => {
   const nav = [
     { id: "home", label: { en: "Home", fr: "Accueil", de: "Startseite" } },
     { id: "about", label: { en: "About Us", fr: "À propos", de: "Über uns" } },
-    { id: "product", label: { en: "Product", fr: "Produit", de: "Produkt" } }, // <-- fixed
+    { id: "product", label: { en: "Product", fr: "Produit", de: "Produkt" } },
     { id: "contact", label: { en: "Contact", fr: "Contact", de: "Kontakt" } },
   ];
 
@@ -18,7 +18,6 @@ const Footer = ({ language = "en", setActiveTab }) => {
   };
 
   const fallbackHref = (id) => {
-    // Adjust these if you use React Router/Next.js routes instead of anchors.
     switch (id) {
       case "home":
         return "/";
@@ -43,36 +42,92 @@ const Footer = ({ language = "en", setActiveTab }) => {
   return (
     <footer className="w-full bg-brand text-[#4d1112]">
       <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
-        {/* Stacked logos */}
-        <div className="flex flex-col items-center gap-3 md:gap-4">
-          <div
-            className="pointer-events-none h-16 md:h-20 w-40 md:w-48 bg-[#4d1112]"
-            style={{
-              WebkitMaskImage: "url(/safayra-logo-simple.png)",
-              WebkitMaskRepeat: "no-repeat",
-              WebkitMaskPosition: "center",
-              WebkitMaskSize: "contain",
-              maskImage: "url(/safayra-logo-simple.png)",
-              maskRepeat: "no-repeat",
-              maskPosition: "center",
-              maskSize: "contain",
-            }}
-            aria-hidden="true"
-          />
-          <div
-            className="pointer-events-none h-8 md:h-10 w-44 md:w-56 bg-[#4d1112]"
-            style={{
-              WebkitMaskImage: "url(/safayra-text-logo.png)",
-              WebkitMaskRepeat: "no-repeat",
-              WebkitMaskPosition: "center",
-              WebkitMaskSize: "contain",
-              maskImage: "url(/safayra-text-logo.png)",
-              maskRepeat: "no-repeat",
-              maskPosition: "center",
-              maskSize: "contain",
-            }}
-            aria-hidden="true"
-          />
+        {/* Stacked logos (CLICKABLE & centered) */}
+        <div className="w-full flex justify-center">
+          {typeof setActiveTab === "function" ? (
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab("home");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              aria-label={
+                language === "fr"
+                  ? "Aller à l’accueil"
+                  : language === "de"
+                  ? "Zur Startseite"
+                  : "Go to home"
+              }
+              className="flex flex-col items-center gap-3 md:gap-4 w-fit
+                 bg-transparent p-0 border-0 appearance-none cursor-pointer
+                 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4d1112]/30 rounded-md"
+            >
+              <div
+                className="pointer-events-none h-16 md:h-20 w-40 md:w-48 bg-[#4d1112]"
+                style={{
+                  WebkitMaskImage: "url(/safayra-logo-simple.png)",
+                  WebkitMaskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  WebkitMaskSize: "contain",
+                  maskImage: "url(/safayra-logo-simple.png)",
+                  maskRepeat: "no-repeat",
+                  maskPosition: "center",
+                  maskSize: "contain",
+                }}
+                aria-hidden="true"
+              />
+              <div
+                className="pointer-events-none h-8 md:h-10 w-44 md:w-56 bg-[#4d1112]"
+                style={{
+                  WebkitMaskImage: "url(/safayra-text-logo.png)",
+                  WebkitMaskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  WebkitMaskSize: "contain",
+                  maskImage: "url(/safayra-text-logo.png)",
+                  maskRepeat: "no-repeat",
+                  maskPosition: "center",
+                  maskSize: "contain",
+                }}
+                aria-hidden="true"
+              />
+            </button>
+          ) : (
+            <a
+              href="/"
+              aria-label="Home"
+              className="flex flex-col items-center gap-3 md:gap-4 w-fit
+                 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4d1112]/30 rounded-md"
+            >
+              <div
+                className="pointer-events-none h-16 md:h-20 w-40 md:w-48 bg-[#4d1112]"
+                style={{
+                  WebkitMaskImage: "url(/safayra-logo-simple.png)",
+                  WebkitMaskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  WebkitMaskSize: "contain",
+                  maskImage: "url(/safayra-logo-simple.png)",
+                  maskRepeat: "no-repeat",
+                  maskPosition: "center",
+                  maskSize: "contain",
+                }}
+                aria-hidden="true"
+              />
+              <div
+                className="pointer-events-none h-8 md:h-10 w-44 md:w-56 bg-[#4d1112]"
+                style={{
+                  WebkitMaskImage: "url(/safayra-text-logo.png)",
+                  WebkitMaskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  WebkitMaskSize: "contain",
+                  maskImage: "url(/safayra-text-logo.png)",
+                  maskRepeat: "no-repeat",
+                  maskPosition: "center",
+                  maskSize: "contain",
+                }}
+                aria-hidden="true"
+              />
+            </a>
+          )}
         </div>
 
         {/* Nav */}

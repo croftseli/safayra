@@ -42,7 +42,8 @@ const HomePage = ({ language, setActiveTab }) => {
       {
         id: "wellness",
         pageId: "wellness",
-        img: "/safayra-wellness.png",
+        // img: "/safayra-wellness-oil-bottles.jpg",
+        img: "/safayra-wellness-oil.png",
         title: {
           en: "Wellness",
           fr: "Bien-être",
@@ -88,7 +89,7 @@ const HomePage = ({ language, setActiveTab }) => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute inset-0 bg-black opacity-50" />
+        {/* <div className="absolute inset-0 bg-black opacity-50" /> */}
       </div>
 
       {/* Content overlay */}
@@ -106,10 +107,10 @@ const HomePage = ({ language, setActiveTab }) => {
             />
             {/* blur */}
             <div
-              className="pointer-events-none absolute inset-x-0 bottom-0
-               h-[50%] backdrop-blur-[2.5px]
-               [mask-image:linear-gradient(to_top,black_80%,transparent)]
-               [-webkit-mask-image:linear-gradient(to_top,black_80%,transparent)]"
+              className="hidden md:block pointer-events-none absolute inset-x-0 bottom-0
+             h-[50%] backdrop-blur-[2.5px]
+             [mask-image:linear-gradient(to_top,black_80%,transparent)]
+             [-webkit-mask-image:linear-gradient(to_top,black_80%,transparent)]"
             />
           </div>
 
@@ -180,12 +181,25 @@ const HomePage = ({ language, setActiveTab }) => {
                   </div>
                 </div>
 
-                {/* Whole-card click */}
-                <button
+                {/* Whole-card click (on top, accessible) */}
+                <a
+                  href="#"
+                  role="link"
                   aria-label={`${c.title[language]} — ${t.learn}`}
-                  onClick={() => setActiveTab(c.pageId)}
-                  className="absolute inset-0 focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/70"
-                  tabIndex={-1}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActiveTab(c.pageId);
+                    window.scrollTo({ top: 0, behavior: "auto" });
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActiveTab(c.pageId);
+                      window.scrollTo({ top: 0, behavior: "auto" });
+                    }
+                  }}
+                  className="absolute inset-0 z-30 cursor-pointer
+             focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/70"
                 />
               </div>
             ))}
