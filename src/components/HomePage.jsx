@@ -260,10 +260,10 @@ const HomePage = ({ language, setActiveTab }) => {
             <div className="md:col-span-8 bg-[#EBD4AD]/90 shadow-xl rounded-none p-6 md:p-10 flex flex-col">
               <p className="font-nanum text-[#4d1112] text-lg md:text-xl leading-relaxed">
                 {language === "fr"
-                  ? "Nous fournissons du safran Super Negin en vrac — en poudre ou en filaments — disponible en différentes quantités selon vos besoins."
+                  ? "Nous fournissons du safran Super Negin en vrac, en poudre ou en filaments, disponible en différentes quantités selon vos besoins."
                   : language === "de"
-                  ? "Wir liefern Super-Negin-Safran in Großmengen – als Pulver oder Fäden – in verschiedenen Mengen ganz nach Ihren Bedürfnissen."
-                  : "We supply Super Negin saffron in bulk—either in powder or filament form—available in various quantities to suit your needs."}
+                  ? "Wir liefern Super-Negin-Safran in Großmengen, als Pulver oder Fäden, in verschiedenen Mengen ganz nach Ihren Bedürfnissen."
+                  : "We supply Super Negin saffron in bulk, either in powder or filament form. Available in various quantities to suit your needs."}
               </p>
               <br />
               <p className="font-nanum text-[#4d1112] text-lg md:text-xl leading-relaxed">
