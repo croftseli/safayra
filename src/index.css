@@ -23,13 +23,14 @@
   body {
     margin: 0;
     overflow-x: hidden;
-  }
-
-  /* Site-wide serif for headings */
-  h1, h2, h3 {
     font-family: 'Nanum Myeongjo', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   }
+
+  h1, h2, h3 {
+    font-family: inherit; /* inherit from body, no override */
+  }
 }
+
 
 /* Utilities */
 @layer utilities {

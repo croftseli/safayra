@@ -12,7 +12,7 @@ const HomePage = ({ language, setActiveTab }) => {
       {
         id: "culinary",
         pageId: "culinary",
-        img: "/safayra-saffron-cake.JPG",
+        img: "/safayra-saffron-cake-new.jpg",
         title: {
           en: "Enhancing the culinary experience",
           fr: "Sublimer l'expérience culinaire",
@@ -27,7 +27,7 @@ const HomePage = ({ language, setActiveTab }) => {
       {
         id: "skin",
         pageId: "skin",
-        img: "/safayra-red-gold-for-skin.png",
+        img: "/safayra-red-gold-for-skin-new.jpg",
         title: {
           en: "Red Gold for the Skin",
           fr: "Or rouge pour la peau",
@@ -172,7 +172,7 @@ const HomePage = ({ language, setActiveTab }) => {
                       onClick={() => setActiveTab(c.pageId)}
                       className="inline-flex items-center rounded-none
                         bg-[#EBD4AD]/70 hover:bg-[#EBD4AD]/90 focus:bg-[#EBD4AD]/95
-                        px-4 py-2 text-sm font-medium text-[#2b1b1b]
+                        px-4 py-2 text-sm font-bold text-[#2b1b1b]
                         shadow-sm transition-colors duration-200
                         focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/50"
                     >
@@ -279,7 +279,7 @@ const HomePage = ({ language, setActiveTab }) => {
                   onClick={() => setActiveTab("products")}
                   className="inline-flex items-center rounded-none
                        bg-white/70 hover:bg-white/90 focus:bg-white
-                       px-4 py-2 text-sm font-medium text-[#2b1b1b]
+                       px-4 py-2 text-sm font-bold text-[#2b1b1b]
                        shadow-sm transition-colors duration-200
                        focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/50"
                 >
@@ -322,7 +322,7 @@ const HomePage = ({ language, setActiveTab }) => {
                 }}
                 className="inline-flex items-center rounded-none
                      bg-[#EBD4AD]/90 hover:bg-[#EBD4AD] focus:bg-[#EBD4AD]
-                     px-5 py-2.5 text-sm md:text-base font-medium text-[#4d1112]
+                     px-5 py-2.5 text-sm md:text-base font-bold text-[#4d1112]
                      shadow-sm transition-colors duration-200
                      focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/40"
               >
