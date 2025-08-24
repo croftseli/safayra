@@ -129,7 +129,7 @@ const SkinPage = ({ language = "en" }) => {
               },
               {
                 id: "hydrating",
-                img: "/safayra-skin-benefit-hydrating.jpg",
+                img: "/safayra-skin-benefit-hydrating-new-2.png",
                 title: {
                   en: "Hydrating",
                   fr: "Hydratant",
@@ -148,7 +148,7 @@ const SkinPage = ({ language = "en" }) => {
               },
               {
                 id: "regenerating",
-                img: "/safayra-skin-benefit-regenerating.jpg",
+                img: "/safayra-skin-benefit-regenerating-new-3.png",
                 title: {
                   en: "Regenerating",
                   fr: "Régénérant",
