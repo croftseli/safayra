@@ -250,13 +250,13 @@ const ContactPage = ({ language = "en" }) => {
           <h1 className="text-center text-brand font-nanum text-4xl md:text-5xl">
             {t.title[language]}
           </h1>
-          {/* blur overlay */}
+          {/* blur overlay 
           <div
             className="hidden md:block pointer-events-none absolute inset-x-0 bottom-0
                  h-[40%] backdrop-blur-[1px]
                  [mask-image:linear-gradient(to_top,black_80%,transparent_95%)]
                  [-webkit-mask-image:linear-gradient(to_top,black_80%,transparent_95%)]"
-          />
+          />*/}
         </div>
 
         <p className="mt-3 text-center text-brand font-nanum text-base md:text-lg leading-relaxed">

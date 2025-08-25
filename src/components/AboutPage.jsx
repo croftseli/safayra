@@ -53,13 +53,13 @@ const AboutPage = ({ language = "en" }) => {
             {copy.title[language]}
           </h1>
 
-          {/* blur overlay */}
+          {/* blur overlay 
           <div
             className="hidden md:block pointer-events-none absolute inset-x-0 bottom-0
                  h-[40%] backdrop-blur-[1px]
                  [mask-image:linear-gradient(to_top,black_80%,transparent_95%)]
                  [-webkit-mask-image:linear-gradient(to_top,black_80%,transparent_95%)]"
-          />
+          />*/}
         </div>
       </section>
 

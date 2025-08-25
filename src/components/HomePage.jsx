@@ -105,13 +105,13 @@ const HomePage = ({ language, setActiveTab }) => {
               loading="eager"
               decoding="async"
             />
-            {/* blur */}
+            {/* blur 
             <div
               className="hidden md:block pointer-events-none absolute inset-x-0 bottom-0
              h-[50%] backdrop-blur-[2.5px]
              [mask-image:linear-gradient(to_top,black_80%,transparent)]
              [-webkit-mask-image:linear-gradient(to_top,black_80%,transparent)]"
-            />
+            /> */}
           </div>
 
           <p className="text-base md:text-lg lg:text-xl mt-3 text-brand font-nanum leading-relaxed">
