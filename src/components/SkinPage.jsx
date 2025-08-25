@@ -218,10 +218,10 @@ const SkinPage = ({ language = "en" }) => {
 
         <p className="text-center text-brand font-aurore text-3xl md:text-4xl lg:text-5xl leading-tight">
           {language === "fr"
-            ? "Ancré dans la tradition, perfectionné par la science."
+            ? "Ancré dans la tradition, perfectionné par la science"
             : language === "de"
-            ? "In der Tradition verwurzelt, durch Wissenschaft perfektioniert."
-            : "Rooted in tradition, perfected by science."}
+            ? "In der Tradition verwurzelt, durch Wissenschaft perfektioniert"
+            : "Rooted in tradition, perfected by science"}
         </p>
       </section>
 

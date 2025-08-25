@@ -8,9 +8,9 @@ const CulinaryPage = ({ language = "en" }) => {
       de: "Das kulinarische Erlebnis bereichern",
     },
     tagline: {
-      en: "Color, aroma, and depth in every dish.",
-      fr: "Couleur, parfum et profondeur dans chaque plat.",
-      de: "Farbe, Aroma und Tiefe in jedem Gericht.",
+      en: "Color, aroma, and depth in every dish",
+      fr: "Couleur, parfum et profondeur dans chaque plat",
+      de: "Farbe, Aroma und Tiefe in jedem Gericht",
     },
   };
 

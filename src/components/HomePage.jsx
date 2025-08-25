@@ -117,21 +117,21 @@ const HomePage = ({ language, setActiveTab }) => {
           <p className="text-base md:text-lg lg:text-xl mt-3 text-brand font-nanum leading-relaxed">
             {language === "en" ? (
               <>
-                A journey from the sun-scorched fields of Iran
+                Safayra is a journey from the sun-drenched fields
                 <br className="block" />
-                to the heart of Europe
+                of Iran to the heart of Europe.
               </>
             ) : language === "fr" ? (
               <>
-                Un voyage des champs brûlés par le soleil d’Iran
+                Safayra est un voyage des champs ensoleillés d'Iran
                 <br className="block" />
-                au cœur de l’Europe
+                au cœur de l'Europe.
               </>
             ) : (
               <>
-                Eine Reise von den sonnengebrannten Feldern des Iran
+                Safayra ist eine Reise von den sonnenverwöhnten Feldern
                 <br className="block" />
-                ins Herz Europas
+                des Iran ins Herz Europas.
               </>
             )}
           </p>

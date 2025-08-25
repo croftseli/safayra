@@ -23,9 +23,9 @@ const AboutPage = ({ language = "en" }) => {
       de: "Jede Charge wird im Labor auf Reinheit und Qualität geprüft und erfüllt höchste Standards in Farbe, Aroma und Stärke. Bei Safayra beginnt Exzellenz mit Verbindung. Wir arbeiten eng mit unseren Kunden zusammen, um nicht nur Safran zu liefern, sondern ein durchdachtes, anspruchsvolles Erlebnis.",
     },
     tagline: {
-      en: "The most precious spice in the world.",
-      fr: "L’épice la plus précieuse au monde.",
-      de: "Das kostbarste Gewürz der Welt.",
+      en: "The most precious spice in the world",
+      fr: "L’épice la plus précieuse au monde",
+      de: "Das kostbarste Gewürz der Welt",
     },
     heartTitle: {
       en: "The Heart of Saffron Production",

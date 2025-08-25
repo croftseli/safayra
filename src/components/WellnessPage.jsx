@@ -9,9 +9,9 @@ const WellnessPage = ({ language = "en" }) => {
       de: "Bekannt für seine beruhigenden und belebenden Eigenschaften, wird Safran seit Jahrhunderten geschätzt. Reich an Wirkstoffen wie Crocin, Crocetin und Safranal hat er inzwischen seinen Platz in modernen Wellness-Praktiken gefunden und entspricht der wachsenden Nachfrage nach natürlichen Alternativen zu herkömmlichen pharmazeutischen Lösungen.",
     },
     tagline: {
-      en: "Saffron is a natural ally for everyday well-being.",
-      fr: "Le safran est un allié naturel du bien-être au quotidien.",
-      de: "Safran ist ein natürlicher Begleiter für tägliches Wohlbefinden.",
+      en: "Saffron is a natural ally for everyday well-being",
+      fr: "Le safran est un allié naturel du bien-être au quotidien",
+      de: "Safran ist ein natürlicher Begleiter für tägliches Wohlbefinden",
     },
   };
 
