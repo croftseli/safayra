@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 
 const Header = ({
-  activeTab,
-  setActiveTab,
+  activeTab, // kept for active styling (useHashNavigation sets this)
+  setActiveTab, // not used for nav clicks anymore (hash links handle it)
   mobileMenuOpen,
   setMobileMenuOpen,
   language,
@@ -102,12 +102,9 @@ const Header = ({
             {navItems.map((item) => {
               if (item.isLogo) {
                 return (
-                  <button
+                  <a
                     key="logo"
-                    onClick={() => {
-                      setActiveTab?.("home");
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
+                    href="#home"
                     className="group inline-flex items-center focus:outline-none"
                     aria-label="Go to home"
                   >
@@ -116,7 +113,7 @@ const Header = ({
                       alt="Safayra"
                       className="h-8 sm:h-10 md:h-12 lg:h-12 w-auto object-contain cursor-pointer transition-transform duration-200 group-hover:scale-[1.02]"
                     />
-                  </button>
+                  </a>
                 );
               }
 
@@ -124,11 +121,8 @@ const Header = ({
               if (item.children) {
                 return (
                   <div key={item.id} className="relative group pb-2">
-                    <button
-                      onClick={() => {
-                        setActiveTab?.(item.id);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
+                    <a
+                      href={`#${item.id}`}
                       className={`inline-flex items-center gap-1 px-3 lg:px-4 py-2 font-nanum font-extrabold transition-all duration-300 text-sm lg:text-base text-brand ${
                         activeTab === item.id
                           ? "border-b-2 border-brand"
@@ -139,10 +133,9 @@ const Header = ({
                     >
                       {item.label[language]}
                       <ChevronDown className="w-4 h-4 opacity-80" />
-                    </button>
+                    </a>
 
-                    {/* Dropdown: sits flush at bottom of trigger, no "gap".
-                        The pb-2 on parent + this 'after' hover-bridge prevent flicker. */}
+                    {/* Dropdown */}
                     <div
                       className="absolute left-0 top-full w-48 bg-white shadow-lg rounded-lg py-2 z-50
                                  opacity-0 invisible translate-y-1
@@ -152,17 +145,14 @@ const Header = ({
                       role="menu"
                     >
                       {item.children.map((child) => (
-                        <button
+                        <a
                           key={child.id}
-                          onClick={() => {
-                            setActiveTab?.(child.id);
-                            window.scrollTo({ top: 0, behavior: "auto" });
-                          }}
+                          href={`#${child.id}`}
                           className="block w-full text-left px-4 py-2 text-sm text-[#4d1112] hover:bg-amber-50"
                           role="menuitem"
                         >
                           {child.label[language]}
-                        </button>
+                        </a>
                       ))}
                     </div>
                   </div>
@@ -172,11 +162,8 @@ const Header = ({
               // Regular items
               return (
                 <div key={item.id} className="flex items-center">
-                  <button
-                    onClick={() => {
-                      setActiveTab?.(item.id);
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }}
+                  <a
+                    href={`#${item.id}`}
                     className={`px-3 lg:px-4 py-2 font-nanum font-extrabold transition-all duration-300 text-sm lg:text-base text-brand ${
                       activeTab === item.id
                         ? "border-b-2 border-brand"
@@ -184,7 +171,7 @@ const Header = ({
                     }`}
                   >
                     {item.label[language]}
-                  </button>
+                  </a>
                 </div>
               );
             })}
@@ -265,17 +252,15 @@ const Header = ({
                         }`}
                       >
                         {/* Left: tap "Home" -> navigate to homepage */}
-                        <button
-                          type="button"
+                        <a
+                          href="#home"
                           onClick={() => {
-                            setActiveTab?.(item.id); // "home"
                             setMobileMenuOpen(false);
-                            window.scrollTo({ top: 0, behavior: "auto" });
                           }}
                           className="flex-1 text-left font-nanum font-extrabold text-sm xs:text-base text-[#4d1112]"
                         >
                           {item.label[language]}
-                        </button>
+                        </a>
 
                         {/* Right: tap chevron -> toggle submenu (no navigation) */}
                         <button
@@ -306,17 +291,16 @@ const Header = ({
                         }`}
                       >
                         {item.children.map((child) => (
-                          <button
+                          <a
                             key={child.id}
+                            href={`#${child.id}`}
                             onClick={() => {
-                              setActiveTab?.(child.id);
                               setMobileMenuOpen(false);
-                              window.scrollTo({ top: 0, behavior: "auto" });
                             }}
                             className="block w-full text-left py-2 text-sm text-[#4d1112] hover:underline underline-offset-4"
                           >
                             {child.label[language]}
-                          </button>
+                          </a>
                         ))}
                       </div>
                     </div>
@@ -325,21 +309,20 @@ const Header = ({
 
                 // Mobile: regular items
                 return (
-                  <button
+                  <a
                     key={item.id}
+                    href={`#${item.id}`}
                     onClick={() => {
-                      setActiveTab?.(item.id);
                       setMobileMenuOpen(false);
-                      window.scrollTo({ top: 0, behavior: "auto" });
                     }}
-                    className={`w-full text-left px-3 xs:px-4 py-2 xs:py-3 font-nanum font-extrabold transition-all duration-300 text-sm xs:text-base text-[#4d1112] ${
+                    className={`w-full block text-left px-3 xs:px-4 py-2 xs:py-3 font-nanum font-extrabold transition-all duration-300 text-sm xs:text-base text-[#4d1112] ${
                       activeTab === item.id
                         ? "border-b-2 border-[#4d1112]"
                         : "border-b-2 border-transparent hover:border-[#4d1112]"
                     }`}
                   >
                     {item.label[language]}
-                  </button>
+                  </a>
                 );
               })}
 

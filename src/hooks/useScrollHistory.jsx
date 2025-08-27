@@ -1,72 +1,112 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Keeps browser history in sync with your SPA tab state,
- * and restores scroll position on back/forward.
+ * Robust history + scroll restore for SPA tabs.
+ * - Push on user nav
+ * - Restore on back/forward
+ * - Skip exactly one push after a popstate (prevents “stuck on page”)
  */
 export default function useScrollHistory({
   activeTab,
   setActiveTab,
   activeDetailPage,
 }) {
-  const isPoppingRef = useRef(false); // true while handling popstate
+  const suppressNextPushRef = useRef(false); // skip one push after popstate
+  const hasInitRef = useRef(false);
 
-  // Initialize first history entry with current state + scroll
-  useEffect(() => {
-    if (!history.state) {
-      history.replaceState(
-        { tab: activeTab, detail: activeDetailPage, scrollY: window.scrollY },
-        ""
-      );
-    }
-    // restore on back/forward
-    const onPop = (event) => {
-      isPoppingRef.current = true;
-      const s = event.state || {};
-      // restore tab/detail first
-      if (s.tab && s.tab !== activeTab) setActiveTab(s.tab);
-      // allow layout to paint, then restore scroll
-      requestAnimationFrame(() => {
-        window.scrollTo(0, typeof s.scrollY === "number" ? s.scrollY : 0);
-        // small delay to avoid immediate push on the effect below
-        setTimeout(() => (isPoppingRef.current = false), 0);
-      });
-    };
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // When your app "navigates" (tab/detail changes), push a new entry and scroll to top.
-  useEffect(() => {
-    if (isPoppingRef.current) return; // don't push while restoring
-    history.pushState(
-      { tab: activeTab, detail: activeDetailPage, scrollY: 0 },
+  // Helper: replace current entry with latest state
+  const replaceWith = (extra = {}) => {
+    const s = history.state || {};
+    history.replaceState(
+      {
+        __spa: true,
+        tab: activeTab,
+        detail: activeDetailPage,
+        scrollY: window.scrollY,
+        ...s,
+        ...extra,
+      },
       ""
     );
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, [activeTab, activeDetailPage]);
+  };
 
-  // Save latest scroll whenever it changes tab/detail *or* before unload
+  // INIT: stamp first entry with our state
   useEffect(() => {
-    const saveScroll = () => {
-      const s = history.state || {};
+    if (!history.state || !history.state.__spa) {
       history.replaceState(
         {
-          ...s,
+          __spa: true,
           tab: activeTab,
           detail: activeDetailPage,
           scrollY: window.scrollY,
         },
         ""
       );
+    }
+    hasInitRef.current = true;
+
+    const onPop = (e) => {
+      const next = e.state || {};
+      suppressNextPushRef.current = true; // <- critical: skip next push
+      // restore tab/detail first (this triggers a render)
+      if (next.tab && next.tab !== activeTab) setActiveTab(next.tab);
+
+      // after paint, restore scroll
+      requestAnimationFrame(() => {
+        const y = typeof next.scrollY === "number" ? next.scrollY : 0;
+        window.scrollTo(0, y);
+        // also ensure current entry reflects actual scroll
+        replaceWith({
+          scrollY: y,
+          tab: next.tab ?? activeTab,
+          detail: next.detail ?? activeDetailPage,
+        });
+      });
     };
-    const onScroll = () => saveScroll();
+
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // PUSH on in-app navigation (tab/detail changes)
+  useEffect(() => {
+    if (!hasInitRef.current) return;
+    if (suppressNextPushRef.current) {
+      // We arrived here due to a back/forward. Do NOT push.
+      suppressNextPushRef.current = false; // consume the guard once
+      // keep current entry updated with latest state
+      replaceWith();
+      return;
+    }
+
+    // User initiated navigation -> push a new entry
+    history.pushState(
+      {
+        __spa: true,
+        tab: activeTab,
+        detail: activeDetailPage,
+        scrollY: 0,
+      },
+      ""
+    );
+    // start “new page” at top
+    window.scrollTo({ top: 0, behavior: "auto" });
+    // also ensure the pushed entry stays current if user leaves immediately
+    replaceWith({ scrollY: 0 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab, activeDetailPage]);
+
+  // TRACK SCROLL: keep current entry’s scrollY fresh
+  useEffect(() => {
+    const onScroll = () => replaceWith();
+    const onBeforeUnload = () => replaceWith();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("beforeunload", saveScroll);
+    window.addEventListener("beforeunload", onBeforeUnload);
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("beforeunload", saveScroll);
+      window.removeEventListener("beforeunload", onBeforeUnload);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, activeDetailPage]);
 }

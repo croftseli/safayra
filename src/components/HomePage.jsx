@@ -168,8 +168,8 @@ const HomePage = ({ language, setActiveTab }) => {
 
                   {/* CTA bottom-left */}
                   <div className="mt-auto pt-8 self-start">
-                    <button
-                      onClick={() => setActiveTab(c.pageId)}
+                    <a
+                      href={`#${c.pageId}`}
                       className="inline-flex items-center rounded-none
                         bg-[#EBD4AD]/70 hover:bg-[#EBD4AD]/90 focus:bg-[#EBD4AD]/95
                         px-4 py-2 text-sm font-bold text-[#2b1b1b]
@@ -177,29 +177,15 @@ const HomePage = ({ language, setActiveTab }) => {
                         focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/50"
                     >
                       {t.learn}
-                    </button>
+                    </a>
                   </div>
                 </div>
 
                 {/* Whole-card click (on top, accessible) */}
                 <a
-                  href="#"
-                  role="link"
+                  href={`#${c.pageId}`}
                   aria-label={`${c.title[language]} — ${t.learn}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setActiveTab(c.pageId);
-                    window.scrollTo({ top: 0, behavior: "auto" });
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setActiveTab(c.pageId);
-                      window.scrollTo({ top: 0, behavior: "auto" });
-                    }
-                  }}
-                  className="absolute inset-0 z-30 cursor-pointer
-             focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/70"
+                  className="absolute inset-0 z-30 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/70"
                 />
               </div>
             ))}
@@ -276,7 +262,7 @@ const HomePage = ({ language, setActiveTab }) => {
 
               <div className="mt-12 md:mt-16 self-end">
                 <button
-                  onClick={() => setActiveTab("products")}
+                  href="#product"
                   className="inline-flex items-center rounded-none
                        bg-white/70 hover:bg-white/90 focus:bg-white
                        px-4 py-2 text-sm font-bold text-[#2b1b1b]
@@ -316,10 +302,7 @@ const HomePage = ({ language, setActiveTab }) => {
 
             <div className="mt-6 md:mt-8">
               <button
-                onClick={() => {
-                  setActiveTab?.("contact");
-                  window.scrollTo({ top: 0, behavior: "auto" });
-                }}
+                href="#contact"
                 className="inline-flex items-center rounded-none
                      bg-[#EBD4AD]/90 hover:bg-[#EBD4AD] focus:bg-[#EBD4AD]
                      px-5 py-2.5 text-sm md:text-base font-bold text-[#4d1112]

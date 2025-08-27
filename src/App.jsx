@@ -8,7 +8,8 @@ import ContactPage from "./components/ContactPage";
 import SkinPage from "./components/SkinPage";
 import CulinaryPage from "./components/CulinaryPage";
 import WellnessPage from "./components/WellnessPage";
-import useScrollHistory from "./hooks/useScrollHistory";
+
+import useHashNavigation from "./hooks/useHashNavigation";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home");
@@ -16,8 +17,8 @@ function App() {
   const [language, setLanguage] = useState("en");
   const [activeDetailPage, setActiveDetailPage] = useState(null);
 
-  // 👇 this handles pushing history on tab/detail change and restoring on back/forward
-  useScrollHistory({ activeTab, setActiveTab, activeDetailPage });
+  // 🔑 Back/forward + scroll restore handled here
+  useHashNavigation(activeTab, setActiveTab);
 
   const renderContent = () => {
     switch (activeTab) {
