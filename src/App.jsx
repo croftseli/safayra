@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
@@ -8,6 +8,7 @@ import ContactPage from "./components/ContactPage";
 import SkinPage from "./components/SkinPage";
 import CulinaryPage from "./components/CulinaryPage";
 import WellnessPage from "./components/WellnessPage";
+import useScrollHistory from "./hooks/useScrollHistory";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home");
@@ -15,10 +16,13 @@ function App() {
   const [language, setLanguage] = useState("en");
   const [activeDetailPage, setActiveDetailPage] = useState(null);
 
+  // 👇 this handles pushing history on tab/detail change and restoring on back/forward
+  useScrollHistory({ activeTab, setActiveTab, activeDetailPage });
+
   const renderContent = () => {
     switch (activeTab) {
       case "home":
-        return <HomePage language={language} setActiveTab={setActiveTab} />; // 👈 pass setActiveTab
+        return <HomePage language={language} setActiveTab={setActiveTab} />;
       case "about":
         return <AboutPage language={language} />;
       case "product":
@@ -36,13 +40,6 @@ function App() {
     }
   };
 
-  // Reset scroll on "navigation"
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [activeTab, activeDetailPage]);
-
   return (
     <div className="min-h-screen">
       <Header
@@ -58,7 +55,7 @@ function App() {
       <main
         className={
           activeTab === "home"
-            ? "w-full" // full-bleed hero
+            ? "w-full"
             : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
         }
       >
