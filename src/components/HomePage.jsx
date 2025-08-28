@@ -217,57 +217,61 @@ const HomePage = ({ language, setActiveTab }) => {
 
           {/* Grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-            {/* Top row: 3 images */}
-            <div className="relative md:col-span-3 h-60 sm:h-64 md:h-72 lg:h-80 rounded-none overflow-hidden shadow-2xl">
+            {/* Top row: 2 images */}
+            <div className="relative md:col-span-4 h-72 sm:h-80 md:h-96 lg:h-[28rem] rounded-none overflow-hidden shadow-2xl">
               <div
                 className="absolute inset-0 bg-center bg-cover"
-                style={{ backgroundImage: "url('/products-1.jpg')" }}
+                style={{
+                  backgroundImage: "url('/safayra-saffron-glass-new-2.jpg')",
+                }}
                 aria-hidden="true"
               />
             </div>
 
-            <div className="relative md:col-span-4 h-60 sm:h-64 md:h-72 lg:h-80 rounded-none overflow-hidden shadow-2xl">
+            <div className="relative md:col-span-8 h-72 sm:h-80 md:h-96 lg:h-[28rem] rounded-none overflow-hidden shadow-2xl">
               <div
                 className="absolute inset-0 bg-center bg-cover"
-                style={{ backgroundImage: "url('/products-2.jpg')" }}
-                aria-hidden="true"
-              />
-            </div>
-
-            <div className="relative md:col-span-5 h-60 sm:h-64 md:h-72 lg:h-80 rounded-none overflow-hidden shadow-2xl">
-              <div
-                className="absolute inset-0 bg-center bg-cover"
-                style={{ backgroundImage: "url('/products-3.jpg')" }}
+                style={{
+                  backgroundImage: "url('/safayra-saffron-two-bowls-new.png')",
+                }}
                 aria-hidden="true"
               />
             </div>
 
             {/* Second row: beige text panel (left) + image (right) */}
-            <div className="md:col-span-8 bg-[#EBD4AD]/90 shadow-xl rounded-none p-6 md:p-10 flex flex-col">
+            <div className="md:col-span-8 bg-[#EBD4AD]/90 shadow-xl rounded-none p-6 md:p-10 flex flex-col h-72 sm:h-80 md:h-96 lg:h-[28rem]">
               <p className="font-nanum text-[#4d1112] text-lg md:text-xl leading-relaxed">
                 {language === "fr"
-                  ? "Nous fournissons du safran Super Negin en vrac, en poudre ou en filaments, disponible en différentes quantités selon vos besoins."
+                  ? "Nous fournissons du safran Super Negin en vrac, en poudre ou en filaments, disponible en différentes quantités selon vos besoins. Chaque lot est soigneusement sélectionné pour garantir une qualité exceptionnelle et une couleur intense."
                   : language === "de"
-                  ? "Wir liefern Super-Negin-Safran in Großmengen, als Pulver oder Fäden, in verschiedenen Mengen ganz nach Ihren Bedürfnissen."
-                  : "We supply Super Negin saffron in bulk, either in powder or filament form. Available in various quantities to suit your needs."}
+                  ? "Wir liefern Super-Negin-Safran in Großmengen, als Pulver oder Fäden, in verschiedenen Mengen ganz nach Ihren Bedürfnissen. Jede Charge wird sorgfältig ausgewählt, um höchste Qualität und intensive Farbe sicherzustellen."
+                  : "We supply Super Negin saffron in bulk, either in powder or filament form. Each batch is carefully selected to ensure outstanding quality and vibrant color."}
               </p>
               <br />
               <p className="font-nanum text-[#4d1112] text-lg md:text-xl leading-relaxed">
                 {language === "fr"
-                  ? "Pour la vente au détail et prête à l’emploi, nous proposons également du safran pré-emballé en sachets de 0,4 g. Des grammages personnalisés peuvent être organisés sur demande."
+                  ? "Pour la vente au détail et prête à l’emploi, nous proposons également du safran pré-emballé en sachets de 0,4 g. Des grammages personnalisés peuvent être organisés sur demande. Notre processus d’emballage protège l’arôme délicat et les propriétés naturelles du safran."
                   : language === "de"
-                  ? "Für den Einzelhandel und den sofortigen Verkauf bieten wir zudem vorverpackten Safran in 0,4-g-Beuteln an. Individuelle Grammgewichte sind auf Anfrage möglich."
-                  : "For retail and ready-to-sell use, we also provide pre-packaged saffron in 0.4 g sachets. Custom gram weights can be arranged upon request."}
+                  ? "Für den Einzelhandel und den sofortigen Verkauf bieten wir zudem vorverpackten Safran in 0,4-g-Beuteln an. Individuelle Grammgewichte sind auf Anfrage möglich. Unsere Verpackung schützt das feine Aroma und die natürlichen Eigenschaften des Safrans."
+                  : "For retail and ready-to-sell use, we also provide pre-packaged saffron in 0.4 g sachets. Custom gram weights can be arranged upon request. Our packaging safeguards the delicate aroma and natural properties of saffron."}
+              </p>
+              <br />
+              <p className="font-nanum text-[#4d1112] text-lg md:text-xl leading-relaxed">
+                {language === "fr"
+                  ? "De plus, nous collaborons avec des producteurs de confiance et garantissons une traçabilité complète. Cela signifie que vous recevez toujours un produit pur, authentique et respectueux des normes internationales."
+                  : language === "de"
+                  ? "Darüber hinaus arbeiten wir mit vertrauenswürdigen Produzenten zusammen und garantieren volle Rückverfolgbarkeit. So erhalten Sie stets ein reines, authentisches Produkt, das internationalen Standards entspricht."
+                  : "In addition, we work closely with trusted growers and ensure full traceability. This means you always receive a pure, authentic product that meets international standards."}
               </p>
 
               <div className="mt-12 md:mt-16 self-end">
                 <button
                   href="#product"
                   className="inline-flex items-center rounded-none
-                       bg-white/70 hover:bg-white/90 focus:bg-white
-                       px-4 py-2 text-sm font-bold text-[#2b1b1b]
-                       shadow-sm transition-colors duration-200
-                       focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/50"
+         bg-white/70 hover:bg-white/90 focus:bg-white
+         px-4 py-2 text-sm font-bold text-[#2b1b1b]
+         shadow-sm transition-colors duration-200
+         focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/50"
                 >
                   {language === "fr"
                     ? "En savoir plus"
@@ -278,10 +282,12 @@ const HomePage = ({ language, setActiveTab }) => {
               </div>
             </div>
 
-            <div className="relative md:col-span-4 h-60 sm:h-64 md:h-72 lg:h-80 rounded-none overflow-hidden shadow-2xl">
+            <div className="relative md:col-span-4 h-72 sm:h-80 md:h-96 lg:h-[28rem] rounded-none overflow-hidden shadow-2xl">
               <div
                 className="absolute inset-0 bg-center bg-cover"
-                style={{ backgroundImage: "url('/products-4.jpg')" }}
+                style={{
+                  backgroundImage: "url('/safayra-saffron-bowl-new.jpg')",
+                }}
                 aria-hidden="true"
               />
             </div>

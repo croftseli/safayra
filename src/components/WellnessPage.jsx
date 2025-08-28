@@ -35,7 +35,7 @@ const WellnessPage = ({ language = "en" }) => {
       },
     },
     {
-      img: "/safayra-oil-massage.png",
+      img: "/safayra-massage-back-oil.jpg",
       eyebrow: {
         en: "Massage Oils & Body Treatments",
         fr: "Huiles de massage & soins du corps",
@@ -53,7 +53,7 @@ const WellnessPage = ({ language = "en" }) => {
       },
     },
     {
-      img: "/safayra-womens-health.png",
+      img: "/safayra-massage-women-health.jpg",
       eyebrow: {
         en: "Women’s Health",
         fr: "Santé des femmes",

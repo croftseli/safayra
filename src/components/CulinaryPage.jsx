@@ -81,7 +81,7 @@ const CulinaryPage = ({ language = "en" }) => {
             {/* One big image instead of 2×2 grid */}
             <div className="relative w-full overflow-hidden shadow-2xl aspect-[3/4] md:aspect-[2/3]">
               <img
-                src="/safayra-culinary-grid.png"
+                src="/safayra-culinary-grid-new.png"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />
