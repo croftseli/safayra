@@ -18,7 +18,7 @@ function App() {
   const [activeDetailPage, setActiveDetailPage] = useState(null);
 
   // 🔑 Back/forward + scroll restore handled here
-  useHashNavigation(activeTab, setActiveTab);
+  useHashNavigation(activeTab, setActiveTab, { scrollOnHashChange: "top" });
 
   const renderContent = () => {
     switch (activeTab) {
