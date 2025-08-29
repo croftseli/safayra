@@ -239,7 +239,10 @@ const HomePage = ({ language, setActiveTab }) => {
             </div>
 
             {/* Second row: beige text panel (left) + image (right) */}
-            <div className="md:col-span-8 bg-[#EBD4AD]/90 shadow-xl rounded-none p-6 md:p-10 flex flex-col h-72 sm:h-80 md:h-96 lg:h-[28rem]">
+            <div
+              className="md:col-span-8 bg-[#EBD4AD]/90 shadow-xl rounded-none p-6 md:p-10 flex flex-col 
+                h-auto md:h-96 lg:h-[28rem]"
+            >
               <p className="font-nanum text-[#4d1112] text-lg md:text-xl leading-relaxed">
                 {language === "fr"
                   ? "Nous fournissons du safran Super Negin en vrac, en poudre ou en filaments, disponible en différentes quantités selon vos besoins. Chaque lot est soigneusement sélectionné pour garantir une qualité exceptionnelle et une couleur intense."
