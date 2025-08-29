@@ -116,23 +116,6 @@ const ProductsPage = ({ language = "en" }) => {
                   ? "Darüber hinaus arbeiten wir mit vertrauenswürdigen Produzenten zusammen und garantieren volle Rückverfolgbarkeit. So erhalten Sie stets ein reines, authentisches Produkt, das internationalen Standards entspricht."
                   : "In addition, we work closely with trusted growers and ensure full traceability. This means you always receive a pure, authentic product that meets international standards."}
               </p>
-
-              <div className="mt-12 md:mt-16 self-end">
-                <button
-                  href="#product"
-                  className="inline-flex items-center rounded-none
-         bg-white/70 hover:bg-white/90 focus:bg-white
-         px-4 py-2 text-sm font-bold text-[#2b1b1b]
-         shadow-sm transition-colors duration-200
-         focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/50"
-                >
-                  {language === "fr"
-                    ? "En savoir plus"
-                    : language === "de"
-                    ? "Mehr erfahren"
-                    : "Learn more"}
-                </button>
-              </div>
             </div>
 
             <div className="relative md:col-span-4 h-72 sm:h-80 md:h-96 lg:h-[28rem] rounded-none overflow-hidden shadow-2xl">

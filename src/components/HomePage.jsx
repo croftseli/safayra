@@ -268,20 +268,20 @@ const HomePage = ({ language, setActiveTab }) => {
               </p>
 
               <div className="mt-12 md:mt-16 self-end">
-                <button
+                <a
                   href="#product"
                   className="inline-flex items-center rounded-none
-         bg-white/70 hover:bg-white/90 focus:bg-white
-         px-4 py-2 text-sm font-bold text-[#2b1b1b]
-         shadow-sm transition-colors duration-200
-         focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/50"
+     bg-white/70 hover:bg-white/90 focus:bg-white
+     px-4 py-2 text-sm font-bold text-[#2b1b1b]
+     shadow-sm transition-colors duration-200
+     focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/50"
                 >
                   {language === "fr"
                     ? "En savoir plus"
                     : language === "de"
                     ? "Mehr erfahren"
                     : "Learn more"}
-                </button>
+                </a>
               </div>
             </div>
 
@@ -310,16 +310,16 @@ const HomePage = ({ language, setActiveTab }) => {
             </p>
 
             <div className="mt-6 md:mt-8">
-              <button
+              <a
                 href="#contact"
                 className="inline-flex items-center rounded-none
-                     bg-[#EBD4AD]/90 hover:bg-[#EBD4AD] focus:bg-[#EBD4AD]
-                     px-5 py-2.5 text-sm md:text-base font-bold text-[#4d1112]
-                     shadow-sm transition-colors duration-200
-                     focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/40"
+       bg-[#EBD4AD]/90 hover:bg-[#EBD4AD] focus:bg-[#EBD4AD]
+       px-5 py-2.5 text-sm md:text-base font-bold text-[#4d1112]
+       shadow-sm transition-colors duration-200
+       focus:outline-none focus:ring-2 focus:ring-[#EBD4AD]/40"
               >
                 {cta.btn[language]}
-              </button>
+              </a>
             </div>
           </div>
         </div>
