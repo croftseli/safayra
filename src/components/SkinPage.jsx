@@ -60,7 +60,7 @@ const SkinPage = ({ language = "en" }) => {
                 ? "Pourquoi le soin de la peau aime le safran"
                 : language === "de"
                 ? "Warum Hautpflege Safran liebt"
-                : "Why skincare loves saffron"}
+                : "Exceptional Skincare Begins with Exceptional Ingredients"}
             </h2>
 
             <p className="text-brand font-nanum text-base md:text-lg leading-relaxed">

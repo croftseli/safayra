@@ -52,28 +52,28 @@ const CulinaryPage = ({ language = "en" }) => {
                     ? "Intensité aromatique unique"
                     : language === "de"
                     ? "Einzigartige aromatische Intensität"
-                    : "Unique aromatic intensity"}
+                    : "Discover an exceptional aromatic intensity, carried by a carefully handpicked natural ingredient. Its naturally vibrant pigmentation, free from any artificial coloring, brings a one-of-a-kind visual touch to your creations. With just a sprinkle, your dishes are elevated, both in taste and in appearance. Beyond its culinary virtues, this product is packed with health benefits, thanks to its remarkable properties."}
                 </li>
                 <li>
                   {language === "fr"
                     ? "Pigmentation naturellement vibrante (sans colorant artificiel)"
                     : language === "de"
                     ? "Natürlich leuchtende Färbung (ohne künstliche Farbstoffe)"
-                    : "Naturally vibrant pigmentation (no artificial coloring required)"}
+                    : ""}
                 </li>
                 <li>
                   {language === "fr"
                     ? "Valorise instantanément chaque plat"
                     : language === "de"
                     ? "Steigert sofort den wahrgenommenen Wert jedes Gerichts"
-                    : "Instantly elevates the perceived value of any dish"}
+                    : ""}
                 </li>
                 <li>
                   {language === "fr"
                     ? "Bénéfices santé (antioxydant, apaisant, anti-inflammatoire)"
                     : language === "de"
                     ? "Gesundheitsvorteile (antioxidativ, beruhigend, entzündungshemmend)"
-                    : "Health benefits (antioxidant, soothing, anti-inflammatory)"}
+                    : ""}
                 </li>
               </ul>
             </div>

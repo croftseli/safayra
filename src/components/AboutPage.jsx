@@ -33,12 +33,12 @@ const AboutPage = ({ language = "en" }) => {
       de: "Das Herz der Safranproduktion",
     },
     heartP1: {
-      en: "Iran, which accounts for nearly 90% of global production, is the historical heartland of saffron. Its cultivation relies on ancestral know-how: each flower is hand-picked at dawn, and the stigmas are delicately removed one by one. The flowering season, which lasts only a few weeks from late October to mid-November, requires an intense pace of work within a short time frame.",
+      en: "Iran, which accounts for nearly 90% of global production, is the historical heartland of saffron. Its cultivation relies on ancestral know-how. Each flower is hand-picked at dawn, and the stigmas are delicately removed one by one. The flowering season, which lasts only a few weeks from late October to mid-November, requires an intense pace of work within a short time frame.",
       fr: "L’Iran, qui représente près de 90 % de la production mondiale, est le berceau historique du safran. Sa culture repose sur un savoir-faire ancestral : chaque fleur est cueillie à l’aube, et les stigmates sont délicatement retirés un à un. La floraison, qui ne dure que quelques semaines de fin octobre à mi-novembre, impose un rythme de travail intense sur une période très courte.",
       de: "Der Iran, der nahezu 90 % der weltweiten Produktion ausmacht, ist die historische Heimat des Safrans. Sein Anbau beruht auf jahrhundertealtem Know-how: Jede Blüte wird im Morgengrauen von Hand gepflückt, die Narben anschließend behutsam einzeln entfernt. Die Blütezeit, die nur wenige Wochen von Ende Oktober bis Mitte November dauert, erfordert in kurzer Zeit ein sehr intensives Arbeitstempo.",
     },
     heartP2: {
-      en: "This artisanal method, combined with the rarity of the harvest, is what makes saffron the most precious spice in the world. We believe that excellence begins with connection. That's why we collaborate closely with our clients, from chefs to retailers, to deliver not just saffron, but a thoughtful, tailored experience.",
+      en: "This artisanal method, combined with the rarity of the harvest, is what makes saffron the most precious spice in the world.",
       fr: "Cette méthode artisanale, combinée à la rareté de la récolte, fait du safran l’épice la plus précieuse au monde. Nous croyons que l’excellence naît de la relation. C’est pourquoi nous collaborons étroitement avec nos clients, des chefs aux détaillants, afin d’offrir non seulement du safran, mais une expérience réfléchie et sur mesure.",
       de: "Diese handwerkliche Methode, verbunden mit der Seltenheit der Ernte, macht Safran zum kostbarsten Gewürz der Welt. Wir sind überzeugt, dass Exzellenz mit Verbindung beginnt. Daher arbeiten wir eng mit unseren Kunden – von Köchen bis zu Einzelhändlern – zusammen, um nicht nur Safran zu liefern, sondern ein durchdachtes, maßgeschneidertes Erlebnis.",
     },

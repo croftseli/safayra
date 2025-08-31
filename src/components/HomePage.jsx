@@ -19,7 +19,7 @@ const HomePage = ({ language, setActiveTab }) => {
           de: "Das kulinarische Erlebnis bereichern",
         },
         desc: {
-          en: "Saffron for chefs, restaurants and gastronomic creations.",
+          en: "Saffron to elevate your gastronomic creations.",
           fr: "Safran pour chefs, restaurants et créations gastronomiques.",
           de: "Safran für Köche, Restaurants und gastronomische Kreationen.",
         },
@@ -50,7 +50,7 @@ const HomePage = ({ language, setActiveTab }) => {
           de: "Wohlbefinden",
         },
         desc: {
-          en: "Saffron is a natural ally for everyday well-being.",
+          en: "A natural ally for your everyday well-being.",
           fr: "Le safran est un allié naturel du bien-être au quotidien.",
           de: "Safran ist ein natürlicher Begleiter für tägliches Wohlbefinden.",
         },
@@ -70,7 +70,7 @@ const HomePage = ({ language, setActiveTab }) => {
       de: "Sprechen wir über Safran",
     },
     body: {
-      en: "From restaurants to retail, we tailor our premium Super Negin saffron to your needs. Tell us what you’re building—culinary, skincare, or wellness—and we’ll craft the right fit.",
+      en: "From restaurants to retail, we tailor our premium Super Negin saffron to your needs. Tell us what you’re building, and we’ll craft the right fit.",
       fr: "De la restauration au retail, nous adaptons notre safran Super Negin à vos besoins. Dites-nous votre projet — cuisine, soin, bien-être — et nous trouverons la meilleure solution.",
       de: "Von Gastronomie bis Handel: Wir passen unseren Super-Negin-Safran Ihren Anforderungen an. Erzählen Sie uns Ihr Vorhaben – Kulinarik, Pflege oder Wellness – und wir finden die passende Lösung.",
     },
@@ -264,7 +264,7 @@ const HomePage = ({ language, setActiveTab }) => {
                   ? "De plus, nous collaborons avec des producteurs de confiance et garantissons une traçabilité complète. Cela signifie que vous recevez toujours un produit pur, authentique et respectueux des normes internationales."
                   : language === "de"
                   ? "Darüber hinaus arbeiten wir mit vertrauenswürdigen Produzenten zusammen und garantieren volle Rückverfolgbarkeit. So erhalten Sie stets ein reines, authentisches Produkt, das internationalen Standards entspricht."
-                  : "In addition, we work closely with trusted growers and ensure full traceability. This means you always receive a pure, authentic product that meets international standards."}
+                  : "We work closely with trusted growers and ensure full traceability. This means you always receive a pure, authentic product that meets international standards. It’s about excellence, heritage, and the hands that make it all possible."}
               </p>
 
               <div className="mt-12 md:mt-16 self-end">

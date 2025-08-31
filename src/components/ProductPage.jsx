@@ -14,7 +14,7 @@ const ProductsPage = ({ language = "en" }) => {
       de: "Wir bieten Super-Negin-Safran an, eine der hochwertigsten Qualitäten auf dem Markt. Er zeichnet sich durch seine gleichmäßig tiefrote Farbe, lange ungebrochene Narben und ein intensives Aroma aus. Seine Reinheit und gleichbleibende Qualität machen ihn ideal für kulinarische Anwendungen, traditionelle Heilmittel und hochwertige Produktformulierungen.",
     },
     p2: {
-      en: "Super Negin saffron contains very few broken threads and provides a rich, distinctive taste. Thanks to its visual and aromatic qualities, it is among the most valuable saffron varieties, widely used by professionals in gastronomy, natural cosmetics, and wellness industries.",
+      en: "Super Negin saffron provides a rich, distinctive taste. Thanks to its visual and aromatic qualities, it is among the most valuable saffron varieties, widely used by professionals in gastronomy, natural cosmetics, and wellness industries.",
       fr: "Le safran Super Negin contient très peu de filaments cassés et offre une saveur riche et distinctive. Grâce à ses qualités visuelles et aromatiques, il figure parmi les variétés de safran les plus précieuses, largement utilisées par les professionnels de la gastronomie, de la cosmétique naturelle et du bien-être.",
       de: "Super-Negin-Safran enthält nur sehr wenige gebrochene Fäden und bietet einen reichen, charakteristischen Geschmack. Dank seiner visuellen und aromatischen Eigenschaften zählt er zu den wertvollsten Safransorten und wird von Fachleuten in Gastronomie, Naturkosmetik und Wellness breit eingesetzt.",
     },
@@ -114,7 +114,7 @@ const ProductsPage = ({ language = "en" }) => {
                   ? "De plus, nous collaborons avec des producteurs de confiance et garantissons une traçabilité complète. Cela signifie que vous recevez toujours un produit pur, authentique et respectueux des normes internationales."
                   : language === "de"
                   ? "Darüber hinaus arbeiten wir mit vertrauenswürdigen Produzenten zusammen und garantieren volle Rückverfolgbarkeit. So erhalten Sie stets ein reines, authentisches Produkt, das internationalen Standards entspricht."
-                  : "In addition, we work closely with trusted growers and ensure full traceability. This means you always receive a pure, authentic product that meets international standards."}
+                  : "We work closely with trusted growers and ensure full traceability. This means you always receive a pure, authentic product that meets international standards. It’s about excellence, heritage, and the hands that make it all possible."}
               </p>
             </div>
 
