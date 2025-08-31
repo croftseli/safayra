@@ -74,8 +74,8 @@ const ProductsPage = ({ language = "en" }) => {
       <section id="products" className="w-full px-4 py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
           {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-            {/* Top row: 2 images */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+            {/* Top row: 2 images (unchanged) */}
             <div className="relative md:col-span-4 h-72 sm:h-80 md:h-96 lg:h-[28rem] rounded-none overflow-hidden shadow-2xl">
               <div
                 className="absolute inset-0 bg-center bg-cover"
@@ -98,10 +98,10 @@ const ProductsPage = ({ language = "en" }) => {
 
             {/* Second row: beige text panel (left) + image (right) */}
             <div
-              className="md:col-span-8 bg-[#EBD4AD]/90 shadow-xl rounded-none p-6 md:p-10 flex flex-col 
-                h-auto md:h-96 lg:h-[28rem]"
+              className="md:col-span-8 bg-[#EBD4AD]/90 shadow-xl rounded-none p-6 md:p-10 flex flex-col
+               h-auto"
             >
-              <p className="font-nanum text-[#4d1112] text-lg md:text-xl leading-relaxed">
+              <p className="font-serif text-[#4d1112] text-lg md:text-xl leading-relaxed">
                 {language === "fr"
                   ? "Nous fournissons du safran Super Negin en vrac, en poudre ou en filaments, disponible en différentes quantités selon vos besoins. Chaque lot est soigneusement sélectionné pour garantir une qualité exceptionnelle et une couleur intense."
                   : language === "de"
@@ -109,7 +109,7 @@ const ProductsPage = ({ language = "en" }) => {
                   : "We supply Super Negin saffron in bulk, either in powder or filament form. Each batch is carefully selected to ensure outstanding quality and vibrant color."}
               </p>
               <br />
-              <p className="font-nanum text-[#4d1112] text-lg md:text-xl leading-relaxed">
+              <p className="font-serif text-[#4d1112] text-lg md:text-xl leading-relaxed">
                 {language === "fr"
                   ? "Pour la vente au détail et prête à l’emploi, nous proposons également du safran pré-emballé en sachets de 0,4 g. Des grammages personnalisés peuvent être organisés sur demande. Notre processus d’emballage protège l’arôme délicat et les propriétés naturelles du safran."
                   : language === "de"
@@ -117,7 +117,7 @@ const ProductsPage = ({ language = "en" }) => {
                   : "For retail and ready-to-sell use, we also provide pre-packaged saffron in 0.4 g sachets. Custom gram weights can be arranged upon request. Our packaging safeguards the delicate aroma and natural properties of saffron."}
               </p>
               <br />
-              <p className="font-nanum text-[#4d1112] text-lg md:text-xl leading-relaxed">
+              <p className="font-serif text-[#4d1112] text-lg md:text-xl leading-relaxed">
                 {language === "fr"
                   ? "Nous collaborons avec des producteurs de confiance et garantissons une traçabilité complète. Cela signifie que vous recevez toujours un produit pur, authentique et respectueux des normes internationales."
                   : language === "de"
@@ -126,13 +126,12 @@ const ProductsPage = ({ language = "en" }) => {
               </p>
             </div>
 
-            <div className="relative md:col-span-4 h-72 sm:h-80 md:h-96 lg:h-[28rem] rounded-none overflow-hidden shadow-2xl">
-              <div
-                className="absolute inset-0 bg-center bg-cover"
-                style={{
-                  backgroundImage: "url('/safayra-saffron-bowl-new.jpg')",
-                }}
-                aria-hidden="true"
+            {/* Image column that stretches to match the beige panel height */}
+            <div className="md:col-span-4 rounded-none overflow-hidden shadow-2xl">
+              <img
+                src="/safayra-saffron-bowl-new.jpg"
+                alt=""
+                className="w-full h-full object-cover"
               />
             </div>
           </div>

@@ -20,7 +20,7 @@ const HomePage = ({ language, setActiveTab }) => {
         },
         desc: {
           en: "Saffron to elevate your gastronomic creations.",
-          fr: "Une épice qui sublime vos créations culinaires.",
+          fr: "Une épice qui sublime vos créations gastronomiques.",
           de: "Safran für Köche, Restaurants und gastronomische Kreationen.",
         },
       },
