@@ -20,7 +20,7 @@ const HomePage = ({ language, setActiveTab }) => {
         },
         desc: {
           en: "Saffron to elevate your gastronomic creations.",
-          fr: "Safran pour chefs, restaurants et créations gastronomiques.",
+          fr: "Une épice qui sublime vos créations culinaires.",
           de: "Safran für Köche, Restaurants und gastronomische Kreationen.",
         },
       },
@@ -35,7 +35,7 @@ const HomePage = ({ language, setActiveTab }) => {
         },
         desc: {
           en: "A precious antioxidant for your skincare.",
-          fr: "Un précieux antioxydant pour votre soin de la peau.",
+          fr: "Un pécieux antioxydant pour votre peau.",
           de: "Ein wertvolles Antioxidans für Ihre Hautpflege.",
         },
       },
@@ -51,7 +51,7 @@ const HomePage = ({ language, setActiveTab }) => {
         },
         desc: {
           en: "A natural ally for your everyday well-being.",
-          fr: "Le safran est un allié naturel du bien-être au quotidien.",
+          fr: "Un allié naturel pour votre quotidient.",
           de: "Safran ist ein natürlicher Begleiter für tägliches Wohlbefinden.",
         },
       },
@@ -71,10 +71,10 @@ const HomePage = ({ language, setActiveTab }) => {
     },
     body: {
       en: "From restaurants to retail, we tailor our premium Super Negin saffron to your needs. Tell us what you’re building, and we’ll craft the right fit.",
-      fr: "De la restauration au retail, nous adaptons notre safran Super Negin à vos besoins. Dites-nous votre projet — cuisine, soin, bien-être — et nous trouverons la meilleure solution.",
+      fr: "Partagez-nous votre projet et ensemble, nous créerons la solution parfaite.",
       de: "Von Gastronomie bis Handel: Wir passen unseren Super-Negin-Safran Ihren Anforderungen an. Erzählen Sie uns Ihr Vorhaben – Kulinarik, Pflege oder Wellness – und wir finden die passende Lösung.",
     },
-    btn: { en: "Contact us", fr: "Nous contacter", de: "Kontakt aufnehmen" },
+    btn: { en: "Contact us", fr: "Contactez-nous", de: "Kontakt aufnehmen" },
   };
 
   return (
@@ -123,9 +123,9 @@ const HomePage = ({ language, setActiveTab }) => {
               </>
             ) : language === "fr" ? (
               <>
-                Un voyage des champs ensoleillés d'Iran
+                Un voyage des terres ensoleillées d’Iran
                 <br className="block" />
-                au cœur de l'Europe.
+                jusqu’au cœur de l’Europe.
               </>
             ) : (
               <>
@@ -261,7 +261,7 @@ const HomePage = ({ language, setActiveTab }) => {
               <br />
               <p className="font-serif text-[#4d1112] text-lg md:text-xl leading-relaxed">
                 {language === "fr"
-                  ? "De plus, nous collaborons avec des producteurs de confiance et garantissons une traçabilité complète. Cela signifie que vous recevez toujours un produit pur, authentique et respectueux des normes internationales."
+                  ? "Nous collaborons avec des producteurs de confiance et garantissons une traçabilité complète. Cela signifie que vous recevez toujours un produit pur, authentique et respectueux des normes internationales."
                   : language === "de"
                   ? "Darüber hinaus arbeiten wir mit vertrauenswürdigen Produzenten zusammen und garantieren volle Rückverfolgbarkeit. So erhalten Sie stets ein reines, authentisches Produkt, das internationalen Standards entspricht."
                   : "We work closely with trusted growers and ensure full traceability. This means you always receive a pure, authentic product that meets international standards. It’s about excellence, heritage, and the hands that make it all possible."}

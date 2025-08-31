@@ -130,7 +130,7 @@ const ContactPage = ({ language = "en" }) => {
     },
     tagline: {
       en: "A direct line to red gold",
-      fr: "Un accès direct à l’or rouge",
+      fr: "Une invitation à l’or rouge",
       de: "Direkter Draht zum roten Gold",
     },
   };

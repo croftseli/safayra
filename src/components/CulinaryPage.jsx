@@ -49,28 +49,28 @@ const CulinaryPage = ({ language = "en" }) => {
               <ul className="font-nanum text-base md:text-lg leading-relaxed space-y-2">
                 <li>
                   {language === "fr"
-                    ? "Intensité aromatique unique"
+                    ? "Découvrez une intensité aromatique exceptionnelle, portée par un ingrédient d’origine naturelle soigneusement sélectionnés. Sa pigmentation naturellement vibrante, sans aucun colorant artificiel, apporte une touche visuelle unique à vos préparations."
                     : language === "de"
                     ? "Einzigartige aromatische Intensität"
                     : "Discover an exceptional aromatic intensity, carried by a carefully handpicked natural ingredient. Its naturally vibrant pigmentation, free from any artificial coloring, brings a one-of-a-kind visual touch to your creations. With just a sprinkle, your dishes are elevated, both in taste and in appearance. Beyond its culinary virtues, this product is packed with health benefits, thanks to its remarkable properties."}
                 </li>
                 <li>
                   {language === "fr"
-                    ? "Pigmentation naturellement vibrante (sans colorant artificiel)"
+                    ? "En un seul geste, vos plats sont sublimés, tant par le goût que par la couleur. Au-delà de ses qualités culinaires, ce produit regorge de bienfaits pour la santé, grâce à ses propriétés."
                     : language === "de"
                     ? "Natürlich leuchtende Färbung (ohne künstliche Farbstoffe)"
                     : ""}
                 </li>
                 <li>
                   {language === "fr"
-                    ? "Valorise instantanément chaque plat"
+                    ? ""
                     : language === "de"
                     ? "Steigert sofort den wahrgenommenen Wert jedes Gerichts"
                     : ""}
                 </li>
                 <li>
                   {language === "fr"
-                    ? "Bénéfices santé (antioxydant, apaisant, anti-inflammatoire)"
+                    ? ""
                     : language === "de"
                     ? "Gesundheitsvorteile (antioxidativ, beruhigend, entzündungshemmend)"
                     : ""}

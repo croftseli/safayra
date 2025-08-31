@@ -9,7 +9,7 @@ const AboutPage = ({ language = "en" }) => {
     },
     p1: {
       en: "Ethically sourced saffron from Iran, Safayra is a journey from the sun-drenched fields of Iran to the heart of Europe. We bring you premium-quality saffron, carefully handpicked from its land of origin, where centuries of tradition meet ethical and modern practices.",
-      fr: "Safran sourcé de manière éthique en Iran, Safayra est un voyage des champs baignés de soleil d’Iran jusqu’au cœur de l’Europe. Nous vous apportons un safran de qualité premium, soigneusement cueilli dans sa terre d’origine, où des siècles de tradition rencontrent des pratiques éthiques et modernes.",
+      fr: "Sourcé de manière éthique en Iran, Safayra est un voyage des champs baignés de soleil d’Iran jusqu’au cœur de l’Europe. Nous vous apportons un safran de qualité premium, soigneusement cueilli dans sa terre d’origine, où des siècles de tradition rencontrent des pratiques éthiques et modernes.",
       de: "Ethisch bezogener Safran aus dem Iran – Safayra ist eine Reise von den sonnengetränkten Feldern Irans bis ins Herz Europas. Wir bringen Ihnen Premium-Safran, sorgfältig von seinem Ursprungsland handverlesen, wo jahrhundertealte Tradition auf ethische und moderne Praktiken trifft.",
     },
     p2: {
@@ -19,7 +19,7 @@ const AboutPage = ({ language = "en" }) => {
     },
     p3: {
       en: "Every batch is lab-tested for purity and quality, meeting the highest standards of color, aroma, and strength. At Safayra, excellence begins with connection. We collaborate closely with our clients to deliver not just saffron, but a thoughtful and elevated experience.",
-      fr: "Chaque lot est en laboratoire testé pour la pureté et la qualité, répondant aux plus hauts standards de couleur, d’arôme et d’intensité. Chez Safayra, l’excellence commence par la relation. Nous collaborons étroitement avec nos clients pour offrir non seulement du safran, mais une expérience soignée et d’exception.",
+      fr: "Chaque lot est testé en laboratoire pour la pureté et la qualité, répondant aux plus hauts standards de couleur, d’arôme et d’intensité. Chez Safayra, l’excellence commence par la relation. Nous collaborons étroitement avec nos clients pour offrir non seulement du safran, mais une expérience soignée et d’exception.",
       de: "Jede Charge wird im Labor auf Reinheit und Qualität geprüft und erfüllt höchste Standards in Farbe, Aroma und Stärke. Bei Safayra beginnt Exzellenz mit Verbindung. Wir arbeiten eng mit unseren Kunden zusammen, um nicht nur Safran zu liefern, sondern ein durchdachtes, anspruchsvolles Erlebnis.",
     },
     tagline: {
@@ -34,7 +34,7 @@ const AboutPage = ({ language = "en" }) => {
     },
     heartP1: {
       en: "Iran, which accounts for nearly 90% of global production, is the historical heartland of saffron. Its cultivation relies on ancestral know-how. Each flower is hand-picked at dawn, and the stigmas are delicately removed one by one. The flowering season, which lasts only a few weeks from late October to mid-November, requires an intense pace of work within a short time frame.",
-      fr: "L’Iran, qui représente près de 90 % de la production mondiale, est le berceau historique du safran. Sa culture repose sur un savoir-faire ancestral : chaque fleur est cueillie à l’aube, et les stigmates sont délicatement retirés un à un. La floraison, qui ne dure que quelques semaines de fin octobre à mi-novembre, impose un rythme de travail intense sur une période très courte.",
+      fr: "L’Iran représentant près de 90% de la production mondiale, est le berceau historique du safran. Sa culture repose sur un savoir-faire ancestral. Chaque fleur est cueillie à l’aube, et les stigmates sont délicatement retirés un à un. La floraison, qui ne dure que quelques semaines de fin octobre à mi-novembre, impose un rythme de travail intense sur une période très courte.",
       de: "Der Iran, der nahezu 90 % der weltweiten Produktion ausmacht, ist die historische Heimat des Safrans. Sein Anbau beruht auf jahrhundertealtem Know-how: Jede Blüte wird im Morgengrauen von Hand gepflückt, die Narben anschließend behutsam einzeln entfernt. Die Blütezeit, die nur wenige Wochen von Ende Oktober bis Mitte November dauert, erfordert in kurzer Zeit ein sehr intensives Arbeitstempo.",
     },
     heartP2: {

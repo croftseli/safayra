@@ -25,7 +25,7 @@ const WellnessPage = ({ language = "en" }) => {
       },
       title: {
         en: "Nature’s touch in daily wellness",
-        fr: "La touche de la nature au quotidien",
+        fr: "Une touche naturelle pour votre quotidien",
         de: "Natürliche Unterstützung im Alltag",
       },
       text: {
@@ -43,7 +43,7 @@ const WellnessPage = ({ language = "en" }) => {
       },
       title: {
         en: "A natural ally for relaxation and recovery",
-        fr: "Un allié naturel pour détente et récupération",
+        fr: "Un allié naturel favorisant la détente et la récupération",
         de: "Ein natürlicher Partner für Entspannung und Regeneration",
       },
       text: {
@@ -56,7 +56,7 @@ const WellnessPage = ({ language = "en" }) => {
       img: "/safayra-massage-women-health.jpg",
       eyebrow: {
         en: "Women’s Health",
-        fr: "Santé des femmes",
+        fr: "Côté femmes",
         de: "Frauengesundheit",
       },
       title: {
@@ -66,7 +66,7 @@ const WellnessPage = ({ language = "en" }) => {
       },
       text: {
         en: "Saffron supports women’s health by helping ease menstrual discomfort and promoting hormonal balance, particularly during the menstrual cycle and menopause.",
-        fr: "Le safran soutient la santé des femmes en aidant à soulager l’inconfort menstruel et à favoriser l’équilibre hormonal, notamment pendant le cycle et la ménopause.",
+        fr: "Le safran permet de soulager l’inconfort menstruel et favorise l’équilibre hormonal, notamment pendant le cycle et la ménopause.",
         de: "Safran unterstützt die Frauengesundheit, lindert Menstruationsbeschwerden und fördert das hormonelle Gleichgewicht – besonders während Zyklus und Wechseljahren.",
       },
     },

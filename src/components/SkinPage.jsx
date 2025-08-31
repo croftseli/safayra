@@ -57,7 +57,7 @@ const SkinPage = ({ language = "en" }) => {
           <div className="col-span-12 md:col-span-5 self-center pl-4 md:pl-6 lg:pl-8 pr-2 md:pr-4 lg:pr-6">
             <h2 className="text-brand font-nanum text-2xl md:text-3xl mb-4 md:mb-6">
               {language === "fr"
-                ? "Pourquoi le soin de la peau aime le safran"
+                ? "Des soins d’exception commencent par des ingrédients d’exception."
                 : language === "de"
                 ? "Warum Hautpflege Safran liebt"
                 : "Exceptional Skincare Begins with Exceptional Ingredients"}
@@ -65,7 +65,7 @@ const SkinPage = ({ language = "en" }) => {
 
             <p className="text-brand font-nanum text-base md:text-lg leading-relaxed">
               {language === "fr"
-                ? "Intégré aux soins de la peau, le safran aide à raviver l’éclat naturel, à améliorer la fermeté et à réduire visiblement les signes de fatigue et de vieillissement. Grâce à sa richesse en vitamine C et à ses propriétés inhibitrices de la mélanine, il favorise un teint plus homogène, atténue les taches, l’hyperpigmentation et les cicatrices d’acné, tout en améliorant visiblement la texture de la peau."
+                ? "Intégré aux soins de la peau, le safran ravive l’éclat naturel, améliore la fermeté et réduit visiblement les signes de fatigue et de vieillissement. Grâce à sa richesse en vitamine C et à ses propriétés inhibitrices de la mélanine, il favorise un teint plus homogène, atténue les taches, l’hyperpigmentation et les cicatrices d’acné, tout en améliorant visiblement la texture de la peau."
                 : language === "de"
                 ? "In die Hautpflege integriert, hilft Safran, die natürliche Ausstrahlung der Haut zu beleben, die Festigkeit zu verbessern und sichtbare Anzeichen von Müdigkeit und Alterung zu reduzieren. Dank seines hohen Vitamin-C-Gehalts und melaninhemmender Eigenschaften trägt er zu einem ebenmäßigeren Teint bei, lindert dunkle Flecken, Hyperpigmentierung und Aknenarben und verbessert sichtbar die Hautstruktur."
                 : "When integrated into skincare, saffron helps revive the skin's natural radiance, enhance firmness, and visibly reduce signs of fatigue and aging. Thanks to its high vitamin C content and melanin-inhibiting properties, it contributes to a more even complexion, fading dark spots, hyperpigmentation, and acne scars, while visibly improving skin texture."}
@@ -73,7 +73,7 @@ const SkinPage = ({ language = "en" }) => {
 
             <p className="text-brand font-nanum text-base md:text-lg leading-relaxed mt-6">
               {language === "fr"
-                ? "Grâce à ses actions anti-inflammatoires et antibactériennes, le safran est un allié puissant pour prévenir les imperfections, apaiser les irritations et favoriser la régénération cellulaire. Idéal pour les peaux ternes, sensibles ou déshydratées, il apporte également une hydratation naturelle, aidant à restaurer douceur, souplesse et luminosité durable."
+                ? "Grâce à ses actions anti-inflammatoires et antibactériennes, le safran est un allié puissant pour prévenir les imperfections, apaiser les irritations et favoriser la régénération cellulaire. Idéal pour les peaux ternes, sensibles ou déshydratées, il apporte également une hydratation naturelle, aidant à restaurer douceur, souplesse et un teint lumineux."
                 : language === "de"
                 ? "Durch seine entzündungshemmenden und antibakteriellen Eigenschaften ist Safran ein starker Verbündeter zur Vorbeugung von Unreinheiten, zur Beruhigung von Reizungen und zur Förderung der Zellregeneration. Ideal für matte, empfindliche oder dehydrierte Haut liefert Safran zudem natürliche Feuchtigkeit und hilft, Weichheit, Geschmeidigkeit und lang anhaltende Leuchtkraft wiederherzustellen."
                 : "Its anti-inflammatory and antibacterial actions make saffron a powerful ally in preventing blemishes, soothing irritation, and promoting cellular regeneration. Ideal for dull, sensitive, or dehydrated skin, saffron also delivers natural hydration, helping to restore softness, smoothness, and lasting luminosity."}
