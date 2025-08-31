@@ -26,6 +26,18 @@ const Header = ({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close mobile menu whenever the language changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [language, setMobileMenuOpen]);
+
+  // Close mobile menu on any hash change (navigating to #about, back button, etc.)
+  useEffect(() => {
+    const closeOnHash = () => setMobileMenuOpen(false);
+    window.addEventListener("hashchange", closeOnHash);
+    return () => window.removeEventListener("hashchange", closeOnHash);
+  }, [setMobileMenuOpen]);
+
   // Header background rule (seamless on hero like homepage)
   const headerChrome =
     isScrolled || !overHero ? "backdrop-blur-md shadow-lg" : "bg-transparent";
@@ -220,6 +232,7 @@ const Header = ({
                     onClick={() => {
                       setLanguage(lang.code);
                       setShowLang(false);
+                      setMobileMenuOpen(false); // ✅ close mobile menu if open
                     }}
                     className="flex items-center px-4 py-2 text-sm w-full text-[#4d1112] hover:bg-amber-50 font-nanum font-extrabold"
                     role="menuitem"
@@ -339,7 +352,10 @@ const Header = ({
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => setLanguage(lang.code)}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setMobileMenuOpen(false); // ✅ close menu after language change
+                      }}
                       className={`p-1 xs:p-1.5 rounded-lg transition-all duration-200 text-sm xs:text-base text-[#4d1112] font-nanum font-extrabold ${
                         language === lang.code
                           ? "bg-[#EBD4AD]/60 shadow-md"
