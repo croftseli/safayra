@@ -18,6 +18,11 @@ const ProductsPage = ({ language = "en" }) => {
       fr: "Le safran Super Negin offre une saveur riche et distinctive. Grâce à ses qualités visuelles et aromatiques, il figure parmi les variétés de safran les plus précieuses, largement utilisées par les professionnels de la gastronomie, de la cosmétique naturelle et du bien-être.",
       de: "Super-Negin-Safran enthält nur sehr wenige gebrochene Fäden und bietet einen reichen, charakteristischen Geschmack. Dank seiner visuellen und aromatischen Eigenschaften zählt er zu den wertvollsten Safransorten und wird von Fachleuten in Gastronomie, Naturkosmetik und Wellness breit eingesetzt.",
     },
+    p3: {
+      en: "",
+      fr: "C’est une question d’excellence, d’héritage et des mains qui rendent tout cela possible.",
+      de: "",
+    },
     tagline: {
       en: "A touch to elevate your everyday lifestyle",
       fr: "Une touche pour sublimer votre quotidien",
@@ -58,6 +63,9 @@ const ProductsPage = ({ language = "en" }) => {
           </p>
           <p className="text-brand font-nanum text-base md:text-lg leading-relaxed">
             {t.p2[language]}
+          </p>
+          <p className="text-brand font-nanum text-base md:text-lg leading-relaxed">
+            {t.p3[language]}
           </p>
         </div>
       </section>
