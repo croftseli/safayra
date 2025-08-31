@@ -1,5 +1,6 @@
 /* Imports MUST be first */
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+/* Lora has full Latin Extended coverage for umlauts, accents, etc. */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap&subset=latin-ext');
 @import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
 
 /* Tailwind layers */
@@ -18,19 +19,28 @@
     scroll-behavior: smooth;
     background-color: var(--brand-deep);
     overflow-x: hidden; /* prevent horizontal scroll */
+
+    /* Font rendering tweaks */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
     margin: 0;
     overflow-x: hidden;
-    font-family: 'Nanum Myeongjo', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+    /* Use Lora everywhere for consistency */
+    font-family: 'Lora', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+    /* Avoid fake bold/italic which can cause weight mismatches */
+    font-synthesis: none;
   }
 
   h1, h2, h3 {
     font-family: inherit; /* inherit from body, no override */
   }
 }
-
 
 /* Utilities */
 @layer utilities {
@@ -45,12 +55,15 @@
   .bg-brand { background-color: var(--brand-beige); }
   .border-brand { border-color: var(--brand-beige); }
 
-  .font-nanum {
-    font-family: 'Nanum Myeongjo', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  /* Optional: explicit font utility using Lora */
+  .font-serif {
+    font-family: 'Lora', ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-synthesis: none;
   }
 
   .font-aurore {
     font-family: 'La Belle Aurore', cursive;
+    font-synthesis: none;
   }
 
   /* Improve touch targets on mobile */
